@@ -44,8 +44,11 @@ export default function Home() {
           <Link href="/terms"><a className="hover:underline">Terms of Service</a></Link> | <Link href="/privacy"><a className="hover:underline">Privacy Policy</a></Link>
         </p>
       </footer>
-      <Script src={`${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`} data-website={process.env.NEXT_PUBLIC_BASE_URL} strategy="lazyOnload" />
-      <script src="https://flashreviews-j8un272ai-concertono21s-projects.vercel.app/embed.js" data-website="https://flashreviews-git-main-concertono21s-projects.vercel.app/"></script>
+      <Script 
+        src="https://flashreviews-j8un272ai-concertono21s-projects.vercel.app/embed.js"
+        data-website="https://flashreviews-git-main-concertono21s-projects.vercel.app/"
+        strategy="lazyOnload"
+      />
     </div>
   );
 }
