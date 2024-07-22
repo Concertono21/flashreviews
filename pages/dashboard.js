@@ -23,7 +23,7 @@ export default function Dashboard() {
     timing: 3,
     style: 'classic-white',
     website: '',
-    code: '' // Add the code field
+    code: ''
   });
   const [reviews, setReviews] = useState([]);
   const [popupHistory, setPopupHistory] = useState([]);
@@ -36,7 +36,7 @@ export default function Dashboard() {
     if (status === 'unauthenticated') {
       router.push('/login');
     }
-  }, [status, router]); // Include 'router' in the dependency array
+  }, [status, router]);
 
   useEffect(() => {
     if (!session) return;
@@ -88,6 +88,34 @@ export default function Dashboard() {
     }
 
     fetchData();
+  }, [session]);
+
+  // New useEffect to fetch new reviews count
+  useEffect(() => {
+    if (session) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('/api/dashboard/reviews?new=true', {
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${session.user.accessToken}`,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to fetch reviews');
+          }
+
+          const data = await response.json();
+          setNewReviewCount(data.newReviewCount);
+        } catch (error) {
+          console.error('Error:', error);
+          setError('Failed to fetch reviews. Please try again.');
+        }
+      };
+
+      fetchData();
+    }
   }, [session]);
 
   const refreshData = async () => {
@@ -193,7 +221,7 @@ export default function Dashboard() {
                   console.error('Error saving review:', error);
                 });
               }
-                        </script>
+            </script>
             <div className="notification" style="
               position: fixed;
               top: 50%;
@@ -233,7 +261,7 @@ export default function Dashboard() {
                 ">
                   ${popupSettings.logo ? `<img src="${popupSettings.logo}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;" />` : ''}
                 </div>
-                <div className="notification-title-container" style="
+                                <div className="notification-title-container" style="
                   flex-grow: 1;
                   display: flex;
                   flex-direction: column;
