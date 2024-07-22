@@ -1,11 +1,8 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { MongoClient } from 'mongodb';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+import clientPromise from '../../../lib/mongodb';
 
 export default NextAuth({
   providers: [
@@ -16,13 +13,13 @@ export default NextAuth({
         password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        await client.connect();
+        const client = await clientPromise;
         const db = client.db('flashreviews');
         const user = await db.collection('users').findOne({ email: credentials.email });
 
         if (user && await bcrypt.compare(credentials.password, user.password)) {
           const accessToken = jwt.sign({ id: user._id }, process.env.NEXTAUTH_SECRET, { expiresIn: '1h' });
-          return { id: user._id, email: user.email, accessToken }; // Set the correct accessToken
+          return { id: user._id, email: user.email, accessToken };
         }
         return null;
       }
@@ -36,14 +33,14 @@ export default NextAuth({
     async session({ session, token }) {
       session.user.id = token.id;
       session.user.email = token.email;
-      session.user.accessToken = token.accessToken; // Ensure accessToken is set
+      session.user.accessToken = token.accessToken;
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
-        token.accessToken = user.accessToken; // Ensure accessToken is set
+        token.accessToken = user.accessToken;
       }
       return token;
     }
