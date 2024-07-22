@@ -1,3 +1,5 @@
+/* globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,4 +32,219 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Additional styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: opacity 0.5s, transform 0.5s;
+  opacity: 0;
+  transform: translateX(100%);
+  width: 300px;
+  max-width: 100%;
+  cursor: default;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.notification-header {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+  position: relative; /* Make the close button position relative to this container */
+}
+
+.notification-icon {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the logo */
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.notification-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.notification-title-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: calc(100% - 40px); /* Adjust width to leave space for the close button */
+  padding-right: 30px; /* Add padding to avoid overlap with the close button */
+}
+
+.notification-title {
+  font-weight: 600;
+  font-size: 14px;
+  text-align: justify; /* Justify the text */
+  white-space: normal;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+/* Add these styles to your styles.css file */
+
+/* Existing styles for close button */
+button.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cecece;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  padding: 0; /* Remove any padding */
+  margin: 0; /* Remove any margin */
+  transition: color 0.3s;
+  line-height: 1; /* Ensure the button height is minimal */
+}
+
+/* Adjust hover effect */
+button.close-button:hover {
+  color: black;
+}
+
+/* Additional styles to better position the close button */
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: relative;
+}
+
+button.close-button {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  width: 20px; /* Adjust size if necessary */
+  height: 20px; /* Adjust size if necessary */
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 10px; /* Adjust padding to control space between title and stars */
+  align-items: flex-start;
+}
+
+.rating {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  padding-left: -10px; /* Ensure stars align under the title */
+  margin-top: 5px; /* Reduce space between the title and stars */
+}
+
+.star {
+  font-size: 12px; /* Smaller stars */
+  cursor: pointer;
+  color: grey;
+  margin-right: 5px;
+}
+
+.star:hover,
+.star.selected {
+  color: gold;
+}
+
+textarea {
+  margin-top: 10px; /* Adjust space between stars and textarea */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+  width: 100%;
+  height: 50px;
+  font-size: 12px;
+  box-sizing: border-box;
+  color: black; /* Ensure text color is black */
+}
+
+button {
+  background-color: #acacac; /* Adjusted background color to match iPhone style */
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.settings-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #c0c0c0;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  max-width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification.classic-white {
+  background-color: white;
+  color: black;
+}
+
+.notification.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+.notification.apple-notification {
+  background-color: #f8f8f8;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.notification.style-4 {
+  background-color: #1e90ff;
+  color: white;
+}
+
+.notification.style-5 {
+  background-color: #32cd32;
+  color: white;
 }
