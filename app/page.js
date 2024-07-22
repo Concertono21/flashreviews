@@ -14,8 +14,8 @@ import GetStartedSection from '../components/GetStartedSection';
 export default function Home() {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = "http://localhost:3000/embed.js";
-    script.setAttribute('data-website', 'http://localhost:3000');
+    script.src = `${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`; // Use environment variable for base URL
+    script.setAttribute('data-website', process.env.NEXT_PUBLIC_BASE_URL); // Use environment variable for website attribute
     document.body.appendChild(script);
 
     return () => {
@@ -44,7 +44,7 @@ export default function Home() {
           <Link href="/terms"><a className="hover:underline">Terms of Service</a></Link> | <Link href="/privacy"><a className="hover:underline">Privacy Policy</a></Link>
         </p>
       </footer>
-      <Script src="http://localhost:3000/embed.js" data-website="http://localhost:3000/" strategy="lazyOnload" />
+      <Script src={`${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`} data-website={process.env.NEXT_PUBLIC_BASE_URL} strategy="lazyOnload" />
     </div>
   );
 }

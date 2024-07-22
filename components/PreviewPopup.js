@@ -47,7 +47,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
 
   const generateCode = () => {
     const code = `
-      <script src="http://localhost:3000/embed.js" data-website="${popupSettings.website}"></script>
+      <script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${popupSettings.website}"></script>
     `;
     setGeneratedCode(code);
   };

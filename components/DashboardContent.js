@@ -120,7 +120,7 @@ const DashboardContent = () => {
   };
 
   const handleGenerateCode = () => {
-    const code = `<script src="http://localhost:3000/embed.js" data-website="${websites[0].website}"></script>`; // Use the first website for simplicity
+    const code = `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`; // Use the environment variable for base URL
     setGeneratedCode(code);
   };
 

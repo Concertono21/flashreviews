@@ -38,7 +38,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
     if (selectedWebsite === 'all') {
       alert('Please select a website to generate the code.');
     } else {
-      const code = `<script src="http://localhost:3000/embed.js" data-website="${selectedWebsite}"></script>`;
+      const code = `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${selectedWebsite}"></script>`;
       setGeneratedCode(code);
     }
   };
