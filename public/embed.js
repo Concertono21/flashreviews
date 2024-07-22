@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log(`Fetching popup settings for website: ${website}`);
-  fetch(`/api/get-popup-settings?website=${website}`)
+  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-popup-settings?website=${website}`)
     .then(response => response.json())
     .then(data => {
       console.log('Received data:', data);
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
             const formProps = Object.fromEntries(formData);
 
-            fetch('/api/save-popup-answer', {
+            fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/save-popup-answer`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
