@@ -1,4 +1,3 @@
-// components/DashboardContent.js
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import EditPopupReview from './EditPopupReview';
@@ -27,35 +26,35 @@ const DashboardContent = () => {
   const [generatedCode, setGeneratedCode] = useState('');
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch('/api/dashboard/popups', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${session?.user.accessToken}`, // Ensure proper authorization header
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setPopupsCount(data.popups.length);
-          setPopupHistory(data.popups);
-          setWebsites(data.websites || []);
-        } else {
-          throw new Error('Failed to fetch dashboard data');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        setError('Failed to load dashboard. Please try again.');
-      } finally {
-        setLoading(false);
-      }
-    }
-
     if (session) {
       fetchData();
     }
   }, [session]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/dashboard/popups', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.user.accessToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setPopupsCount(data.popups.length);
+        setPopupHistory(data.popups);
+        setWebsites(data.websites || []);
+      } else {
+        throw new Error('Failed to fetch dashboard data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to load dashboard. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleTitleChange = (e) => {
     setPopupSettings({ ...popupSettings, title: e.target.value });
@@ -97,7 +96,7 @@ const DashboardContent = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user.accessToken}`, // Ensure proper authorization header
+          'Authorization': `Bearer ${session.user.accessToken}`,
         },
         body: JSON.stringify(newPopup),
       });
@@ -120,7 +119,7 @@ const DashboardContent = () => {
   };
 
   const handleGenerateCode = () => {
-    const code = `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`; // Use the environment variable for base URL
+    const code = `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`;
     setGeneratedCode(code);
   };
 
@@ -131,7 +130,7 @@ const DashboardContent = () => {
       const response = await fetch(`/api/dashboard/popups/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${session?.user.accessToken}`, // Ensure proper authorization header
+          'Authorization': `Bearer ${session.user.accessToken}`,
         },
       });
 
@@ -155,7 +154,7 @@ const DashboardContent = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.user.accessToken}`, // Ensure proper authorization header
+          'Authorization': `Bearer ${session.user.accessToken}`,
         },
         body: JSON.stringify({ website }),
       });
@@ -179,7 +178,7 @@ const DashboardContent = () => {
         const response = await fetch(`/api/dashboard/websites/${website}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${session?.user.accessToken}`, // Ensure proper authorization header
+            'Authorization': `Bearer ${session.user.accessToken}`,
           },
         });
 
@@ -214,28 +213,32 @@ const DashboardContent = () => {
         <ViewReviews reviews={reviews} />
         <EditPopupReview
           popupSettings={popupSettings}
-          handleTitleChange={handleTitleChange}
-          handleLogoChange={handleLogoChange}
-          handleRatingChange={handleRatingChange}
+          handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
+          handleLogoChange={(e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
+              reader.readAsDataURL(file);
+            }
+          }}
+          handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
           handleSavePopupSettings={handleSavePopupSettings}
-          handlePreviewPopup={handlePreviewPopup}
-          handleGenerateCode={handleGenerateCode}
-          handleTimingChange={handleTimingChange}
-          handleStyleChange={handleStyleChange}
+          handlePreviewPopup={() => setIsPreviewOpen(true)}
+          handleGenerateCode={() => setGeneratedCode(`<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`)}
+          handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
+          handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
           setPopupSettings={setPopupSettings}
           websites={websites}
         />
-        <PopupHistory
-          popupHistory={popupHistory}
-          handleDeletePopup={handleDeletePopup}
-          websites={websites}
+        <PopupHistory 
+          popupHistory={popupHistory} 
+          handleDeletePopup={handleDeletePopup} 
+          websites={websites} 
         />
       </div>
       {isPreviewOpen && (
-        <PreviewPopup
-          popupSettings={popupSettings}
-          handleClose={handleClosePreview}
-        />
+        <PreviewPopup popupSettings={popupSettings} handleClose={() => setIsPreviewOpen(false)} />
       )}
     </div>
   );
