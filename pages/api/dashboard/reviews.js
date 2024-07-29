@@ -1,14 +1,17 @@
 import { getSession } from 'next-auth/react';
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
 
 export default async function handler(req, res) {
+  console.log('Handling request:', req.method, req.url);
+
   if (req.method !== 'GET') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
   const session = await getSession({ req });
+  console.log('Session:', session);
 
   if (!session) {
     return res.status(401).json({ message: 'Unauthorized' });
@@ -25,7 +28,7 @@ export default async function handler(req, res) {
     console.log(`Fetching popups for user: ${userEmail}`);
     const userPopups = await popupsCollection.find({ user: userEmail }).toArray();
     console.log('User Popups:', userPopups);
-    
+
     const popupIds = userPopups.map(popup => popup._id.toString());
     console.log('Popup IDs:', popupIds);
 
@@ -34,7 +37,6 @@ export default async function handler(req, res) {
       return res.status(200).json({ reviews: [], newReviewCount: 0 });
     }
 
-    // Check if we need to fetch only new reviews
     const fetchNewReviews = req.query.new === 'true';
 
     const filter = { 
@@ -56,10 +58,8 @@ export default async function handler(req, res) {
     });
     console.log('Reviews with Titles:', reviewsWithTitles);
 
-    // Count new reviews
     const newReviewCount = await reviewsCollection.countDocuments({ popupId: { $in: popupIds }, isNew: true });
 
-    // If fetching all reviews, mark all reviews as viewed
     if (!fetchNewReviews) {
       await reviewsCollection.updateMany({ popupId: { $in: popupIds } }, { $set: { isNew: false } });
     }
