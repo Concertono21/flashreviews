@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log(`Fetching popup settings for website: ${website}`);
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get-popup-settings?website=${website}`)
+  fetch(`${currentScript.src.replace('/embed.js', '')}/api/get-popup-settings?website=${website}`)
     .then(response => response.json())
     .then(data => {
       console.log('Received data:', data);
@@ -127,14 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(form);
             const formProps = Object.fromEntries(formData);
 
-            fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/save-popup-answer`, {
+            fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
                 ...formProps,
-                rating: popupData.enableStars ? rating : null, // Include the rating if stars are enabled
+                rating: popupData.enableStars ? rating : null,
               }),
             })
               .then(response => {
