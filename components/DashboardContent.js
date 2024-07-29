@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import EditPopupReview from './EditPopupReview';
 import PreviewPopup from './PreviewPopup';
 import AddWebsite from './AddWebsite';
 import ViewReviews from './ViewReviews';
 import PopupHistory from './PopupHistory';
+import Script from 'next/script';
 
 const DashboardContent = () => {
   const { data: session, status } = useSession();
@@ -25,7 +26,14 @@ const DashboardContent = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
 
-  const fetchData = useCallback(async () => {
+  useEffect(() => {
+    if (session) {
+      fetchData();
+      fetchReviews();
+    }
+  }, [session]);
+
+  const fetchData = async () => {
     try {
       const response = await fetch('/api/dashboard/popups', {
         method: 'GET',
@@ -48,9 +56,9 @@ const DashboardContent = () => {
     } finally {
       setLoading(false);
     }
-  }, [session]);
+  };
 
-  const fetchReviews = useCallback(async () => {
+  const fetchReviews = async () => {
     try {
       const response = await fetch('/api/dashboard/reviews?new=true', {
         method: 'GET',
@@ -69,14 +77,7 @@ const DashboardContent = () => {
       console.error('Error fetching reviews:', error);
       setError('Failed to load reviews. Please try again.');
     }
-  }, [session]);
-
-  useEffect(() => {
-    if (session) {
-      fetchData();
-      fetchReviews();
-    }
-  }, [session, fetchData, fetchReviews]);
+  };
 
   const handleTitleChange = (e) => {
     setPopupSettings({ ...popupSettings, title: e.target.value });
@@ -218,6 +219,17 @@ const DashboardContent = () => {
     }
   };
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://flashreviews.vercel.app/embed.js';
+    script.setAttribute('data-website', 'https://flashreviews.vercel.app/');
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   if (status === 'loading' || loading) {
     return <div className="min-h-screen flex items-center justify-center bg-black text-white">Loading...</div>;
   }
@@ -247,7 +259,7 @@ const DashboardContent = () => {
           handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
           handleSavePopupSettings={handleSavePopupSettings}
           handlePreviewPopup={() => setIsPreviewOpen(true)}
-          handleGenerateCode={() => setGeneratedCode(`<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`)}
+          handleGenerateCode={() => setGeneratedCode(`<script src="https://flashreviews.vercel.app/embed.js" data-website="${websites[0].website}"></script>`)}
           handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
           handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
           setPopupSettings={setPopupSettings}
@@ -260,7 +272,10 @@ const DashboardContent = () => {
         />
       </div>
       {isPreviewOpen && (
-        <PreviewPopup popupSettings={popupSettings} handleClose={handleClosePreview} />
+        <PreviewPopup 
+          popupSettings={popupSettings} 
+          handleClose={handleClosePreview} 
+        />
       )}
     </div>
   );
