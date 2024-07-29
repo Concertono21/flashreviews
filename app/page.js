@@ -68,7 +68,11 @@ export default function Home() {
         data-website={process.env.NEXT_PUBLIC_BASE_URL}
         strategy="lazyOnload"
       />
-      <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app/"></script>
+      <Script 
+        src="https://flashreviews.vercel.app/embed.js" 
+        data-website="https://flashreviews.vercel.app/" 
+        strategy="lazyOnload"
+      />
     </div>
   );
 }
