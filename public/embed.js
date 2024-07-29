@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('embed.js script loaded');
   const currentScript = document.currentScript || document.querySelector('script[data-website]');
   if (!currentScript) {
     console.error('No script with data-website attribute found.');
@@ -13,13 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log(`Fetching popup settings for website: ${website}`);
   fetch(`${currentScript.src.replace('/embed.js', '')}/api/get-popup-settings?website=${website}`)
-    .then(response => {
-      console.log('Response:', response);
-      if (!response.ok) {
-        return response.json().then(err => { throw new Error(err.message); });
-      }
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
       console.log('Received data:', data);
       if (data && data.popups && data.popups.length > 0) {
