@@ -12,6 +12,18 @@ import Faq from '../components/Faq';
 import GetStartedSection from '../components/GetStartedSection';
 
 export default function Home() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://flashreviews.vercel.app/embed.js';
+    script.setAttribute('data-website', 'https://flashreviews.vercel.app');
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up the script if the component unmounts
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -50,7 +62,7 @@ export default function Home() {
           </Link> | <Link href="/privacy">
             Privacy Policy
           </Link>
-        </p>
+          </p>
       </footer>
       <Script 
         src="https://flashreviews.vercel.app/embed.js"

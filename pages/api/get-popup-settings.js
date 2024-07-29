@@ -1,7 +1,6 @@
 import { MongoClient } from 'mongodb';
 import Cors from 'cors';
 
-// Middleware to initialize CORS
 const initMiddleware = (middleware) => {
   return (req, res) =>
     new Promise((resolve, reject) => {
@@ -14,11 +13,10 @@ const initMiddleware = (middleware) => {
     });
 };
 
-// Initialize the cors middleware
 const cors = initMiddleware(
   Cors({
     methods: ['GET', 'POST', 'OPTIONS'],
-    origin: '*', // Allow all origins for testing; restrict to your domain in production
+    origin: '*',
   })
 );
 
