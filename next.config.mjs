@@ -7,7 +7,7 @@ export default {
   async headers() {
     return [
       {
-        source: '/(.*)', // Apply to all routes
+        source: '/(.*)',
         headers: [
           {
             key: 'Content-Security-Policy',
