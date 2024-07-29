@@ -14,12 +14,11 @@ import GetStartedSection from '../components/GetStartedSection';
 export default function Home() {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = `${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`; // Use environment variable for base URL
-    script.setAttribute('data-website', process.env.NEXT_PUBLIC_BASE_URL); // Use environment variable for website attribute
+    script.src = `${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`;
+    script.setAttribute('data-website', process.env.NEXT_PUBLIC_BASE_URL);
     document.body.appendChild(script);
 
     return () => {
-      // Clean up the script if the component unmounts
       document.body.removeChild(script);
     };
   }, []);
@@ -65,10 +64,11 @@ export default function Home() {
         </p>
       </footer>
       <Script 
-        src="https://flashreviews-j8un272ai-concertono21s-projects.vercel.app/embed.js"
-        data-website="https://flashreviews-git-main-concertono21s-projects.vercel.app/"
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`}
+        data-website={process.env.NEXT_PUBLIC_BASE_URL}
         strategy="lazyOnload"
       />
+      <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app/"></script>
     </div>
   );
 }
