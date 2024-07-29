@@ -57,6 +57,7 @@ export default async function handler(req, res) {
       createdAt: new Date(),
     });
 
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.status(200).json({ message: 'Answer saved', result });
   } catch (error) {
     console.error('Error saving answer:', error);
