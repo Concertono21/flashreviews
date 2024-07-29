@@ -218,7 +218,7 @@ export default function Dashboard() {
                   console.log('Review saved:', data);
                   alert('Thank you for your feedback!');
                 }).catch(error => {
-                  console.error('Error saving review:', error);
+                                    console.error('Error saving review:', error);
                 });
               }
             </script>
@@ -261,7 +261,7 @@ export default function Dashboard() {
                 ">
                   ${popupSettings.logo ? `<img src="${popupSettings.logo}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;" />` : ''}
                 </div>
-                                <div className="notification-title-container" style="
+                <div className="notification-title-container" style="
                   flex-grow: 1;
                   display: flex;
                   flex-direction: column;
@@ -443,8 +443,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'http://localhost:3000/embed.js';
-    script.setAttribute('data-website', 'http://localhost:3000/dashboard');
+    script.src = `${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`;
+    script.setAttribute('data-website', `${process.env.NEXT_PUBLIC_BASE_URL}/dashboard`);
     document.body.appendChild(script);
 
     return () => {
@@ -481,7 +481,7 @@ export default function Dashboard() {
           handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
           handleSavePopupSettings={handleSavePopupSettings}
           handlePreviewPopup={() => setIsPreviewOpen(true)}
-          handleGenerateCode={() => setGeneratedCode(`<script src="http://localhost:3000/embed.js" data-website="${websites[0].website}"></script>`)}
+          handleGenerateCode={() => setGeneratedCode(`<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`)}
           handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
           handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
           setPopupSettings={setPopupSettings}
