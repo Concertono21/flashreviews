@@ -40,7 +40,7 @@ export default function Home() {
           </li>
           <li>
             <Link href="/signin">
-              Get Started
+            Get Started
             </Link>
           </li>
         </ul>
