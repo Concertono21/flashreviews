@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
@@ -10,10 +10,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const session = await getSession({ req });
-  console.log('Session:', session);
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  console.log('Token:', token);
 
-  if (!session) {
+  if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     const reviewsCollection = database.collection('reviews');
     const popupsCollection = database.collection('popups');
 
-    const userEmail = session.user.email;
+    const userEmail = token.email;
     console.log(`Fetching popups for user: ${userEmail}`);
     const userPopups = await popupsCollection.find({ user: userEmail }).toArray();
     console.log('User Popups:', userPopups);

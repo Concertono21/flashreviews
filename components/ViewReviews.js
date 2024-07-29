@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-const ViewReviews = ({ session }) => {
+const ViewReviews = () => {
+  const { data: session } = useSession();
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState('');
   const router = useRouter();
