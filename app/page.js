@@ -19,6 +19,7 @@ export default function Home() {
     document.body.appendChild(script);
 
     return () => {
+      // Clean up the script if the component unmounts
       document.body.removeChild(script);
     };
   }, []);
@@ -64,13 +65,8 @@ export default function Home() {
         </p>
       </footer>
       <Script 
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`}
-        data-website={process.env.NEXT_PUBLIC_BASE_URL}
-        strategy="lazyOnload"
-      />
-      <Script 
-        src="https://flashreviews.vercel.app/embed.js" 
-        data-website="https://flashreviews.vercel.app/" 
+        src="https://flashreviews.vercel.app/embed.js"
+        data-website="https://flashreviews.vercel.app/"
         strategy="lazyOnload"
       />
     </div>

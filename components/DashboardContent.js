@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import EditPopupReview from './EditPopupReview';
 import PreviewPopup from './PreviewPopup';
@@ -25,14 +25,7 @@ const DashboardContent = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
 
-  useEffect(() => {
-    if (session) {
-      fetchData();
-      fetchReviews();
-    }
-  }, [session]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetch('/api/dashboard/popups', {
         method: 'GET',
@@ -55,9 +48,9 @@ const DashboardContent = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session]);
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       const response = await fetch('/api/dashboard/reviews?new=true', {
         method: 'GET',
@@ -76,7 +69,14 @@ const DashboardContent = () => {
       console.error('Error fetching reviews:', error);
       setError('Failed to load reviews. Please try again.');
     }
-  };
+  }, [session]);
+
+  useEffect(() => {
+    if (session) {
+      fetchData();
+      fetchReviews();
+    }
+  }, [session, fetchData, fetchReviews]);
 
   const handleTitleChange = (e) => {
     setPopupSettings({ ...popupSettings, title: e.target.value });
@@ -253,17 +253,14 @@ const DashboardContent = () => {
           setPopupSettings={setPopupSettings}
           websites={websites}
         />
-                <PopupHistory 
+        <PopupHistory 
           popupHistory={popupHistory} 
           handleDeletePopup={handleDeletePopup} 
           websites={websites} 
         />
       </div>
       {isPreviewOpen && (
-        <PreviewPopup 
-          popupSettings={popupSettings} 
-          handleClose={handleClosePreview} 
-        />
+        <PreviewPopup popupSettings={popupSettings} handleClose={handleClosePreview} />
       )}
     </div>
   );
