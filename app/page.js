@@ -69,6 +69,7 @@ export default function Home() {
         data-website="https://flashreviews.vercel.app"
         strategy="lazyOnload"
       />
+      <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app/"></script>
     </div>
   );
 }
