@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   env: {
     NEXT_PUBLIC_BASE_URL: 'https://flashreviews.vercel.app',
     MAILGUN_API_KEY: 'your_mailgun_api_key',
@@ -7,7 +7,7 @@ export default {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/(.*)', // Apply to all routes
         headers: [
           {
             key: 'Content-Security-Policy',
