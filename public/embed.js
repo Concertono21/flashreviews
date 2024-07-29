@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(`Fetching popup settings for website: ${website}`);
   fetch(`${currentScript.src.replace('/embed.js', '')}/api/get-popup-settings?website=${website}`)
     .then(response => {
+      console.log('Response:', response);
       if (!response.ok) {
         return response.json().then(err => { throw new Error(err.message); });
       }
