@@ -35,13 +35,33 @@ export default function Home() {
       <GetStartedSection />
       <footer className="bg-black text-white text-center py-4">
         <ul className="flex justify-center space-x-4">
-          <li><Link href="#home"><a className="hover:underline">Home</a></Link></li>
-          <li><Link href="#pricing"><a className="hover:underline">Pricing</a></Link></li>
-          <li><Link href="#faq"><a className="hover:underline">FAQ</a></Link></li>
-          <li><Link href="/signin"><a className="hover:underline">Get Started</a></Link></li>
+          <li>
+            <Link href="#home">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="#pricing">
+              Pricing
+            </Link>
+          </li>
+          <li>
+            <Link href="#faq">
+              FAQ
+            </Link>
+          </li>
+          <li>
+            <Link href="/signin">
+              Get Started
+            </Link>
+          </li>
         </ul>
         <p className="mt-4">
-          <Link href="/terms"><a className="hover:underline">Terms of Service</a></Link> | <Link href="/privacy"><a className="hover:underline">Privacy Policy</a></Link>
+          <Link href="/terms">
+            Terms of Service
+          </Link> | <Link href="/privacy">
+            Privacy Policy
+          </Link>
         </p>
       </footer>
       <Script 
