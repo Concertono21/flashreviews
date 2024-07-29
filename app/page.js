@@ -12,18 +12,6 @@ import Faq from '../components/Faq';
 import GetStartedSection from '../components/GetStartedSection';
 
 export default function Home() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `${process.env.NEXT_PUBLIC_BASE_URL}/embed.js`;
-    script.setAttribute('data-website', process.env.NEXT_PUBLIC_BASE_URL);
-    document.body.appendChild(script);
-
-    return () => {
-      // Clean up the script if the component unmounts
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div>
       <Navbar />
@@ -69,7 +57,6 @@ export default function Home() {
         data-website="https://flashreviews.vercel.app"
         strategy="lazyOnload"
       />
-      <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app/"></script>
     </div>
   );
 }
