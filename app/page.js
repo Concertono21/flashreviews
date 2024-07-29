@@ -51,6 +51,7 @@ export default function Home() {
         <p className="mt-4">
           <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
         </p>
+        <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app"></script>
       </footer>
     </div>
   );
