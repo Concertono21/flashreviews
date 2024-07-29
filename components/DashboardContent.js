@@ -28,6 +28,7 @@ const DashboardContent = () => {
   useEffect(() => {
     if (session) {
       fetchData();
+      fetchReviews();
     }
   }, [session]);
 
@@ -53,6 +54,27 @@ const DashboardContent = () => {
       setError('Failed to load dashboard. Please try again.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchReviews = async () => {
+    try {
+      const response = await fetch('/api/dashboard/reviews?new=true', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${session.user.accessToken}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setReviews(data.reviews);
+      } else {
+        throw new Error('Failed to fetch reviews');
+      }
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+      setError('Failed to load reviews. Please try again.');
     }
   };
 
@@ -231,14 +253,17 @@ const DashboardContent = () => {
           setPopupSettings={setPopupSettings}
           websites={websites}
         />
-        <PopupHistory 
+                <PopupHistory 
           popupHistory={popupHistory} 
           handleDeletePopup={handleDeletePopup} 
           websites={websites} 
         />
       </div>
       {isPreviewOpen && (
-        <PreviewPopup popupSettings={popupSettings} handleClose={() => setIsPreviewOpen(false)} />
+        <PreviewPopup 
+          popupSettings={popupSettings} 
+          handleClose={handleClosePreview} 
+        />
       )}
     </div>
   );
