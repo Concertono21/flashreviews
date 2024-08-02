@@ -54,9 +54,12 @@ export default async function handler(req, res) {
       });
 
       // Set the CORS headers dynamically based on the request origin
-      res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '');
-      res.setHeader('Access-Control-Allow-Credentials', 'true');
-      
+      const origin = req.headers.origin || '';
+      if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+      }
+
       res.status(200).json({ message: 'Answer saved', result });
     } catch (error) {
       console.error('Error saving answer:', error);
