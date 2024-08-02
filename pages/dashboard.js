@@ -269,7 +269,7 @@ export default function Dashboard() {
                   max-width: calc(100% - 40px);
                   padding-right: 30px;
                 ">
-                  <div className="notification-title" style="
+                                    <div className="notification-title" style="
                     font-weight: 600;
                     font-size: 14px;
                     text-align: justify;
@@ -465,37 +465,45 @@ export default function Dashboard() {
       <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-white">{loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
-        <ViewReviews session={session} /> {/* Pass session here */}
-        <EditPopupReview
-          popupSettings={popupSettings}
-          handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
-          handleLogoChange={(e) => {
-            const file = e.target.files[0];
-            if (file) {
-              const reader = new FileReader();
-              reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
-              reader.readAsDataURL(file);
-            }
-          }}
-          handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
-          handleSavePopupSettings={handleSavePopupSettings}
-          handlePreviewPopup={() => setIsPreviewOpen(true)}
-          handleGenerateCode={() => setGeneratedCode(`<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`)}
-          handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
-          handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
-          setPopupSettings={setPopupSettings}
-          websites={websites}
-        />
-        <PopupHistory 
-          popupHistory={popupHistory} 
-          handleDeletePopup={handleDeletePopup} 
-          websites={websites} 
-          refreshData={refreshData} 
-        />
+        <div className="grid grid-cols-2 gap-4 w-full">
+          <ViewReviews session={session} /> {/* Pass session here */}
+          <div>
+            <h2 className="text-xl font-bold text-white mb-4">Active Pop Up</h2>
+            <PopupHistory 
+              popupHistory={popupHistory} 
+              handleDeletePopup={handleDeletePopup} 
+              websites={websites} 
+              refreshData={refreshData} 
+            />
+          </div>
+          <EditPopupReview
+            popupSettings={popupSettings}
+            handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
+            handleLogoChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
+                reader.readAsDataURL(file);
+              }
+            }}
+            handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
+            handleSavePopupSettings={handleSavePopupSettings}
+            handlePreviewPopup={() => setIsPreviewOpen(true)}
+            handleGenerateCode={() => setGeneratedCode(`<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`)}
+            handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
+            handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
+            setPopupSettings={setPopupSettings}
+            websites={websites}
+          />
+          <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
+        </div>
       </div>
       {isPreviewOpen && (
-        <PreviewPopup popupSettings={popupSettings} handleClose={() => setIsPreviewOpen(false)} />
+        <PreviewPopup 
+          popupSettings={popupSettings} 
+          handleClose={() => setIsPreviewOpen(false)} 
+        />
       )}
     </DashboardLayout>
   );
