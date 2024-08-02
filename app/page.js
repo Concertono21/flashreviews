@@ -12,8 +12,22 @@ import Faq from '../components/Faq';
 import GetStartedSection from '../components/GetStartedSection';
 
 export default function Home() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://flashreviews.vercel.app/embed.js';
+    script.setAttribute('data-website', 'https://flashreviews.vercel.app');
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <Navbar />
       <Hero />
       <Marketing />
@@ -40,7 +54,7 @@ export default function Home() {
           </li>
           <li>
             <Link href="/signin">
-            Get Started
+              Get Started
             </Link>
           </li>
         </ul>
@@ -52,11 +66,6 @@ export default function Home() {
           </Link>
         </p>
       </footer>
-      <Script 
-        src="https://flashreviews.vercel.app/embed.js"
-        data-website="https://flashreviews.vercel.app"
-        strategy="afterInteractive"
-      />
     </div>
   );
 }
