@@ -465,10 +465,9 @@ export default function Dashboard() {
       <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-white">{loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <div className="grid grid-cols-2 gap-4 w-full">
+        <div className="grid grid-cols-2 gap-4 w-full justify-items-center">
           <ViewReviews session={session} /> {/* Pass session here */}
           <div>
-            <h2 className="text-xl font-bold text-white mb-4">Active Pop Up</h2>
             <PopupHistory 
               popupHistory={popupHistory} 
               handleDeletePopup={handleDeletePopup} 
