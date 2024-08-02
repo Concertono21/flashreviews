@@ -42,9 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 1;
                 transform: translateX(0);
                 width: 300px;
-                max-width: 100%;
+                height: 400px;
                 cursor: default;
                 padding: 10px;
+                overflow: auto;
               "
             >
               <div
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Origin': 'https://concertono21.tumblr.com',
+                'Origin': window.location.origin,
               },
               credentials: 'include',
               body: JSON.stringify({

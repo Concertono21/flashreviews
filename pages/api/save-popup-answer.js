@@ -5,15 +5,24 @@ import initMiddleware from '../../lib/initMiddleware';
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const cors = initMiddleware(
-  Cors({
-    methods: ['GET', 'POST', 'OPTIONS'],
-    origin: ['https://concertono21.tumblr.com', 'https://flashreviews.vercel.app'],
-    credentials: true,
-  })
-);
+const getCorsMiddleware = async () => {
+  await client.connect();
+  const db = client.db('flashreviews');
+  const websitesCollection = db.collection('websites');
+  const websites = await websitesCollection.find().toArray();
+  const allowedOrigins = websites.map(website => website.url);
+
+  return initMiddleware(
+    Cors({
+      methods: ['GET', 'POST', 'OPTIONS'],
+      origin: allowedOrigins,
+      credentials: true,
+    })
+  );
+};
 
 export default async function handler(req, res) {
+  const cors = await getCorsMiddleware();
   await cors(req, res);
 
   if (req.method === 'OPTIONS') {
