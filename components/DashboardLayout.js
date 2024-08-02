@@ -21,8 +21,8 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-black font-sans">
-      <div className="w-full max-w-5xl flex justify-between items-center p-6 bg-black mx-auto">
-        <div className="relative">
+      <div className="w-full max-w-5xl flex items-center p-6 bg-black mx-auto">
+        <div className="relative flex-grow">
           <button
             className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
             onClick={handleAccountButtonClick}
@@ -76,6 +76,7 @@ const DashboardLayout = ({ children }) => {
             </div>
           )}
         </div>
+        <div className="flex-grow"></div>
         <button
           className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={() => router.push('/add-website')}
@@ -83,7 +84,9 @@ const DashboardLayout = ({ children }) => {
           Get Started
         </button>
       </div>
-      {children}
+      <div className="flex flex-col items-center justify-center flex-grow">
+        {children}
+      </div>
     </div>
   );
 };

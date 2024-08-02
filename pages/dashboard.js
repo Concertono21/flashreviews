@@ -221,7 +221,7 @@ export default function Dashboard() {
                                     console.error('Error saving review:', error);
                 });
               }
-            </script>
+                        </script>
             <div className="notification" style="
               position: fixed;
               top: 50%;
@@ -269,7 +269,7 @@ export default function Dashboard() {
                   max-width: calc(100% - 40px);
                   padding-right: 30px;
                 ">
-                                    <div className="notification-title" style="
+                  <div className="notification-title" style="
                     font-weight: 600;
                     font-size: 14px;
                     text-align: justify;
@@ -474,7 +474,7 @@ export default function Dashboard() {
               websites={websites} 
               refreshData={refreshData} 
             />
-          </div>
+                    </div>
           <EditPopupReview
             popupSettings={popupSettings}
             handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
