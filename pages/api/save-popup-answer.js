@@ -37,6 +37,7 @@ export default async function handler(req, res) {
         comments,
         userEmail,
         rating,
+        isNew: 'yes', // Add the isNew field here
         createdAt: new Date(),
       });
 
