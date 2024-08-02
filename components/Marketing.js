@@ -1,4 +1,4 @@
-and here : const Marketing = () => {
+here : const Marketing = () => {
   return (
     <section id="marketing" className="marketing bg-black py-20 text-center">
       <div className="marketing-content">
