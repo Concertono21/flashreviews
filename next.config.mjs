@@ -9,7 +9,7 @@ async function fetchAllowedOrigins() {
     const db = client.db('flashreviews');
     const websitesCollection = db.collection('websites');
     const websites = await websitesCollection.find().toArray();
-    const allowedOrigins = websites.map((website) => website.website);
+    const allowedOrigins = websites.map(website => website.website);
     return allowedOrigins;
   } catch (error) {
     console.error('Error fetching allowed origins:', error);

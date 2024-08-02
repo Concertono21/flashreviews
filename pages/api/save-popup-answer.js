@@ -6,8 +6,8 @@ import getAllowedOrigins from '../../lib/getAllowedOrigins';
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const cors = async (req, res) => {
-  const allowedOrigins = await getAllowedOrigins();
+// Initialize the cors middleware
+const initCorsMiddleware = (allowedOrigins) => {
   return initMiddleware(
     Cors({
       methods: ['GET', 'POST', 'OPTIONS'],
@@ -20,10 +20,13 @@ const cors = async (req, res) => {
       },
       credentials: true,
     })
-  )(req, res);
+  );
 };
 
 export default async function handler(req, res) {
+  const allowedOrigins = await getAllowedOrigins();
+  const cors = initCorsMiddleware(allowedOrigins);
+
   await cors(req, res);
 
   if (req.method === 'OPTIONS') {
@@ -41,7 +44,7 @@ export default async function handler(req, res) {
       await client.connect();
       const db = client.db('flashreviews');
       const answersCollection = db.collection('reviews');
-      
+
       const result = await answersCollection.insertOne({
         popupId,
         comments,
@@ -51,6 +54,8 @@ export default async function handler(req, res) {
         createdAt: new Date(),
       });
 
+      // Dynamically set the Access-Control-Allow-Origin header
+      res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
       res.status(200).json({ message: 'Answer saved', result });
     } catch (error) {
       console.error('Error saving answer:', error);
