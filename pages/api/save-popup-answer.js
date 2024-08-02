@@ -40,13 +40,13 @@ export default async function handler(req, res) {
       await client.connect();
       const db = client.db('flashreviews');
       const answersCollection = db.collection('reviews');
-      
+
       const result = await answersCollection.insertOne({
         popupId,
         comments,
         userEmail,
         rating,
-        isNew: 'yes', // Add the isNew field here
+        isNew: 'yes',
         createdAt: new Date(),
       });
 
