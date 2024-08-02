@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
-    <section id="home" className="hero bg-black py-20 text-center">
-      <div className="hero-content max-w-4xl mx-auto px-4">
+    <section id="home" className="hero bg-black py-30 text-center">
+      <div className="hero-content max-w-3xl mx-auto px-3">
         <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
           Turn Visitors into Engaged Customers with Quick Review Popups
         </h1>
