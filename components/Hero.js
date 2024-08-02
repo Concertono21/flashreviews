@@ -3,10 +3,10 @@ import Link from 'next/link';
 const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
-      <div className="hero-content">
-        <h1 className="text-4xl font-bold">Turn Visitors into Engaged Customers with Quick Review Popups</h1>
-        <p className="text-xl mt-4">Capture valuable feedback instantly with engaging pop-up reviews, enhancing your customer experience and driving growth.</p>
-        <ul className="benefits list-disc mt-4">
+      <div className="hero-content max-w-4xl mx-auto px-4">
+        <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">Turn Visitors into Engaged Customers with Quick Review Popups</h1>
+        <p className="text-xl mt-4 text-white sm:text-2xl md:text-3xl">Capture valuable feedback instantly with engaging pop-up reviews, enhancing your customer experience and driving growth.</p>
+        <ul className="benefits list-disc mt-4 text-white text-left mx-auto max-w-md sm:text-xl md:text-2xl">
           <li>Pay once, use forever</li>
           <li>1-minute no-code setup</li>
           <li>Boost customer satisfaction</li>
