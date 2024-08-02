@@ -1,25 +1,3 @@
-import { MongoClient } from 'mongodb';
-
-const fetchAllowedOrigins = async () => {
-  const uri = process.env.MONGODB_URI;
-  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-  try {
-    await client.connect();
-    const db = client.db('flashreviews');
-    const websitesCollection = db.collection('websites');
-    const websites = await websitesCollection.find().toArray();
-    return websites.map(website => website.url);
-  } catch (error) {
-    console.error('Error fetching allowed origins:', error);
-    return ['https://concertono21.tumblr.com']; // Fallback to a default value
-  } finally {
-    await client.close();
-  }
-};
-
-const allowedOrigins = await fetchAllowedOrigins();
-
 export default {
   env: {
     NEXT_PUBLIC_BASE_URL: 'https://flashreviews.vercel.app',
@@ -32,7 +10,7 @@ export default {
         source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          { key: 'Access-Control-Allow-Origin', value: allowedOrigins.join(', ') }, // Join all allowed origins
+          { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET,POST,OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
         ],

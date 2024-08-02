@@ -10,7 +10,7 @@ const getCorsMiddleware = async () => {
   const db = client.db('flashreviews');
   const websitesCollection = db.collection('websites');
   const websites = await websitesCollection.find().toArray();
-  const allowedOrigins = websites.map(website => website.url);
+  const allowedOrigins = websites.map(website => website.website);
 
   return initMiddleware(
     Cors({
