@@ -8,9 +8,9 @@ const UseCases = () => {
       <div className="use-cases-content flex justify-center mt-8">
         <div className="use-case-titles flex flex-col items-start mx-4">
           <div className="use-case cursor-pointer py-2" data-target="frame1">
-            <div className="use-case-title text-xl font-bold">✍️ Create a PoopUp</div>
+            <div className="use-case-title text-xl font-bold">✍️ Create a FlashReviews</div>
             <div className="use-case-description hidden">
-              <p>Create PoopUp messages in 2 minutes, no code required. Write about the #1 problem your visitors have. Trigger an emotional response. Use icons people recognize.</p>
+              <p>Create FlashReviews messages in 2 minutes, no code required. Write about the #1 problem your visitors have. Trigger an emotional response. Use icons people recognize.</p>
             </div>
           </div>
           <div className="use-case cursor-pointer py-2" data-target="frame2">

@@ -5,13 +5,13 @@ const Pricing = () => {
       <div className="pricing-container flex justify-center mt-8">
         <div className="pricing-card bg-black border-2 border-green-400 p-6 rounded-lg shadow-lg mx-4" style={{ borderColor: '#bafd00' }}>
           <h2 className="text-2xl font-bold">Appetizer</h2>
-          <p>Start with a taste of PoopUp</p>
+          <p>Start with a taste of FlashReviews</p>
           <div className="price my-4">
             <span className="old-price text-gray-500 line-through">$18</span>
             <span className="new-price text-2xl font-bold">$9</span> USD
           </div>
           <ul className="list-disc text-left mx-auto max-w-xs">
-            <li>Unlimited PoopUps</li>
+            <li>Unlimited FlashReviews</li>
             <li>1 website</li>
             <li>Simple analytics</li>
           </ul>
@@ -21,13 +21,13 @@ const Pricing = () => {
         <div className="pricing-card popular bg-black border-2 border-green-400 p-6 rounded-lg shadow-lg mx-4 relative" style={{ borderColor: '#bafd00' }}>
           <div className="tag bg-green-400 text-black absolute top-0 right-0 px-2 py-1" style={{ backgroundColor: '#bafd00' }}>POPULAR</div>
           <h2 className="text-2xl font-bold">Main Course</h2>
-          <p>Add PoopUps to all your websites, let&apos;s go!</p>
+          <p>Add FlashReviews to all your websites, let&apos;s go!</p>
           <div className="price my-4">
             <span className="old-price text-gray-500 line-through">$38</span>
             <span className="new-price text-2xl font-bold">$19</span> USD
           </div>
           <ul className="list-disc text-left mx-auto max-w-xs">
-            <li>Unlimited PoopUps</li>
+            <li>Unlimited FlashReviews</li>
             <li>Unlimited websites</li>
             <li>Simple analytics</li>
           </ul>

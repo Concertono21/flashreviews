@@ -17,7 +17,7 @@ const Faq = () => {
             <span className="faq-toggle">+</span> Is it compatible with?
           </div>
           <div id="faq2" className="faq-answer hidden">
-            <p>Wordpress, Shopify, Carrd, Webflow, Bubble, Wix, etc. are all supported. If you can add a code snippet (script) to your website, you can use PoopUp.</p>
+            <p>Wordpress, Shopify, Carrd, Webflow, Bubble, Wix, etc. are all supported. If you can add a code snippet (script) to your website, you can use FlashReviews.</p>
           </div>
         </div>
         <div className="faq-item border-b border-gray-700 py-4">
@@ -30,10 +30,10 @@ const Faq = () => {
         </div>
         <div className="faq-item border-b border-gray-700 py-4">
           <div className="faq-question cursor-pointer" data-target="faq4">
-            <span className="faq-toggle">+</span> Does PoopUp work on mobile?
+            <span className="faq-toggle">+</span> Does FlashReviews work on mobile?
           </div>
           <div id="faq4" className="faq-answer hidden">
-            <p>Yes, PoopUp is designed to be responsive and works on mobile devices.</p>
+            <p>Yes, FlashReviews is designed to be responsive and works on mobile devices.</p>
           </div>
         </div>
         <div className="faq-item border-b border-gray-700 py-4">
@@ -41,7 +41,7 @@ const Faq = () => {
             <span className="faq-toggle">+</span> What can I customize?
           </div>
           <div id="faq5" className="faq-answer hidden">
-            <p>You can customize the text, colors, and timing of the PoopUp notifications.</p>
+            <p>You can customize the text, colors, and timing of the FlashReviews notifications.</p>
           </div>
         </div>
       </div>
