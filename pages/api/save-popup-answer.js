@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     try {
       await client.connect();
       const db = client.db('flashreviews');
-      const answersCollection = db.collection('popup_answers');
+      const answersCollection = db.collection('popups');
       
       const result = await answersCollection.insertOne({
         popupId,
