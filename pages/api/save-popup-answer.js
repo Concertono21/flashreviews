@@ -1,43 +1,35 @@
 import Cors from 'cors';
 import initMiddleware from '../../lib/initMiddleware';
-import getAllowedOrigins from '../../lib/getAllowedOrigins';
 import { MongoClient } from 'mongodb';
+import nextConnect from 'next-connect';
 
-// Middleware to initialize CORS
-const initCorsMiddleware = (allowedOrigins) => {
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const handler = nextConnect();
+
+// Temporary CORS Configuration to allow all origins
+const initCorsMiddleware = () => {
   return initMiddleware(
     Cors({
       methods: ['GET', 'POST', 'OPTIONS'],
-      origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
+      origin: '*', // Allow all origins temporarily
     })
   );
 };
 
-// Initialize the MongoDB client
-const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-export default async function handler(req, res) {
-  const allowedOrigins = await getAllowedOrigins();
-  const cors = initCorsMiddleware(allowedOrigins);
-
+handler.use(async (req, res, next) => {
+  const cors = initCorsMiddleware();
   await cors(req, res);
+  next();
+});
 
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
+handler.use((req, res, next) => {
+  res.setHeader('Content-Type', 'application/json');
+  next();
+});
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
+handler.post(async (req, res) => {
   const { popupId, comments, userEmail, rating } = req.body;
 
   if (!popupId || !comments || !userEmail) {
@@ -65,4 +57,6 @@ export default async function handler(req, res) {
   } finally {
     await client.close();
   }
-}
+});
+
+export default handler;
