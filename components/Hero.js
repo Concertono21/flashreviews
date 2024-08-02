@@ -1,4 +1,4 @@
-here : const Hero = () => {
+const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content">
