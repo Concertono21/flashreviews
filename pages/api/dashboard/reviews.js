@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       popupId: { $in: popupIds } 
     };
     if (fetchNewReviews) {
-      filter.isNew = true;
+      filter.isNew = 'yes';
     }
 
     const reviews = await reviewsCollection.find(filter).sort({ createdAt: -1 }).toArray();
@@ -58,10 +58,10 @@ export default async function handler(req, res) {
     });
     console.log('Reviews with Titles:', reviewsWithTitles);
 
-    const newReviewCount = await reviewsCollection.countDocuments({ popupId: { $in: popupIds }, isNew: true });
+    const newReviewCount = await reviewsCollection.countDocuments({ popupId: { $in: popupIds }, isNew: 'yes' });
 
     if (!fetchNewReviews) {
-      await reviewsCollection.updateMany({ popupId: { $in: popupIds } }, { $set: { isNew: false } });
+      await reviewsCollection.updateMany({ popupId: { $in: popupIds } }, { $set: { isNew: 'no' } });
     }
 
     res.status(200).json({ reviews: reviewsWithTitles, newReviewCount });

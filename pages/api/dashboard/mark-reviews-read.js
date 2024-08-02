@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     const database = client.db('flashreviews');
     const collection = database.collection('reviews');
 
-    await collection.updateMany({ userEmail: token.email, isNew: true }, { $set: { isNew: false } });
+    await collection.updateMany({ userEmail: token.email, isNew: 'yes' }, { $set: { isNew: 'no' } });
 
     return res.status(200).json({ message: 'Marked reviews as read' });
   } catch (error) {
