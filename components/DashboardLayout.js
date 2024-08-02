@@ -1,4 +1,3 @@
-// components/DashboardLayout.js
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
