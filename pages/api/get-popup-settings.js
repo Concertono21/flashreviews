@@ -16,7 +16,7 @@ const initMiddleware = (middleware) => {
 const cors = initMiddleware(
   Cors({
     methods: ['GET', 'POST', 'OPTIONS'],
-    origin: '*',
+    origin: '*', // This will allow requests from any origin
   })
 );
 

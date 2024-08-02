@@ -7,14 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const website = currentScript.getAttribute('data-website');
-  const origin = currentScript.getAttribute('data-origin');
   if (!website) {
     console.error('data-website attribute is missing.');
     return;
   }
 
   console.log(`Fetching popup settings for website: ${website}`);
-  fetch(`${currentScript.src.replace('/embed.js', '')}/api/get-popup-settings?website=${website}`)
+  fetch(`${currentScript.src.replace('/embed.js', '')}/api/get-popup-settings?website=${encodeURIComponent(website)}`)
     .then(response => response.json())
     .then(data => {
       console.log('Received data:', data);
@@ -43,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 1;
                 transform: translateX(0);
                 width: 300px;
+                height: 400px; /* Fixed height */
                 max-width: 100%;
                 cursor: default;
                 padding: 10px;
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Origin': origin,
+                'Origin': website, // Use the website origin
               },
               credentials: 'include',
               body: JSON.stringify({
