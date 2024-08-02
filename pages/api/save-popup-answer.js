@@ -12,9 +12,11 @@ const initCorsMiddleware = (allowedOrigins) => {
         if (allowedOrigins.includes(origin) || !origin) {
           callback(null, true);
         } else {
-          callback(new Error('Not allowed by CORS'));
+          callback(new Error(`Not allowed by CORS: ${origin}`));
         }
       },
+      credentials: true,
+      preflightContinue: true,
     })
   );
 };
@@ -30,6 +32,10 @@ export default async function handler(req, res) {
   await cors(req, res);
 
   if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.status(200).end();
     return;
   }
