@@ -91,13 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
                   ${popupData.enableStars ? `
                     <div style="display: flex; justify-content: flex-start;">
                       ${[1, 2, 3, 4, 5].map(star => `
-                        <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 8px; cursor: pointer; color: grey; margin-right: 5px;" onclick="handleStarClick(${star})">
+                        <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px;" onclick="handleStarClick(${star})">
                           <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
                         </svg>
                       `).join('')}
                     </div>
                   ` : ''}
-                  <textarea id="review-comments" placeholder="Add your comments here..." name="comments" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; width: 100%; height: 50px; font-size: 12px; box-sizing: border-box;"></textarea>
+                                    <textarea id="review-comments" placeholder="Add your comments here..." name="comments" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; width: 100%; height: 50px; font-size: 12px; box-sizing: border-box;"></textarea>
                   <input type="hidden" name="popupId" value="${popupData._id}">
                   <input type="hidden" name="userEmail" value="${popupData.user}">
                   <button type="submit" style="background-color: #acacac; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; font-size: 14px; width: 100%;">Submit</button>
