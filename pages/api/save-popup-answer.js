@@ -23,6 +23,7 @@ const initCorsMiddleware = () => {
           callback(new Error('Not allowed by CORS'));
         }
       },
+      credentials: true, // Add this if you need to send cookies with the request
     })
   );
 };
@@ -35,6 +36,10 @@ handler.use(async (req, res, next) => {
 
 handler.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   next();
 });
 
@@ -58,7 +63,6 @@ handler.post(async (req, res) => {
       createdAt: new Date(),
     });
 
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin); // Allow origin
     res.status(200).json({ message: 'Answer saved', result });
   } catch (error) {
     console.error('Error saving answer:', error);

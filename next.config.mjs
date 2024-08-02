@@ -15,10 +15,6 @@ export default {
             value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://flashreviews.vercel.app; object-src 'none';",
           },
           {
-            key: 'Access-Control-Allow-Origin',
-            value: 'https://concertono21.tumblr.com https://flashreviews.vercel.app', // Allow specific origins
-          },
-          {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,POST,OPTIONS',
           },
