@@ -8,7 +8,7 @@ const Hero = () => {
         <p className="text-xl mt-4 text-white sm:text-2xl md:text-3xl">
           Capture valuable feedback instantly with engaging pop-up reviews, enhancing your customer experience and driving growth.
         </p>
-        <ul className="benefits list-disc mt-4 text-white text-left mx-auto max-w-xs sm:text-lg md:text-xl">
+        <ul className="benefits list-disc mt-4 text-white text-left mx-auto max-w-md sm:text-lg md:text-xl">
           <li>Pay once, use forever</li>
           <li>1-minute no-code setup</li>
           <li>Boost customer satisfaction</li>
@@ -24,4 +24,5 @@ const Hero = () => {
     </section>
   );
 };
+
 export default Hero;
