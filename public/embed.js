@@ -137,10 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 ...formProps,
                 rating: popupData.enableStars ? rating : null,
               }),
-              mode: 'no-cors' // Set the request's mode to 'no-cors'
             })
               .then(response => {
-                // Note: You will not be able to read the response when using 'no-cors'
                 if (!response.ok) {
                   return response.json().then(err => { throw new Error(err.message); });
                 }
