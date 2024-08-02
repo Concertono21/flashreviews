@@ -1,5 +1,5 @@
-// next.config.js
-module.exports = {
+// next.config.mjs
+export default {
   env: {
     NEXT_PUBLIC_BASE_URL: 'https://flashreviews.vercel.app',
     MAILGUN_API_KEY: 'your_mailgun_api_key',
