@@ -53,7 +53,7 @@ export default function Home() {
             </Link>
           </li>
           <li>
-            <Link href="/signin">
+            <Link href="/login">
               Get Started
             </Link>
           </li>
