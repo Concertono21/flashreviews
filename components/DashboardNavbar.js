@@ -6,6 +6,7 @@ const DashboardNavbar = ({
   handleBillingClick,
   handleLogout,
   router,
+  session
 }) => (
   <div className="w-full max-w-5xl flex justify-between items-center p-6 bg-black mx-auto">
     <div className="relative">
@@ -13,8 +14,10 @@ const DashboardNavbar = ({
         className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
         onClick={handleAccountButtonClick}
       >
-        <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">A</span>
-        <span className="font-bold">Account</span>
+        <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
+          {session?.user?.email?.[0]}
+        </span>
+        <span className="font-bold">Account ({session?.user?.email})</span>
         <svg
           className={`w-4 h-4 transition-transform ${accountMenuOpen ? 'rotate-180' : ''}`}
           xmlns="http://www.w3.org/2000/svg"
