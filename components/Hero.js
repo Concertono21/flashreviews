@@ -9,7 +9,7 @@ const Hero = () => {
           <li>1-minute no-code setup</li>
           <li>Boost customer satisfaction</li>
         </ul>
-        <a href="signin.html" className="cta-button text-black px-6 py-3 rounded mt-6 inline-block"style={{ backgroundColor: '#bafd00' }} >Get Flash Reviews</a>
+        <a href="/login" className="cta-button text-black px-6 py-3 rounded mt-6 inline-block"style={{ backgroundColor: '#bafd00' }} >Get Flash Reviews</a>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ const GetStartedSection = () => {
   return (
     <section id="get-started" className="py-20 text-center bg-black">
       <h1 className="text-3xl font-bold">Get Flash Review</h1>
-      <button onClick={() => router.push('/login')} className="bg-[#bafd00] hover:bg-[#bbdd11] text-black hover:text-white px-6 py-3 rounded mt-6">Get Started</button>
+      <button onClick={() => router.push('/login')} className="cta-button text-black px-6 py-3 rounded mt-6 inline-block"style={{ backgroundColor: '#bafd00' }}>Get Started</button>
     </section>
   );
 };
