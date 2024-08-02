@@ -6,7 +6,6 @@ import getAllowedOrigins from '../../lib/getAllowedOrigins';
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// Initialize the cors middleware
 const initCorsMiddleware = (allowedOrigins) => {
   return initMiddleware(
     Cors({
@@ -50,12 +49,14 @@ export default async function handler(req, res) {
         comments,
         userEmail,
         rating,
-        isNew: 'yes',
+        isNew: 'yes', // Add the isNew field here
         createdAt: new Date(),
       });
 
-      // Dynamically set the Access-Control-Allow-Origin header
-      res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+      // Set the CORS headers dynamically based on the request origin
+      res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '');
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+      
       res.status(200).json({ message: 'Answer saved', result });
     } catch (error) {
       console.error('Error saving answer:', error);
