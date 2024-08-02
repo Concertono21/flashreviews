@@ -139,6 +139,7 @@ export default function Dashboard() {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${session.user.accessToken}`,
+        },
         });
   
         if (!websitesResponse.ok) throw new Error('Failed to fetch websites data');
