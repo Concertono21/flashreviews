@@ -23,6 +23,7 @@
     "mongodb": "^5.9.2",
     "next": "latest",
     "next-auth": "^4.24.7",
+    "next-connect": "^1.0.0",
     "react": "latest",
     "react-dom": "latest"
   },
