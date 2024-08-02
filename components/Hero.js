@@ -5,7 +5,7 @@ const Hero = () => {
         <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
           Turn Visitors into Engaged Customers with Quick Review Popups
         </h1>
-        <p className="text-xl mt-4 text-white sm:text-2xl md:text-3xl">
+        <p className="text-xl mt-3 text-white sm:text-1xl md:text-2xl">
           Capture valuable feedback instantly with engaging pop-up reviews, enhancing your customer experience and driving growth.
         </p>
         <ul className="benefits list-disc mt-4 text-white text-left mx-auto max-w-md sm:text-lg md:text-xl">
