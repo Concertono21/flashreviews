@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
@@ -9,7 +11,9 @@ const Hero = () => {
           <li>1-minute no-code setup</li>
           <li>Boost customer satisfaction</li>
         </ul>
-        <a href="/login" className="cta-button text-black px-6 py-3 rounded mt-6 inline-block"style={{ backgroundColor: '#bafd00' }} >Get Flash Reviews</a>
+        <Link href="/login">
+          <a className="cta-button text-black px-6 py-3 rounded mt-6 inline-block" style={{ backgroundColor: '#bafd00' }}>Get Flash Reviews</a>
+        </Link>
       </div>
     </section>
   );
