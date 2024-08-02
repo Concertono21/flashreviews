@@ -8,9 +8,9 @@ const DashboardNavbar = ({
   router,
   session
 }) => (
-  <div className="w-full bg-black text-white">
+  <div className="w-full bg-black text-white fixed top-0 z-50">
     <nav className="flex items-center justify-between p-6 max-w-6xl mx-auto">
-      <div className="relative flex">
+      <div className="relative flex-grow">
         <button
           className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={handleAccountButtonClick}
