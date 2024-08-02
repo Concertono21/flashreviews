@@ -16,7 +16,7 @@ const Navbar = () => {
     <div className="w-full bg-black text-white">
       <nav className="flex items-center justify-between p-6 max-w-6xl mx-auto">
         <div className="flex items-center">
-          <Image src="/logo.png" alt="Logo" width={40} height={40} className="h-10 w-10 object-contain" />
+          <Image src="/logo.png" alt="Logo" width={40} height={40} className="h-40 w-40 object-contain" />
         </div>
         <ul className="flex space-x-6">
           <li>
