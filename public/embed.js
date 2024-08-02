@@ -117,46 +117,48 @@ document.addEventListener('DOMContentLoaded', () => {
           };
 
           const form = document.getElementById('popupForm');
-          form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const comments = document.getElementById('review-comments').value;
-            if (!popupData.enableStars && !comments.trim()) {
-              alert('Please add your comments.');
-              return;
-            }
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const comments = document.getElementById('review-comments').value;
+  if (!popupData.enableStars && !comments.trim()) {
+    alert('Please add your comments.');
+    return;
+  }
 
-            const formData = new FormData(form);
-            const formProps = Object.fromEntries(formData);
+  const formData = new FormData(form);
+  const formProps = Object.fromEntries(formData);
 
-            fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                ...formProps,
-                rating: popupData.enableStars ? rating : null,
-              }),
-            })
-              .then(response => {
-                if (!response.ok) {
-                  return response.json().then(err => { throw new Error(err.message); });
-                }
-                return response.json();
-              })
-              .then(result => {
-                alert('Thank you for your feedback!');
-                popup.remove();
-                currentPopupIndex++;
-                if (currentPopupIndex < data.popups.length) {
-                  showPopup();
-                }
-              })
-              .catch(error => {
-                console.error('Error saving answer:', error);
-                alert('Failed to save your feedback. Please try again.');
-              });
-          });
+  fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Origin': 'https://concertono21.tumblr.com',
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      ...formProps,
+      rating: popupData.enableStars ? rating : null,
+    }),
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(err => { throw new Error(err.message); });
+      }
+      return response.json();
+    })
+    .then(result => {
+      alert('Thank you for your feedback!');
+      popup.remove();
+      currentPopupIndex++;
+      if (currentPopupIndex < data.popups.length) {
+        showPopup();
+      }
+    })
+    .catch(error => {
+      console.error('Error saving answer:', error);
+      alert('Failed to save your feedback. Please try again.');
+    });
+});
         };
 
         showPopup();

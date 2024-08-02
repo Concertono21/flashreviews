@@ -1,75 +1,54 @@
-// pages/api/save-popup-answer.js
 import Cors from 'cors';
-import initMiddleware from '../../lib/initMiddleware';
 import { MongoClient } from 'mongodb';
-import nextConnect from 'next-connect';
+import initMiddleware from '../../lib/initMiddleware';
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const handler = nextConnect();
+const cors = initMiddleware(
+  Cors({
+    methods: ['GET', 'POST', 'OPTIONS'],
+    origin: ['https://concertono21.tumblr.com', 'https://flashreviews.vercel.app'],
+    credentials: true,
+  })
+);
 
-// Specify allowed origins
-const allowedOrigins = ['https://concertono21.tumblr.com', 'https://flashreviews.vercel.app'];
-
-const initCorsMiddleware = () => {
-  return initMiddleware(
-    Cors({
-      methods: ['GET', 'POST', 'OPTIONS'],
-      origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
-      credentials: true, // Add this if you need to send cookies with the request
-    })
-  );
-};
-
-handler.use(async (req, res, next) => {
-  const cors = initCorsMiddleware();
+export default async function handler(req, res) {
   await cors(req, res);
-  next();
-});
 
-handler.use((req, res, next) => {
-  res.setHeader('Content-Type', 'application/json');
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  next();
-});
-
-handler.post(async (req, res) => {
-  const { popupId, comments, userEmail, rating } = req.body;
-
-  if (!popupId || !comments || !userEmail) {
-    return res.status(400).json({ message: 'Missing required fields' });
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
 
-  try {
-    await client.connect();
-    const db = client.db('flashreviews');
-    const answersCollection = db.collection('popup_answers');
+  if (req.method === 'POST') {
+    const { popupId, comments, userEmail, rating } = req.body;
 
-    const result = await answersCollection.insertOne({
-      popupId,
-      comments,
-      userEmail,
-      rating,
-      createdAt: new Date(),
-    });
+    if (!popupId || !comments || !userEmail) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
 
-    res.status(200).json({ message: 'Answer saved', result });
-  } catch (error) {
-    console.error('Error saving answer:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  } finally {
-    await client.close();
+    try {
+      await client.connect();
+      const db = client.db('flashreviews');
+      const answersCollection = db.collection('popup_answers');
+      
+      const result = await answersCollection.insertOne({
+        popupId,
+        comments,
+        userEmail,
+        rating,
+        createdAt: new Date(),
+      });
+
+      res.status(200).json({ message: 'Answer saved', result });
+    } catch (error) {
+      console.error('Error saving answer:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    } finally {
+      await client.close();
+    }
+  } else {
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-});
-
-export default handler;
+}
