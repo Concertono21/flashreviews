@@ -1,3 +1,4 @@
+// pages/api/save-popup-answer.js
 import Cors from 'cors';
 import initMiddleware from '../../lib/initMiddleware';
 import { MongoClient } from 'mongodb';
@@ -8,12 +9,20 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 const handler = nextConnect();
 
-// Temporary CORS Configuration to allow all origins
+// Specify allowed origins
+const allowedOrigins = ['https://concertono21.tumblr.com', 'https://flashreviews.vercel.app'];
+
 const initCorsMiddleware = () => {
   return initMiddleware(
     Cors({
       methods: ['GET', 'POST', 'OPTIONS'],
-      origin: '*', // Allow all origins temporarily
+      origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
     })
   );
 };
@@ -49,7 +58,7 @@ handler.post(async (req, res) => {
       createdAt: new Date(),
     });
 
-    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin); // Allow origin
     res.status(200).json({ message: 'Answer saved', result });
   } catch (error) {
     console.error('Error saving answer:', error);
