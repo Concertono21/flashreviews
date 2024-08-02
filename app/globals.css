@@ -1,9 +1,8 @@
-/* globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Root Variables for Light and Dark Modes */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -18,30 +17,27 @@
   }
 }
 
+/* Body Styles */
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+/* Text Balance Utility */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
-/* styles.css ou global.css */
+/* Navbar Logo Styles */
 .navbar-logo {
-  height: 40px; /* même hauteur que le bouton "Get Started" */
+  height: 40px; /* Same height as "Get Started" button */
   width: auto;
   object-fit: contain;
 }
 
-/* Additional styles */
+/* Notification Styles */
 .notification {
   position: fixed;
   top: 20px;
@@ -57,6 +53,7 @@ body {
   width: 300px;
   max-width: 100%;
   cursor: default;
+  height: 300px;
 }
 
 .notification.show {
@@ -69,15 +66,16 @@ body {
   transform: translateX(100%);
 }
 
+/* Notification Header Styles */
 .notification-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px;
-  width: 100%;
-  box-sizing: border-box; /* Ensure padding is included in the width */
-  position: relative; /* Make the close button position relative to this container */
+  position: relative;
 }
 
+/* Notification Icon Styles */
 .notification-icon {
   flex: 0 0 auto;
   width: 40px;
@@ -95,6 +93,7 @@ body {
   object-fit: contain;
 }
 
+/* Notification Title Container Styles */
 .notification-title-container {
   flex-grow: 1;
   display: flex;
@@ -104,6 +103,7 @@ body {
   padding-right: 30px; /* Add padding to avoid overlap with the close button */
 }
 
+/* Notification Title Styles */
 .notification-title {
   font-weight: 600;
   font-size: 14px;
@@ -113,37 +113,7 @@ body {
   width: 100%;
 }
 
-/* Add these styles to your styles.css file */
-
-/* Existing styles for close button */
-button.close-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #cecece;
-  flex: 0 0 auto;
-  align-self: flex-start;
-  padding: 0; /* Remove any padding */
-  margin: 0; /* Remove any margin */
-  transition: color 0.3s;
-  line-height: 1; /* Ensure the button height is minimal */
-}
-
-/* Adjust hover effect */
-button.close-button:hover {
-  color: black;
-}
-
-/* Additional styles to better position the close button */
-.notification-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  position: relative;
-}
-
+/* Close Button Styles */
 button.close-button {
   position: absolute;
   top: 10px; /* Adjust as needed */
@@ -158,8 +128,19 @@ button.close-button {
   align-items: center;
   justify-content: center;
   padding: 0;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cecece;
+  transition: color 0.3s;
 }
 
+button.close-button:hover {
+  color: black;
+}
+
+/* Notification Content Styles */
 .notification-content {
   display: flex;
   flex-direction: column;
@@ -167,6 +148,7 @@ button.close-button {
   align-items: flex-start;
 }
 
+/* Rating Styles */
 .rating {
   display: flex;
   justify-content: flex-start;
@@ -187,6 +169,7 @@ button.close-button {
   color: gold;
 }
 
+/* Textarea Styles */
 textarea {
   margin-top: 10px; /* Adjust space between stars and textarea */
   margin-bottom: 10px;
@@ -201,6 +184,7 @@ textarea {
   color: black; /* Ensure text color is black */
 }
 
+/* Button Styles */
 button {
   background-color: #acacac; /* Adjusted background color to match iPhone style */
   color: white;
@@ -216,6 +200,7 @@ button {
   display: none;
 }
 
+/* Settings Button Styles */
 .settings-button {
   display: block;
   margin: 20px auto;
@@ -230,6 +215,7 @@ button {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Notification Styles */
 .notification.classic-white {
   background-color: white;
   color: black;
