@@ -1,28 +1,29 @@
 import Cors from 'cors';
 import { MongoClient } from 'mongodb';
 import initMiddleware from '../../lib/initMiddleware';
+import getAllowedOrigins from '../../lib/getAllowedOrigins';
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const getCorsMiddleware = async () => {
-  await client.connect();
-  const db = client.db('flashreviews');
-  const websitesCollection = db.collection('websites');
-  const websites = await websitesCollection.find().toArray();
-  const allowedOrigins = websites.map(website => website.website);
-
+const cors = async (req, res) => {
+  const allowedOrigins = await getAllowedOrigins();
   return initMiddleware(
     Cors({
       methods: ['GET', 'POST', 'OPTIONS'],
-      origin: allowedOrigins,
+      origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       credentials: true,
     })
-  );
+  )(req, res);
 };
 
 export default async function handler(req, res) {
-  const cors = await getCorsMiddleware();
   await cors(req, res);
 
   if (req.method === 'OPTIONS') {
@@ -40,7 +41,7 @@ export default async function handler(req, res) {
       await client.connect();
       const db = client.db('flashreviews');
       const answersCollection = db.collection('reviews');
-
+      
       const result = await answersCollection.insertOne({
         popupId,
         comments,

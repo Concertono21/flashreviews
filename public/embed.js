@@ -115,57 +115,56 @@ document.addEventListener('DOMContentLoaded', () => {
               svg.setAttribute('fill', index < star ? 'gold' : 'gray');
             });
           };
-          
+
           const form = document.getElementById('popupForm');
-          form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const comments = document.getElementById('review-comments').value;
-            if (!popupData.enableStars && !comments.trim()) {
-              alert('Please add your comments.');
-              return;
-            }
-          
-            const formData = new FormData(form);
-            const formProps = Object.fromEntries(formData);
-          
-            fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              credentials: 'include',
-              body: JSON.stringify({
-                ...formProps,
-                rating: popupData.enableStars ? rating : null,
-              }),
-            })
-              .then(response => {
-                if (!response.ok) {
-                  return response.json().then(err => { throw new Error(err.message); });
-                }
-                return response.json();
-              })
-              .then(result => {
-                alert('Thank you for your feedback!');
-                popup.remove();
-                currentPopupIndex++;
-                if (currentPopupIndex < data.popups.length) {
-                  showPopup();
-                }
-              })
-              .catch(error => {
-                console.error('Error saving answer:', error);
-                alert('Failed to save your feedback. Please try again.');
-              });
-          });
-          };
-          
-          showPopup();
-          } else {
-          console.log('No popups available for this website.');
-          }
-          })
-          .catch(error => {
-          console.error('Error fetching popup settings:', error);
-          });
-          });
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const comments = document.getElementById('review-comments').value;
+  if (!popupData.enableStars && !comments.trim()) {
+    alert('Please add your comments.');
+    return;
+  }
+
+  const formData = new FormData(form);
+  const formProps = Object.fromEntries(formData);
+
+  fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      ...formProps,
+      rating: popupData.enableStars ? rating : null,
+    }),
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(err => { throw new Error(err.message); });
+      }
+      return response.json();
+    })
+    .then(result => {
+      alert('Thank you for your feedback!');
+      popup.remove();
+      currentPopupIndex++;
+      if (currentPopupIndex < data.popups.length) {
+        showPopup();
+      }
+    })
+    .catch(error => {
+      console.error('Error saving answer:', error);
+      alert('Failed to save your feedback. Please try again.');
+    });
+});
+        };
+
+        showPopup();
+      } else {
+        console.log('No popups available for this website.');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching popup settings:', error);
+    });
+});
