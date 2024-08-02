@@ -1,5 +1,6 @@
 import Cors from 'cors';
 import initMiddleware from '../../lib/initMiddleware';
+import getAllowedOrigins from '../../lib/getAllowedOrigins';
 import { MongoClient } from 'mongodb';
 import nextConnect from 'next-connect';
 
@@ -8,18 +9,24 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 const handler = nextConnect();
 
-// Temporary CORS Configuration to allow all origins
-const initCorsMiddleware = () => {
+const initCorsMiddleware = (allowedOrigins) => {
   return initMiddleware(
     Cors({
       methods: ['GET', 'POST', 'OPTIONS'],
-      origin: '*', // Allow all origins temporarily
+      origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
     })
   );
 };
 
 handler.use(async (req, res, next) => {
-  const cors = initCorsMiddleware();
+  const allowedOrigins = await getAllowedOrigins();
+  const cors = initCorsMiddleware(allowedOrigins);
   await cors(req, res);
   next();
 });
