@@ -65,6 +65,14 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
     }
   };
 
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(generatedCode).then(() => {
+      alert('Code copied to clipboard!');
+    }, (err) => {
+      console.error('Failed to copy text: ', err);
+    });
+  };
+
   return (
     <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
@@ -255,10 +263,32 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         Generate Code
       </button>
       {generatedCode && (
-        <div className="bg-black text-[#bafd00] border border-[#bafd00] p-4 rounded-lg mt-4 text-white">
+        <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative">
           <code className="block whitespace-pre-wrap">
             {generatedCode}
           </code>
+          <button
+            onClick={handleCopyCode}
+            style={{
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '5px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Image
+              src="/path/to/copy-icon.png" // replace with your actual path to the copy icon
+              alt="Copy Icon"
+              width={20}
+              height={20}
+            />
+          </button>
         </div>
       )}
     </div>
