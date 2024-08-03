@@ -1,7 +1,7 @@
 const Marketing = () => {
   return (
     <section id="marketing" className="marketing bg-black py-20 text-center">
-      <div className="marketing-content">
+      <div className="marketing-content text-white">
         <h1 className="text-3xl font-bold">97% of visitors aren&apos;t ready to buy</h1>
         <p className="text-xl mt-4">All the time and money spent on ads, SEO, and content marketing goes to waste. Potential customers leave and never come back.</p>
         <div className="marketing-steps flex justify-center items-center mt-8">
