@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <Image src="/logo.png" alt="Logo" width={160} height={80} className="h-20 w-40 object-contain" />
         </div>
-        <ul className="flex space-x-6">
+        <ul className="hidden sm:flex space-x-6"> {/* Hidden on mobile, visible on sm and up */}
           <li>
             <Link href="#pricing" legacyBehavior>
               <a className="hover:underline">Pricing</a>
