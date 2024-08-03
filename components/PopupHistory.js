@@ -244,7 +244,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <p className="text-white">No popups created yet.</p>
         )}
       </div>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-black">
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white">
         <h3 className="text-lg font-bold mb-2">Make your FlashReviews live 🎉</h3>
         <p>Paste this snippet in the &lt;head&gt; of your website.</p>
       </div>
