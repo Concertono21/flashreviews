@@ -255,22 +255,11 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         Generate Code
       </button>
       {generatedCode && (
-        <textarea
-          readOnly
-          value={generatedCode}
-          style={{
-            marginTop: '10px',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            padding: '10px',
-            resize: 'none',
-            width: '100%',
-            height: '150px',
-            fontSize: '12px',
-            boxSizing: 'border-box',
-            color: 'black',
-          }}
-        />
+        <div className="bg-black text-[#bafd00] border border-[#bafd00] p-4 rounded-lg mt-4 text-white">
+          <code className="block whitespace-pre-wrap">
+            {generatedCode}
+          </code>
+        </div>
       )}
     </div>
   );
