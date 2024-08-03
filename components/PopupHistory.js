@@ -258,7 +258,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         onClick={handleGenerateCode}
       >
         Generate Code
-      </button>
+        </button>
       {generatedCode && (
         <div
           className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
