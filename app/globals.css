@@ -250,10 +250,12 @@ button {
 
 .use-case-titles {
   flex: 1;
+  max-width: 50%;
 }
 
 .use-case-frame {
-  flex: 2;
+  flex: 1;
+  max-width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -261,7 +263,7 @@ button {
 
 .use-case-frame-content {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .active .use-case-description {

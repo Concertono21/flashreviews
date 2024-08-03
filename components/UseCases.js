@@ -14,7 +14,7 @@ const UseCases = () => {
         <h1 className="text-3xl font-bold text-white text-center">Use Cases</h1>
         <p className="text-xl mt-4 text-white text-center">Customer stories and examples...</p>
         <div className="flex justify-between mt-8">
-          <div className="use-case-titles flex flex-col items-start space-y-4">
+          <div className="use-case-titles flex flex-col items-start space-y-4 w-1/2">
             <div className={`use-case cursor-pointer py-2 ${activeCase === 'frame1' ? 'active' : ''}`} onClick={() => handleClick('frame1')}>
               <div className="use-case-title text-xl font-bold text-white">✍️ Create a FlashReviews</div>
               {activeCase === 'frame1' && (
@@ -40,10 +40,10 @@ const UseCases = () => {
               )}
             </div>
           </div>
-          <div className="use-case-frame flex-1 mx-4">
+          <div className="use-case-frame flex-1 mx-4 w-1/2">
             {activeCase === 'frame1' && (
               <div id="frame1" className="use-case-frame-content">
-                <video controls className="w-full">
+                <video controls className="w-full h-full" autoPlay>
                   <source src="feature_1.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -51,12 +51,12 @@ const UseCases = () => {
             )}
             {activeCase === 'frame2' && (
               <div id="frame2" className="use-case-frame-content">
-                <Image src="/feature_2.webp" alt="Feature 2" width={800} height={600} className="w-full" />
+                <Image src="/feature_2.webp" alt="Feature 2" width={800} height={600} className="w-full h-full object-contain" />
               </div>
             )}
             {activeCase === 'frame3' && (
               <div id="frame3" className="use-case-frame-content">
-                <video controls className="w-full">
+                <video controls className="w-full h-full" autoPlay>
                   <source src="feature_3.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
