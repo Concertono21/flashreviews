@@ -3,7 +3,7 @@ import Link from 'next/link';
 const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
-      <div className="hero-content">
+      <div className="hero-content text-white">
         <h1 className="text-4xl font-bold">Turn Visitors into Engaged Customers with Quick Review Popups</h1>
         <p className="text-xl mt-4">Capture valuable feedback instantly with engaging pop-up reviews, enhancing your customer experience and driving growth.</p>
         <ul className="benefits list-disc mt-4">
