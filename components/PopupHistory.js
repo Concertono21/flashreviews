@@ -66,11 +66,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   const handleCopyCode = () => {
-    navigator.clipboard.writeText(generatedCode).then(() => {
-      alert('Code copied to clipboard!');
-    }, (err) => {
-      console.error('Failed to copy text: ', err);
-    });
+    navigator.clipboard.writeText(generatedCode);
+    alert('Code copied to clipboard!');
   };
 
   return (
@@ -263,10 +260,13 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         Generate Code
       </button>
       {generatedCode && (
-        <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative">
-          <code className="block whitespace-pre-wrap">
+        <div
+          className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
+          style={{ wordWrap: 'break-word' }}
+        >
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white' }}>
             {generatedCode}
-          </code>
+          </pre>
           <button
             onClick={handleCopyCode}
             style={{
@@ -276,17 +276,15 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              padding: '5px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              padding: 0,
+              margin: 0,
             }}
           >
             <Image
-              src="/path/to/copy-icon.png" // replace with your actual path to the copy icon
+              src="/copy-icon.png" // Ensure this file is in the public folder
               alt="Copy Icon"
-              width={20}
-              height={20}
+              width={24}
+              height={24}
             />
           </button>
         </div>
