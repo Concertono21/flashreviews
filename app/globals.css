@@ -274,9 +274,9 @@ button {
 }
 
 video {
-  max-height: 280px; /* Adjust the height to match the text size */
+  max-height: 320px; /* Adjust the height to match the text size */
 }
 
 img {
-  max-height: 280px; /* Adjust the height to match the text size */
+  max-height: 320px; /* Adjust the height to match the text size */
 }
