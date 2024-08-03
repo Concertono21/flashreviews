@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const UseCases = () => {
   return (
-    <section id="use-cases" className="use-cases bg-black py-20 text-center">
+    <section id="use-cases" className="use-cases bg-black py-20 text-center text-white">
       <h1 className="text-3xl font-bold">Use Cases</h1>
       <p className="text-xl mt-4">Customer stories and examples...</p>
       <div className="use-cases-content flex justify-center mt-8">
