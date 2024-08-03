@@ -242,22 +242,32 @@ button {
   color: white;
 }
 
-.use-case.active .use-case-description {
+.use-cases {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.use-case-titles {
+  flex: 1;
+}
+
+.use-case-frame {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.use-case-frame-content {
+  width: 100%;
+  height: auto;
+}
+
+.active .use-case-description {
   display: block;
 }
 
 .use-case-description {
   display: none;
-}
-
-.use-case-title {
-  cursor: pointer;
-}
-
-.use-case-frame-content {
-  display: none;
-}
-
-.use-case.active .use-case-frame-content {
-  display: block;
 }
