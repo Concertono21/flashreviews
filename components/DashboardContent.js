@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import EditPopupReview from './EditPopupReview';
 import PreviewPopup from './PreviewPopup';
 import AddWebsite from './AddWebsite';
 import ViewReviews from './ViewReviews';
 import PopupHistory from './PopupHistory';
-import Script from 'next/script';
 
 const DashboardContent = () => {
   const { data: session, status } = useSession();
@@ -26,7 +25,7 @@ const DashboardContent = () => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetch('/api/dashboard/popups', {
         method: 'GET',
@@ -49,9 +48,9 @@ const DashboardContent = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [session.user.accessToken]);
 
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       const response = await fetch('/api/dashboard/reviews?new=true', {
         method: 'GET',
@@ -70,14 +69,14 @@ const DashboardContent = () => {
       console.error('Error fetching reviews:', error);
       setError('Failed to load reviews. Please try again.');
     }
-  };
+  }, [session.user.accessToken]);
 
   useEffect(() => {
     if (session) {
       fetchData();
       fetchReviews();
     }
-  }, [session]);
+  }, [session, fetchData, fetchReviews]);
 
   const handleTitleChange = (e) => {
     setPopupSettings({ ...popupSettings, title: e.target.value });
@@ -280,3 +279,6 @@ const DashboardContent = () => {
       )}
     </div>
   );
+};
+
+export default DashboardContent;
