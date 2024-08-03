@@ -43,7 +43,7 @@ const UseCases = () => {
           <div className="use-case-frame flex-1 mx-4 w-1/2">
             {activeCase === 'frame1' && (
               <div id="frame1" className="use-case-frame-content">
-                <video controls className="w-full h-full" autoPlay>
+                <video controls className="w-full h-60" autoPlay loop>
                   <source src="feature_1.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -51,12 +51,12 @@ const UseCases = () => {
             )}
             {activeCase === 'frame2' && (
               <div id="frame2" className="use-case-frame-content">
-                <Image src="/feature_2.webp" alt="Feature 2" width={800} height={600} className="w-full h-full object-contain" />
+                <Image src="/feature_2.webp" alt="Feature 2" width={800} height={600} className="w-full h-60 object-contain" />
               </div>
             )}
             {activeCase === 'frame3' && (
               <div id="frame3" className="use-case-frame-content">
-                <video controls className="w-full h-full" autoPlay>
+                <video controls className="w-full h-60" autoPlay loop>
                   <source src="feature_3.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
