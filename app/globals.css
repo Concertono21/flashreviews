@@ -241,3 +241,23 @@ button {
   background-color: #32cd32;
   color: white;
 }
+
+.use-case.active .use-case-description {
+  display: block;
+}
+
+.use-case-description {
+  display: none;
+}
+
+.use-case-title {
+  cursor: pointer;
+}
+
+.use-case-frame-content {
+  display: none;
+}
+
+.use-case.active .use-case-frame-content {
+  display: block;
+}
