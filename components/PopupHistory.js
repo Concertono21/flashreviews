@@ -264,7 +264,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
           style={{ wordWrap: 'break-word' }}
         >
-          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white' }}>
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
             {generatedCode}
           </pre>
           <button
