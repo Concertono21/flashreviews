@@ -51,7 +51,7 @@ const UseCases = () => {
             )}
             {activeCase === 'frame2' && (
               <div id="frame2" className="use-case-frame-content">
-                <Image src="/feature_2.webp" alt="Feature 2" width={800} height={600} className="w-full h-60 object-contain" />
+                <Image src="/feature_2.webp" alt="Feature 2" width={700} height={700} className="w-full h-60 object-contain" />
               </div>
             )}
             {activeCase === 'frame3' && (
