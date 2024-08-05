@@ -71,7 +71,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
+    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
         className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -83,7 +83,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md mx-auto">
+      <div className="flex flex-col items-center bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -99,14 +99,12 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 transition: 'opacity 0.5s, transform 0.5s',
                 opacity: 1,
                 transform: 'translateX(0)',
-                width: '100%',
-                height: '100%', // Adjusted height
+                width: '90%', // Adjusted width
                 cursor: 'default',
                 marginBottom: '10px',
                 padding: '10px',
-                textAlign: 'center',
+                textAlign: 'left',
                 alignItems: 'center',
-                justifyContent: 'center',
               }}
             >
               <div
@@ -129,7 +127,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginRight: '10px',
+                    marginRight: '5px',
+                    marginLeft: '10px',
                   }}
                 >
                   {popup.logo && (
@@ -149,6 +148,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
+                    maxWidth: 'calc(100% - 40px)',
                     paddingRight: '30px',
                   }}
                 >
@@ -160,6 +160,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                       textAlign: 'left',
                       whiteSpace: 'normal',
                       wordWrap: 'break-word',
+                      width: '100%',
                       color: 'black',
                     }}
                   >
@@ -201,8 +202,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'flex-start',
                   padding: '0 10px 10px',
+                  alignItems: 'center',
                   width: '100%',
                 }}
               >
@@ -211,7 +212,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     className="rating"
                     style={{
                       display: 'flex',
-                      justifyContent: 'flex-start',
+                      justifyContent: 'center',
                       margin: 0,
                       marginTop: '5px',
                     }}
