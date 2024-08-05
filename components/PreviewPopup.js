@@ -55,11 +55,12 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
   return (
     <div
       id="previewNotification"
-      className={`notification ${popupSettings.style}`}
+      className="notification"
       style={{
         position: 'fixed',
         top: '20px',
         right: '20px',
+        backgroundColor: '#fff',
         borderRadius: '20px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',

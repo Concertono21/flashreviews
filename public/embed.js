@@ -29,11 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
             popup.innerHTML = `
               <div
                 id="previewNotification"
-                class="${popupData.style}"
                 style="
                   position: fixed;
                   top: 20px;
                   right: 20px;
+                  background-color: ${popupData.style === 'dark-mode' ? '#333' : '#fff'};
+                  color: ${popupData.style === 'dark-mode' ? '#fff' : '#000'};
                   border-radius: 20px;
                   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                   display: flex;
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${popupData.enableStars ? `
                       <div style="display: flex; justify-content: flex-start;">
                         ${[1, 2, 3, 4, 5].map(star => `
-                          <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px;" onclick="handleStarClick(${star})">
+                                                    <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px;" onclick="handleStarClick(${star})">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
                           </svg>
                         `).join('')}
