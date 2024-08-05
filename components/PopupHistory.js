@@ -100,7 +100,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 opacity: 1,
                 transform: 'translateX(0)',
                 width: '100%',
-                maxWidth: '100%',
+                height: '100%', // Adjusted height
                 cursor: 'default',
                 marginBottom: '10px',
                 padding: '10px',
@@ -258,7 +258,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         onClick={handleGenerateCode}
       >
         Generate Code
-        </button>
+      </button>
       {generatedCode && (
         <div
           className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
@@ -272,7 +272,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
             style={{
               position: 'absolute',
               top: '10px',
-              left: '10px',
+              right: '10px',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
