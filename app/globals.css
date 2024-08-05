@@ -293,3 +293,36 @@ img {
   max-width: 300px; /* Adjust the width as needed */
   margin-bottom: 10px;
 }
+
+/* global.css or another appropriate CSS file */
+
+/* Classic White Style POP UP STYLE */
+.classic-white {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Dark Mode Style POP UP STYLE*/
+.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Apple Notification Style POP UP STYLE*/
+.apple-notification {
+  background-color: #f8f8f8;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+/* Style 4 POP UP STYLE*/
+.style4 {
+  background-color: #1e90ff;
+  color: #fff;
+}
+
+/* Style 5 POP UP STYLE*/
+.style5 {
+  background-color: #32cd32;
+  color: #fff;
+}
