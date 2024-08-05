@@ -90,7 +90,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
               key={popup._id}
               className="notification mx-auto"
               style={{
-                position: 'relative',
+                position: 'center',
                 backgroundColor: '#fff',
                 borderRadius: '20px',
                 boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
