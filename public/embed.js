@@ -99,76 +99,76 @@ document.addEventListener('DOMContentLoaded', () => {
                       </div>
                     ` : ''}
                     <textarea id="review-comments" placeholder="Add your comments here..." name="comments" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; width: 100%; height: 50px; font-size: 12px; box-sizing: border-box;"></textarea>
-                                          <input type="hidden" name="popupId" value="${popupData._id}">
-                      <input type="hidden" name="userEmail" value="${popupData.user}">
-                      <button type="submit" style="background-color: #acacac; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; font-size: 14px; width: 100%;">Submit</button>
-                    </div>
-                  </form>
-                </div>
-              `;
-              document.body.appendChild(popup);
+                    <input type="hidden" name="popupId" value="${popupData._id}">
+                    <input type="hidden" name="userEmail" value="${popupData.user}">
+                    <button type="submit" style="background-color: #acacac; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; font-size: 14px; width: 100%;">Submit</button>
+                  </div>
+                </form>
+              </div>
+            `;
+            document.body.appendChild(popup);
 
-              let rating = 0;
+            let rating = 0;
 
-              window.handleStarClick = (star) => {
-                rating = star;
-                document.querySelectorAll('svg').forEach((svg, index) => {
-                  svg.setAttribute('fill', index < star ? 'gold' : 'gray');
-                });
-              };
-
-              const form = document.getElementById('popupForm');
-              form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const comments = document.getElementById('review-comments').value;
-                if (!popupData.enableStars && !comments.trim()) {
-                  alert('Please add your comments.');
-                  return;
-                }
-
-                const formData = new FormData(form);
-                const formProps = Object.fromEntries(formData);
-
-                fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Origin': website, // Use the website origin
-                  },
-                  credentials: 'include',
-                  body: JSON.stringify({
-                    ...formProps,
-                    rating: popupData.enableStars ? rating : null,
-                  }),
-                })
-                  .then(response => {
-                    if (!response.ok) {
-                      return response.json().then(err => { throw new Error(err.message); });
-                    }
-                    return response.json();
-                  })
-                  .then(result => {
-                    alert('Thank you for your feedback!');
-                    popup.remove();
-                    currentPopupIndex++;
-                    if (currentPopupIndex < data.popups.length) {
-                      showPopup();
-                    }
-                  })
-                  .catch(error => {
-                    console.error('Error saving answer:', error);
-                    alert('Failed to save your feedback. Please try again.');
-                  });
+            window.handleStarClick = (star) => {
+              rating = star;
+              document.querySelectorAll('svg').forEach((svg, index) => {
+                svg.setAttribute('fill', index < star ? 'gold' : 'gray');
               });
-            }, popupData.timing * 1000); // Delay showing the popup based on the timing setting
-          };
+            };
 
-          showPopup();
-        } else {
-          console.log('No popups available for this website.');
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching popup settings:', error);
-      });
-  });
+            const form = document.getElementById('popupForm');
+            form.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const comments = document.getElementById('review-comments').value;
+              if (!popupData.enableStars && !comments.trim()) {
+                alert('Please add your comments.');
+                return;
+              }
+
+              const formData = new FormData(form);
+              const formProps = Object.fromEntries(formData);
+
+              fetch(`${currentScript.src.replace('/embed.js', '')}/api/save-popup-answer`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Origin': website, // Use the website origin
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                  ...formProps,
+                  rating: popupData.enableStars ? rating : null,
+                }),
+              })
+                .then(response => {
+                  if (!response.ok) {
+                    return response.json().then(err => { throw new Error(err.message); });
+                  }
+                  return response.json();
+                })
+                .then(result => {
+                  alert('Thank you for your feedback!');
+                  popup.remove();
+                  currentPopupIndex++;
+                  if (currentPopupIndex < data.popups.length) {
+                    showPopup();
+                  }
+                })
+                .catch(error => {
+                  console.error('Error saving answer:', error);
+                  alert('Failed to save your feedback. Please try again.');
+                });
+            });
+          }, popupData.timing * 1000); // Delay showing the popup based on the timing setting
+        };
+
+        showPopup();
+      } else {
+        console.log('No popups available for this website.');
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching popup settings:', error);
+    });
+});
