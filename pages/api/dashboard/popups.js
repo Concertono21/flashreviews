@@ -1,4 +1,3 @@
-// pages/api/dashboard/popups.js
 import { MongoClient } from 'mongodb';
 import { getToken } from 'next-auth/jwt';
 import Cors from 'cors';

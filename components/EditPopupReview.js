@@ -25,6 +25,12 @@ const EditPopupReview = ({
     setPopupSettings({ ...popupSettings, website: e.target.value });
   };
 
+  const handleStyleChangeInternal = (e) => {
+    const newStyle = e.target.value;
+    handleStyleChange(newStyle);
+    setPopupSettings({ ...popupSettings, style: newStyle });
+  };
+
   return (
     <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
       <h2 className="text-xl font-bold mb-4 text-white">Edit Pop-Up Review</h2>
@@ -90,7 +96,7 @@ const EditPopupReview = ({
         <select
           id="popupStyle"
           value={popupSettings.style}
-          onChange={handleStyleChange}
+          onChange={handleStyleChangeInternal}
           className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
         >
           <option value="classic-white">Classic White</option>
