@@ -71,7 +71,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
+    <div className="bg-transparent p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
         className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -83,7 +83,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md mx-auto">
+      <div className="bg-transparent p-4 rounded-lg w-full max-w-md mx-auto">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
