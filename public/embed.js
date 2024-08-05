@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const website = currentScript.getAttribute('data-website');
-  const style = currentScript.getAttribute('data-style');
   if (!website) {
     console.error('data-website attribute is missing.');
     return;
@@ -25,16 +24,42 @@ document.addEventListener('DOMContentLoaded', () => {
           const popupData = data.popups[currentPopupIndex];
           if (!popupData) return;
 
+          const styles = {
+            "classic-white": {
+              backgroundColor: "#fff",
+              color: "#000"
+            },
+            "dark-mode": {
+              backgroundColor: "#333",
+              color: "#fff"
+            },
+            "apple-notification": {
+              backgroundColor: "#f0f0f5",
+              color: "#000"
+            },
+            "style4": {
+              backgroundColor: "#e0e0e0",
+              color: "#000"
+            },
+            "style5": {
+              backgroundColor: "#d0d0d0",
+              color: "#000"
+            }
+          };
+
+          const selectedStyle = styles[popupData.style] || styles["classic-white"];
+
           setTimeout(() => {
             const popup = document.createElement('div');
             popup.innerHTML = `
               <div
                 id="previewNotification"
-                class="${style}"
                 style="
                   position: fixed;
                   top: 20px;
                   right: 20px;
+                  background-color: ${selectedStyle.backgroundColor};
+                  color: ${selectedStyle.color};
                   border-radius: 20px;
                   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                   display: flex;
