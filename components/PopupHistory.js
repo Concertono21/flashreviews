@@ -83,7 +83,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="flex flex-col items-center bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md">
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -99,11 +99,12 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 transition: 'opacity 0.5s, transform 0.5s',
                 opacity: 1,
                 transform: 'translateX(0)',
-                width: '90%', // Adjusted width
+                width: '80%', // Adjusted width to make the popup smaller
+                margin: '0 auto', // Center the popup
                 cursor: 'default',
                 marginBottom: '10px',
                 padding: '10px',
-                textAlign: 'left',
+                textAlign: 'center',
                 alignItems: 'center',
               }}
             >
@@ -147,7 +148,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     flexGrow: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'flex-start',
+                    alignItems: 'center',
                     maxWidth: 'calc(100% - 40px)',
                     paddingRight: '30px',
                   }}
@@ -157,7 +158,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     style={{
                       fontWeight: 600,
                       fontSize: '14px',
-                      textAlign: 'left',
+                      textAlign: 'left', // Align text to the left
                       whiteSpace: 'normal',
                       wordWrap: 'break-word',
                       width: '100%',
