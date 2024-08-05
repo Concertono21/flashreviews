@@ -10,7 +10,7 @@ const DashboardNavbar = ({
 }) => (
   <div className="w-full bg-black text-white fixed top-0 z-50">
     <nav className="flex items-center justify-between p-4 max-w-6xl mx-auto">
-      <div className="relative">
+      <div className="relative flex items-center flex-grow">
         <button
           className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={handleAccountButtonClick}
@@ -53,7 +53,7 @@ const DashboardNavbar = ({
         )}
       </div>
       <button
-        className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
+        className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full ml-4"
         onClick={() => router.push('/add-website')}
       >
         Get Started
