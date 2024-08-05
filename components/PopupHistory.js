@@ -71,7 +71,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
+    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
         className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -83,162 +83,57 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md mx-auto flex flex-col items-center">
+      <div className="popup-container">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
-            <div
-              key={popup._id}
-              className="notification"
-              style={{
-                position: 'relative',
-                backgroundColor: '#fff',
-                borderRadius: '20px',
-                boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'opacity 0.5s, transform 0.5s',
-                opacity: 1,
-                transform: 'translateX(0)',
-                width: '90%', // Adjust width to fit within the container
-                marginBottom: '10px',
-                padding: '10px',
-                textAlign: 'left',
-              }}
-            >
-              <div
-                className="notification-header"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '10px',
-                  position: 'relative',
-                  width: '100%',
-                }}
-              >
-                <div
-                  className="notification-icon"
-                  style={{
-                    flex: '0 0 auto',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginRight: '5px',
-                    marginLeft: '10px',
-                  }}
-                >
-                  {popup.logo && (
-                    <Image
-                      src={popup.logo}
-                      alt="Logo"
-                      width={40}
-                      height={40}
-                      style={{ objectFit: 'contain' }}
-                    />
+            <div key={popup._id} className="popup">
+              <div className="notification">
+                <div className="notification-header">
+                  <div className="notification-icon">
+                    {popup.logo && (
+                      <Image
+                        src={popup.logo}
+                        alt="Logo"
+                        width={40}
+                        height={40}
+                        style={{ objectFit: 'contain' }}
+                      />
+                    )}
+                  </div>
+                  <div className="notification-title-container">
+                    <div className="notification-title">
+                      {popup.title}
+                    </div>
+                  </div>
+                  <button
+                    className="close-button"
+                    onClick={() => handleDelete(popup._id)}
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div className="notification-content">
+                  {popup.enableStars && (
+                    <div className="rating">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <svg
+                          key={star}
+                          className="w-4 h-4 star"
+                          fill="gray"
+                          viewBox="0 0 24 24"
+                          stroke="none"
+                        >
+                          <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      ))}
+                    </div>
                   )}
+                  <p className="notification-timing">
+                    Timing: {popup.timing} seconds
+                  </p>
                 </div>
-                <div
-                  className="notification-title-container"
-                  style={{
-                    flexGrow: 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    maxWidth: 'calc(100% - 40px)',
-                    paddingRight: '30px',
-                  }}
-                >
-                  <div
-                    className="notification-title"
-                    style={{
-                      fontWeight: 600,
-                      fontSize: '14px',
-                      textAlign: 'left',
-                      whiteSpace: 'normal',
-                      wordWrap: 'break-word',
-                      width: '100%',
-                      color: 'black',
-                    }}
-                  >
-                    {popup.title}
-                  </div>
-                </div>
-                <button
-                  className="close-button"
-                  onClick={() => handleDelete(popup._id)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '20px',
-                    cursor: 'pointer',
-                    color: '#cecece',
-                    flex: '0 0 auto',
-                    alignSelf: 'flex-start',
-                    padding: 0,
-                    margin: 0,
-                    transition: 'color 0.3s',
-                    lineHeight: 1,
-                    position: 'absolute',
-                    top: '10px',
-                    right: '10px',
-                    width: '20px',
-                    height: '20px',
-                    textAlign: 'center',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  &times;
-                </button>
-              </div>
-              <div
-                className="notification-content"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  padding: '0 10px 10px',
-                  alignItems: 'flex-start',
-                  width: '100%',
-                }}
-              >
-                {popup.enableStars && (
-                  <div
-                    className="rating"
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'flex-start',
-                      margin: 0,
-                      marginTop: '5px',
-                    }}
-                  >
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        className="w-4 h-4"
-                        fill="gray"
-                        viewBox="0 0 24 24"
-                        stroke="none"
-                        style={{
-                          fontSize: '12px',
-                          cursor: 'default',
-                          color: 'grey',
-                          marginRight: '5px',
-                        }}
-                      >
-                        <path
-                          d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                        />
-                      </svg>
-                    ))}
-                  </div>
-                )}
-                <p className="notification-timing" style={{ fontSize: '12px', color: 'black', marginTop: '5px' }}>
-                  Timing: {popup.timing} seconds
-                </p>
               </div>
             </div>
           ))
@@ -263,7 +158,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         >
           <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
             {generatedCode}
-            </pre>
+          </pre>
           <button
             onClick={handleCopyCode}
             style={{
