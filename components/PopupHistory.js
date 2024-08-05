@@ -83,7 +83,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md">
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -99,8 +99,9 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 transition: 'opacity 0.5s, transform 0.5s',
                 opacity: 1,
                 transform: 'translateX(0)',
-                width: '80%', // Adjusted width to make the popup smaller
-                margin: '0 auto', // Center the popup
+                width: '80%', // Adjust width as needed
+                height: 'auto', // Adjust height as needed
+                maxWidth: '300px', // Ensure max width
                 cursor: 'default',
                 marginBottom: '10px',
                 padding: '10px',
@@ -148,7 +149,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     flexGrow: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
+                    alignItems: 'flex-start', // Align text to the left
                     maxWidth: 'calc(100% - 40px)',
                     paddingRight: '30px',
                   }}
@@ -257,14 +258,14 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full mt-4"
         onClick={handleGenerateCode}
       >
-        Generate Code
+                Generate Code
       </button>
       {generatedCode && (
         <div
           className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
           style={{ wordWrap: 'break-word' }}
         >
-                    <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
             {generatedCode}
           </pre>
           <button
