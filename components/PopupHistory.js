@@ -71,7 +71,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
+    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
         className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -83,14 +83,14 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md mx-auto">
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
               key={popup._id}
-              className="notification mx-auto"
+              className="notification"
               style={{
-                position: 'center',
+                position: 'relative',
                 backgroundColor: '#fff',
                 borderRadius: '20px',
                 boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
@@ -100,7 +100,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 opacity: 1,
                 transform: 'translateX(0)',
                 width: '100%',
-                maxWidth: '100%',
+                height: '100%', // Adjusted height
                 cursor: 'default',
                 marginBottom: '10px',
                 padding: '10px',
@@ -291,6 +291,6 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
       )}
     </div>
   );
-  };
-  
-  export default PopupHistory;
+};
+
+export default PopupHistory;
