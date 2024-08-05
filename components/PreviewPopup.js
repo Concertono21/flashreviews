@@ -1,6 +1,25 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
+const styleSettings = {
+  "classic-white": {
+    backgroundColor: "#fff",
+    color: "#000"
+  },
+  "dark-mode": {
+    backgroundColor: "#333",
+    color: "#fff"
+  },
+  "style4": {
+    backgroundColor: "#ffcacb",
+    color: "#000"
+  },
+  "style5": {
+    backgroundColor: "#ffcd9c",
+    color: "#000"
+  }
+};
+
 const PreviewPopup = ({ popupSettings, handleClose }) => {
   const [comments, setComments] = useState('');
   const [rating, setRating] = useState(0);
@@ -52,6 +71,8 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
     setGeneratedCode(code);
   };
 
+  const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
+
   return (
     <div
       id="previewNotification"
@@ -60,8 +81,8 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
         position: 'fixed',
         top: '20px',
         right: '20px',
-        backgroundColor: popupSettings.style === 'dark-mode' ? '#333' : '#fff',
-        color: popupSettings.style === 'dark-mode' ? '#fff' : '#000',
+        backgroundColor: currentStyle.backgroundColor,
+        color: currentStyle.color,
         borderRadius: '20px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
@@ -128,7 +149,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               whiteSpace: 'normal',
               wordWrap: 'break-word',
               width: '100%',
-              color: popupSettings.style === 'dark-mode' ? '#fff' : '#000',
+              color: currentStyle.color,
             }}
           >
             {popupSettings.title}
