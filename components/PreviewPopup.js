@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 const PreviewPopup = ({ popupSettings, handleClose }) => {
   const [comments, setComments] = useState('');
   const [rating, setRating] = useState(0);
   const [generatedCode, setGeneratedCode] = useState('');
-
-  useEffect(() => {
-    generateCode();
-  }, [popupSettings]);
 
   const handleStarHover = (star) => {
     setRating(star);
@@ -56,48 +52,16 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
     setGeneratedCode(code);
   };
 
-  const getStyle = (style) => {
-    switch (style) {
-      case 'dark-mode':
-        return {
-          backgroundColor: '#333',
-          color: '#fff',
-        };
-      case 'apple-notification':
-        return {
-          backgroundColor: '#f8f8f8',
-          color: '#000',
-          border: '1px solid #ccc',
-        };
-      case 'style4':
-        return {
-          backgroundColor: '#1e90ff',
-          color: '#fff',
-        };
-      case 'style5':
-        return {
-          backgroundColor: '#32cd32',
-          color: '#fff',
-        };
-      default:
-        return {
-          backgroundColor: '#fff',
-          color: '#000',
-        };
-    }
-  };
-
-  const popupStyle = getStyle(popupSettings.style);
-
   return (
     <div
       id="previewNotification"
-      className="notification"
+      className={popupSettings.style}
       style={{
-        ...popupStyle,
         position: 'fixed',
         top: '20px',
         right: '20px',
+        backgroundColor: popupSettings.style === 'dark-mode' ? '#333' : '#fff',
+        color: popupSettings.style === 'dark-mode' ? '#fff' : '#000',
         borderRadius: '20px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
@@ -163,7 +127,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               whiteSpace: 'normal',
               wordWrap: 'break-word',
               width: '100%',
-              color: popupStyle.color,
+              color: 'black',
             }}
           >
             {popupSettings.title}
