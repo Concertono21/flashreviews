@@ -71,7 +71,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
+    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
         className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -83,7 +83,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md">
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md mx-auto">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -106,6 +106,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 padding: '10px',
                 textAlign: 'center',
                 alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <div
@@ -128,8 +129,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginRight: '5px',
-                    marginLeft: '10px',
+                    marginRight: '10px',
                   }}
                 >
                   {popup.logo && (
@@ -148,8 +148,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     flexGrow: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
-                    maxWidth: 'calc(100% - 40px)',
+                    alignItems: 'flex-start',
                     paddingRight: '30px',
                   }}
                 >
@@ -158,10 +157,9 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     style={{
                       fontWeight: 600,
                       fontSize: '14px',
-                      textAlign: 'center',
+                      textAlign: 'left',
                       whiteSpace: 'normal',
                       wordWrap: 'break-word',
-                      width: '100%',
                       color: 'black',
                     }}
                   >
@@ -203,8 +201,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
+                  alignItems: 'flex-start',
                   padding: '0 10px 10px',
-                  alignItems: 'center',
                   width: '100%',
                 }}
               >
@@ -213,7 +211,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     className="rating"
                     style={{
                       display: 'flex',
-                      justifyContent: 'center',
+                      justifyContent: 'flex-start',
                       margin: 0,
                       marginTop: '5px',
                     }}
@@ -264,7 +262,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
           style={{ wordWrap: 'break-word' }}
         >
-          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
+                    <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
             {generatedCode}
           </pre>
           <button
