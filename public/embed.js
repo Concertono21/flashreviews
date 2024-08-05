@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
               color: "#000"
             },
             "style4": {
-              backgroundColor: "#e0e0e0",
+              backgroundColor: "#ffcacb",
               color: "#000"
             },
             "style5": {
-              backgroundColor: "#d0d0d0",
+              backgroundColor: "#ffcd9c",
               color: "#000"
             }
           };
