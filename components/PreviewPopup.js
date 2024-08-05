@@ -72,6 +72,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
         width: '300px',
         maxWidth: '100%',
         cursor: 'default',
+        zIndex: 1000, // Ensure popup is above other elements
       }}
     >
       <div
@@ -127,7 +128,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               whiteSpace: 'normal',
               wordWrap: 'break-word',
               width: '100%',
-              color: 'black',
+              color: popupSettings.style === 'dark-mode' ? '#fff' : '#000',
             }}
           >
             {popupSettings.title}

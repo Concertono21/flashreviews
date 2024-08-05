@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   max-width: 100%;
                   cursor: default;
                   padding: 10px;
+                  z-index: 1000; /* Ensure popup is above other elements */
                 "
               >
                 <div
