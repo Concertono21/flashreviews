@@ -71,7 +71,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
+    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
       <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
         className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
@@ -83,7 +83,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg w-full max-w-md mx-auto flex flex-col items-center">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -99,14 +99,10 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 transition: 'opacity 0.5s, transform 0.5s',
                 opacity: 1,
                 transform: 'translateX(0)',
-                width: '80%', // Adjust width as needed
-                height: 'auto', // Adjust height as needed
-                maxWidth: '300px', // Ensure max width
-                cursor: 'default',
+                width: '90%', // Adjust width to fit within the container
                 marginBottom: '10px',
                 padding: '10px',
-                textAlign: 'center',
-                alignItems: 'center',
+                textAlign: 'left',
               }}
             >
               <div
@@ -149,7 +145,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     flexGrow: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'flex-start', // Align text to the left
+                    alignItems: 'flex-start',
                     maxWidth: 'calc(100% - 40px)',
                     paddingRight: '30px',
                   }}
@@ -159,7 +155,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     style={{
                       fontWeight: 600,
                       fontSize: '14px',
-                      textAlign: 'left', // Align text to the left
+                      textAlign: 'left',
                       whiteSpace: 'normal',
                       wordWrap: 'break-word',
                       width: '100%',
@@ -205,7 +201,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   padding: '0 10px 10px',
-                  alignItems: 'center',
+                  alignItems: 'flex-start',
                   width: '100%',
                 }}
               >
@@ -214,7 +210,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     className="rating"
                     style={{
                       display: 'flex',
-                      justifyContent: 'center',
+                      justifyContent: 'flex-start',
                       margin: 0,
                       marginTop: '5px',
                     }}
@@ -258,7 +254,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full mt-4"
         onClick={handleGenerateCode}
       >
-                Generate Code
+        Generate Code
       </button>
       {generatedCode && (
         <div
@@ -267,7 +263,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         >
           <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
             {generatedCode}
-          </pre>
+            </pre>
           <button
             onClick={handleCopyCode}
             style={{
