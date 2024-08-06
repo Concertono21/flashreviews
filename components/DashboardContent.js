@@ -5,6 +5,7 @@ import PreviewPopup from './PreviewPopup';
 import AddWebsite from './AddWebsite';
 import ViewReviews from './ViewReviews';
 import PopupHistory from './PopupHistory';
+import ErrorBoundary from './ErrorBoundary';
 
 const DashboardContent = () => {
   const { data: session, status } = useSession();

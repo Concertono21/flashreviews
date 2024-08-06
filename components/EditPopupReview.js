@@ -1,4 +1,24 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
+
+const styleSettings = {
+  "classic-white": {
+    backgroundColor: "#fff",
+    color: "#000"
+  },
+  "dark-mode": {
+    backgroundColor: "#333",
+    color: "#fff"
+  },
+  "style4": {
+    backgroundColor: "#ffcacb",
+    color: "#000"
+  },
+  "style5": {
+    backgroundColor: "#ffcd9c",
+    color: "#000"
+  }
+};
 
 const EditPopupReview = ({
   popupSettings,
@@ -25,6 +45,8 @@ const EditPopupReview = ({
     setPopupSettings({ ...popupSettings, website: e.target.value });
   };
 
+  const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
+
   return (
     <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6">
       <h2 className="text-xl font-bold mb-4 text-white">Edit Pop-Up Review</h2>
@@ -46,6 +68,17 @@ const EditPopupReview = ({
           onChange={handleLogoChange}
           className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
         />
+        {popupSettings.logo && (
+          <div className="flex justify-center mt-2">
+            <Image
+              src={popupSettings.logo}
+              alt="Logo"
+              width={40}
+              height={40}
+              style={{ objectFit: 'contain' }}
+            />
+          </div>
+        )}
       </div>
       <div className="mb-4">
         <label className="block text-white mb-2" htmlFor="popupWebsite">Website</label>
@@ -123,3 +156,5 @@ const EditPopupReview = ({
     </div>
   );
 };
+
+export default EditPopupReview;
