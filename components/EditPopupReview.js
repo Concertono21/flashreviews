@@ -49,29 +49,18 @@ const EditPopupReview = ({
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
 
   return (
-    <div
-      id="editPopup"
-      className={popupSettings.style}
-      style={{
-        position: 'fixed',
-        top: '20px',
-        right: '20px',
-        backgroundColor: currentStyle.backgroundColor,
-        color: currentStyle.color,
-        borderRadius: '20px',
-        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-        display: 'flex',
-        flexDirection: 'column',
-        transition: 'opacity 0.5s, transform 0.5s',
-        opacity: 1,
-        transform: 'translateX(0)',
-        width: '300px',
-        maxWidth: '100%',
-        cursor: 'default',
-        zIndex: 1000, // Ensure popup is above other elements
-        padding: '20px'
-      }}
-    >
+    <div className="edit-popup-container" style={{
+      backgroundColor: currentStyle.backgroundColor,
+      color: currentStyle.color,
+      borderRadius: '20px',
+      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '20px',
+      width: '100%',
+      maxWidth: '600px',
+      margin: '0 auto',
+    }}>
       <div
         className="notification-header"
         style={{
@@ -128,7 +117,19 @@ const EditPopupReview = ({
               color: currentStyle.color,
             }}
           >
-            {popupSettings.title}
+            <input
+              type="text"
+              value={popupSettings.title}
+              onChange={handleTitleChange}
+              style={{
+                backgroundColor: currentStyle.backgroundColor,
+                color: currentStyle.color,
+                border: 'none',
+                fontWeight: 'inherit',
+                fontSize: 'inherit',
+                width: '100%',
+              }}
+            />
           </div>
         </div>
         <button
