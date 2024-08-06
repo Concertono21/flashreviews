@@ -166,7 +166,7 @@ const EditPopupReview = ({
             onChange={handleStarToggle}
             style={{ marginRight: '5px' }}
           />
-          <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
+                    <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
         </div>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
           <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />

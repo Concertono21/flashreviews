@@ -44,15 +44,12 @@ export default async function handler(req, res) {
       const { title, logo, rating, timing, style, website, code, enableStars } = req.body;
 
       // Validate required fields
-      if (!title || !logo || rating === undefined || timing === undefined || !style || !website || !code || enableStars === undefined) {
-        return res.status(400).json({ message: 'All fields are required' });
+      if (!title || !logo || rating === undefined || timing === undefined || !style) {
+        return res.status(400).json({ message: 'All required fields are not provided' });
       }
 
       // Validate rating
-      const validRating = rating === 'yes' ? true : rating === 'no' ? false : null;
-      if (validRating === null) {
-        return res.status(400).json({ message: 'Rating must be "yes" or "no"' });
-      }
+      const validRating = typeof rating === 'number' && rating >= 0 && rating <= 5;
 
       // Validate timing
       const validTiming = parseInt(timing, 10);
@@ -72,10 +69,10 @@ export default async function handler(req, res) {
         rating: validRating,
         timing: validTiming,
         style,
-        website,
+        website: website || '', // Optional field
         user: token.email,
-        enableStars: enableStars,
-        code, // Store the entire popup code
+        enableStars: enableStars || false,
+        code: code || '', // Optional field
       };
 
       const result = await popupsCollection.insertOne(newPopup);
