@@ -13,7 +13,7 @@ const DashboardContent = () => {
   const [error, setError] = useState('');
   const [popupsCount, setPopupsCount] = useState(0);
   const [popupSettings, setPopupSettings] = useState({
-    title: 'Default Title',
+    title: 'Ask me anything',
     logo: '',
     rating: 0,
     enableStars: true,

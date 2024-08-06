@@ -48,9 +48,7 @@ const EditPopupReview = ({
   const handleStarToggle = () => {
     const newRatingEnabled = !popupSettings.enableStars;
     handleRatingChange(newRatingEnabled);
-    if (!newRatingEnabled) {
-      setPopupSettings({ ...popupSettings, rating: 0 });
-    }
+    setPopupSettings({ ...popupSettings, enableStars: newRatingEnabled, rating: newRatingEnabled ? popupSettings.rating : 0 });
   };
 
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
@@ -132,7 +130,7 @@ const EditPopupReview = ({
               style={{
                 fontSize: '20px',
                 cursor: 'pointer',
-                color: popupSettings.enableStars ? 'gold' : 'grey',
+                color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
                 marginRight: '2px',
               }}
             />
