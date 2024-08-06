@@ -95,8 +95,8 @@ const EditPopupReview = ({
             <Image
               src={popupSettings.logo}
               alt="Logo"
-              width={60}
-              height={60}
+              width={30}
+              height={30}
               style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
             />
           </div>
@@ -111,63 +111,99 @@ const EditPopupReview = ({
             border: 'none',
             fontWeight: 'bold',
             fontSize: '14px',
+            textAlign: 'left',
             flex: 1,
             marginLeft: '10px'
           }}
         />
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <input
-          type="checkbox"
-          checked={popupSettings.enableStars}
-          onChange={handleStarToggle}
-          style={{ marginRight: '5px' }}
-        />
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '5px 0' }}>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <FaStar
-              key={star}
-              onClick={() => handleRatingChange(star)}
-              style={{
-                fontSize: '14px',
-                cursor: 'pointer',
-                color: star <= popupSettings.rating ? 'gold' : popupSettings.enableStars ? 'grey' : 'transparent',
-                marginRight: '2px',
-              }}
-            />
-          ))}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <input
+            type="checkbox"
+            checked={popupSettings.enableStars}
+            onChange={handleStarToggle}
+            style={{ marginRight: '5px' }}
+          />
         </div>
+        {popupSettings.enableStars && (
+          <div style={{ display: 'flex' }}>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FaStar
+                key={star}
+                onClick={() => handleRatingChange(star)}
+                style={{
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  color: star <= popupSettings.rating ? 'gold' : 'transparent',
+                  borderColor: 'grey',
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                  borderRadius: '3px',
+                  marginRight: '2px',
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="mb-2" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-          <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
-          <input
-            type="number"
-            id="popupTiming"
-            value={timing}
-            onChange={handleTimingChangeInternal}
-            style={{ width: '50px', padding: '2px 5px', textAlign: 'center', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
-            min="0"
-          />
-          <select
-            id="popupStyle"
-            value={popupSettings.style || 'classic-white'}
-            onChange={handleStyleChange}
-            style={{ width: '100%', padding: '2px', fontSize: '12px', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
-          >
-            <option value="classic-white">Classic White</option>
-            <option value="dark-mode">Dark Mode</option>
-            <option value="apple-notification">Apple Notification</option>
-            <option value="style4">Style 4</option>
-            <option value="style5">Style 5</option>
-          </select>
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+            <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
+            <input
+              type="number"
+              id="popupTiming"
+              value={timing}
+              onChange={handleTimingChangeInternal}
+              style={{
+                width: '50px',
+                padding: '2px 5px',
+                textAlign: 'center',
+                backgroundColor: currentStyle.backgroundColor,
+                color: currentStyle.color,
+                border: 'none',
+                borderBottom: '1px solid grey'
+              }}
+              min="0"
+            />
+          </div>
+          <div className="mb-2">
+            <select
+              id="popupStyle"
+              value={popupSettings.style || 'classic-white'}
+              onChange={handleStyleChange}
+              style={{
+                padding: '2px',
+                fontSize: '12px',
+                backgroundColor: currentStyle.backgroundColor,
+                color: currentStyle.color,
+                border: 'none',
+                borderBottom: '1px solid grey'
+              }}
+            >
+              <option value="classic-white">Classic White</option>
+              <option value="dark-mode">Dark Mode</option>
+              <option value="apple-notification">Apple Notification</option>
+              <option value="style4">Style 4</option>
+              <option value="style5">Style 5</option>
+            </select>
+          </div>
         </div>
-        <div className="mb-2" style={{ width: '100%' }}>
+        <div className="mb-2">
           <select
             id="popupWebsite"
             value={popupSettings.website || ''}
             onChange={handleWebsiteChange}
-            style={{ width: '100%', padding: '2px', fontSize: '12px', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
+            style={{
+              width: '100%',
+              padding: '2px',
+              fontSize: '12px',
+              backgroundColor: currentStyle.backgroundColor,
+              color: currentStyle.color,
+              border: 'none',
+              borderBottom: '1px solid grey'
+            }}
           >
             <option value="" disabled>Select a website</option>
             {websites.map((websiteObj, index) => (
