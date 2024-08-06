@@ -154,6 +154,38 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
           >
             {popupSettings.title}
           </div>
+          {popupSettings.enableStars && (
+            <div
+              className="rating"
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                marginTop: '5px',
+              }}
+            >
+              {[1, 2, 3, 4, 5].map((star) => (
+                <svg
+                  key={star}
+                  onMouseEnter={() => handleStarHover(star)}
+                  onClick={() => handleStarClick(star)}
+                  className="w-4 h-4"
+                  fill={rating >= star ? 'gold' : 'gray'}
+                  viewBox="0 0 24 24"
+                  stroke="none"
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    cursor: 'pointer',
+                    marginRight: '5px',
+                  }}
+                >
+                  <path
+                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                  />
+                </svg>
+              ))}
+            </div>
+          )}
         </div>
         <button
           className="close-button"
@@ -194,39 +226,6 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
           alignItems: 'flex-start',
         }}
       >
-        {popupSettings.enableStars && (
-          <div
-            className="rating"
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              margin: 0,
-              marginTop: '5px',
-            }}
-          >
-            {[1, 2, 3, 4, 5].map((star) => (
-              <svg
-                key={star}
-                onMouseEnter={() => handleStarHover(star)}
-                onClick={() => handleStarClick(star)}
-                className="w-4 h-4"
-                fill={rating >= star ? 'gold' : 'gray'}
-                viewBox="0 0 24 24"
-                stroke="none"
-                style={{
-                  fontSize: '12px',
-                  cursor: 'pointer',
-                  color: 'grey',
-                  marginRight: '5px',
-                }}
-              >
-                <path
-                  d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                />
-              </svg>
-            ))}
-          </div>
-        )}
         <textarea
           placeholder="Add your comments here..."
           value={comments}
