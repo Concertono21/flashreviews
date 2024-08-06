@@ -49,7 +49,7 @@ const EditPopupReview = ({
 
   return (
     <div
-      id="editPopupNotification"
+      id="previewNotification"
       className={popupSettings.style}
       style={{
         position: 'fixed',
@@ -68,6 +68,7 @@ const EditPopupReview = ({
         maxWidth: '100%',
         cursor: 'default',
         zIndex: 1000, // Ensure popup is above other elements
+        padding: '10px'
       }}
     >
       <div
@@ -102,14 +103,6 @@ const EditPopupReview = ({
               style={{ objectFit: 'contain' }}
             />
           )}
-          {!popupSettings.logo && (
-            <input
-              type="file"
-              id="popupLogo"
-              onChange={handleLogoChange}
-              className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-            />
-          )}
         </div>
         <div
           className="notification-title-container"
@@ -122,38 +115,43 @@ const EditPopupReview = ({
             paddingRight: '30px',
           }}
         >
-          <input
-            type="text"
-            id="popupTitle"
-            value={popupSettings.title}
-            onChange={handleTitleChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-            placeholder="Enter title"
+          <div
+            className="notification-title"
             style={{
-              backgroundColor: currentStyle.backgroundColor,
+              fontWeight: 600,
+              fontSize: '14px',
+              textAlign: 'justify',
+              whiteSpace: 'normal',
+              wordWrap: 'break-word',
+              width: '100%',
               color: currentStyle.color,
             }}
-          />
+          >
+            {popupSettings.title}
+          </div>
           {popupSettings.enableStars && (
             <div
               className="rating"
               style={{
                 display: 'flex',
                 justifyContent: 'flex-start',
+                margin: 0,
                 marginTop: '5px',
               }}
             >
               {[1, 2, 3, 4, 5].map((star) => (
                 <svg
                   key={star}
+                  onMouseEnter={() => setPopupSettings({ ...popupSettings, rating: star })}
+                  onClick={() => setPopupSettings({ ...popupSettings, rating: star })}
                   className="w-4 h-4"
-                  fill="gray"
+                  fill={popupSettings.rating >= star ? 'gold' : 'gray'}
                   viewBox="0 0 24 24"
                   stroke="none"
                   style={{
-                    width: '16px',
-                    height: '16px',
+                    fontSize: '12px',
                     cursor: 'pointer',
+                    color: 'grey',
                     marginRight: '5px',
                   }}
                 >
@@ -167,7 +165,7 @@ const EditPopupReview = ({
         </div>
         <button
           className="close-button"
-          onClick={handleSavePopupSettings}
+          onClick={handleClose}
           style={{
             background: 'none',
             border: 'none',
@@ -205,16 +203,32 @@ const EditPopupReview = ({
         }}
       >
         <div className="mb-4 w-full">
-          <label className="block text-black mb-2" htmlFor="popupWebsite">Website</label>
+          <label className="block mb-2" style={{ color: currentStyle.color }} htmlFor="popupTitle">Title</label>
+          <input
+            type="text"
+            id="popupTitle"
+            value={popupSettings.title}
+            onChange={handleTitleChange}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            style={{ color: currentStyle.color }}
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <label className="block mb-2" style={{ color: currentStyle.color }} htmlFor="popupLogo">Upload Logo</label>
+          <input
+            type="file"
+            id="popupLogo"
+            onChange={handleLogoChange}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="mb-4 w-full">
+          <label className="block mb-2" style={{ color: currentStyle.color }} htmlFor="popupWebsite">Website</label>
           <select
             id="popupWebsite"
             value={popupSettings.website || ''}
             onChange={handleWebsiteChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-            }}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
           >
             <option value="" disabled>Select a website</option>
             {websites.map((websiteObj, index) => (
@@ -225,109 +239,67 @@ const EditPopupReview = ({
           </select>
         </div>
         <div className="mb-4 w-full">
-          <label className="block text-black mb-2">Enable Star Rating</label>
+          <label className="block mb-2" style={{ color: currentStyle.color }}>Enable Star Rating</label>
           <select
-            value={popupSettings.rating ? 'yes' : 'no'}
+            value={popupSettings.enableStars ? 'yes' : 'no'}
             onChange={(e) => handleRatingChange(e.target.value === 'yes')}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-            }}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
           >
             <option value="yes">Yes</option>
             <option value="no">No</option>
           </select>
         </div>
         <div className="mb-4 w-full">
-          <label className="block text-black mb-2" htmlFor="popupTiming">Timing (seconds)</label>
+          <label className="block mb-2" style={{ color: currentStyle.color }} htmlFor="popupTiming">Timing (seconds)</label>
           <input
             type="number"
             id="popupTiming"
             value={timing}
             onChange={handleTimingChangeInternal}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
             min="0"
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-            }}
+            style={{ color: currentStyle.color }}
           />
         </div>
         <div className="mb-4 w-full">
-          <label className="block text-black mb-2" htmlFor="popupStyle">Popup Style</label>
+          <label className="block mb-2" style={{ color: currentStyle.color }} htmlFor="popupStyle">Popup Style</label>
           <select
             id="popupStyle"
             value={popupSettings.style || 'classic-white'}
             onChange={handleStyleChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-            }}
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
+            style={{ color: currentStyle.color }}
           >
-            <option value="classic-white">Classic White</option>
+                        <option value="classic-white">Classic White</option>
             <option value="dark-mode">Dark Mode</option>
             <option value="apple-notification">Apple Notification</option>
             <option value="style4">Style 4</option>
             <option value="style5">Style 5</option>
           </select>
         </div>
-        <textarea
-          placeholder="Add your comments here..."
-          className="text-black"
-          style={{
-            marginTop: '10px',
-            marginBottom: '10px',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            padding: '10px',
-            resize: 'none',
-            width: '100%',
-            height: '50px',
-            fontSize: '12px',
-            boxSizing: 'border-box',
-            backgroundColor: currentStyle.backgroundColor,
-            color: currentStyle.color,
-          }}
-        ></textarea>
         <div className="flex space-x-4 w-full">
           <button
             className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
             onClick={handleSavePopupSettings}
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-              border: `1px solid ${currentStyle.color}`
-            }}
           >
             Save Settings
           </button>
           <button
             className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
             onClick={handlePreviewPopup}
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-              border: `1px solid ${currentStyle.color}`
-            }}
           >
             Preview Popup
           </button>
           <button
             className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
             onClick={handleGenerateCode}
-            style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-              border: `1px solid ${currentStyle.color}`
-            }}
           >
             Generate Code
           </button>
         </div>
       </div>
-    );
-  };
-  
-  export default EditPopupReview;
+    </div>
+  );
+};
+
+export default EditPopupReview;
