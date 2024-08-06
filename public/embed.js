@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${popupData.enableStars ? `
                       <div style="display: flex; justify-content: flex-start;">
                         ${[1, 2, 3, 4, 5].map(star => `
-                          <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px;" onclick="handleStarClick(${star})">
+                          <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px; width: 16px; height: 16px;" onclick="handleStarClick(${star})">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
                           </svg>
                         `).join('')}
