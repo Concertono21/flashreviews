@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { FaStar, FaClock, FaPalette } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -268,3 +269,5 @@ const EditPopupReview = ({
     </div>
   );
 };
+
+export default EditPopupReview;
