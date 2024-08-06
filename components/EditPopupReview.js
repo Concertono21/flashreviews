@@ -111,9 +111,8 @@ const EditPopupReview = ({
             border: 'none',
             fontWeight: 'bold',
             fontSize: '14px',
-            textAlign: 'center',
             flex: 1,
-            margin: '0 10px'
+            marginLeft: '10px'
           }}
         />
         <button
@@ -159,7 +158,7 @@ const EditPopupReview = ({
         </div>
       )}
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="mb-2" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <input
             type="checkbox"
             checked={popupSettings.enableStars}
@@ -168,7 +167,7 @@ const EditPopupReview = ({
           />
           <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
         </div>
-        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="mb-2" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
           <input
             type="number"
@@ -178,8 +177,20 @@ const EditPopupReview = ({
             style={{ width: '50px', padding: '2px 5px', textAlign: 'center', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
             min="0"
           />
+          <select
+            id="popupStyle"
+            value={popupSettings.style || 'classic-white'}
+            onChange={handleStyleChange}
+            style={{ width: '100%', padding: '2px', fontSize: '12px', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
+          >
+            <option value="classic-white">Classic White</option>
+            <option value="dark-mode">Dark Mode</option>
+            <option value="apple-notification">Apple Notification</option>
+            <option value="style4">Style 4</option>
+            <option value="style5">Style 5</option>
+          </select>
         </div>
-        <div className="mb-2">
+        <div className="mb-2" style={{ width: '100%' }}>
           <select
             id="popupWebsite"
             value={popupSettings.website || ''}
@@ -192,20 +203,6 @@ const EditPopupReview = ({
                 {websiteObj.website}
               </option>
             ))}
-          </select>
-        </div>
-        <div className="mb-2">
-          <select
-            id="popupStyle"
-            value={popupSettings.style || 'classic-white'}
-            onChange={handleStyleChange}
-            style={{ width: '100%', padding: '2px', fontSize: '12px', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
-          >
-            <option value="classic-white">Classic White</option>
-            <option value="dark-mode">Dark Mode</option>
-            <option value="apple-notification">Apple Notification</option>
-            <option value="style4">Style 4</option>
-            <option value="style5">Style 5</option>
           </select>
         </div>
         <div className="flex space-x-2 w-full">
