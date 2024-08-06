@@ -1,7 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { FaStar, FaClock, FaGlobe, FaPaintBrush, FaUpload } from 'react-icons/fa';
+import { FaClock, FaGlobe, FaPaintBrush } from 'react-icons/fa';
+
+const styleSettings = {
+  "classic-white": {
+    backgroundColor: "#fff",
+    color: "#000"
+  },
+  "dark-mode": {
+    backgroundColor: "#333",
+    color: "#fff"
+  },
+  "style4": {
+    backgroundColor: "#ffcacb",
+    color: "#000"
+  },
+  "style5": {
+    backgroundColor: "#ffcd9c",
+    color: "#000"
+  }
+};
 
 const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   const [popupHistory, setPopupHistory] = useState([]);
@@ -92,7 +111,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
               className="notification"
               style={{
                 position: 'relative',
-                backgroundColor: '#fff',
+                backgroundColor: styleSettings[popup.style]?.backgroundColor || '#fff',
+                color: styleSettings[popup.style]?.color || '#000',
                 borderRadius: '20px',
                 boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
                 display: 'flex',
@@ -116,23 +136,33 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '5px',
+                  padding: '10px',
                   position: 'relative',
                   width: '100%',
                 }}
               >
-                <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
-                  {!popup.logo && <FaUpload style={{ color: '#000' }} />}
-                </label>
-                {popup.logo && (
-                  <Image
-                    src={popup.logo}
-                    alt="Logo"
-                    width={40}
-                    height={40}
-                    style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
-                  />
-                )}
+                <div
+                  className="notification-icon"
+                  style={{
+                    flex: '0 0 auto',
+                    width: '40px',
+                    height: '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: '10px',
+                  }}
+                >
+                  {popup.logo && (
+                    <Image
+                      src={popup.logo}
+                      alt="Logo"
+                      width={40}
+                      height={40}
+                      style={{ objectFit: 'contain', borderRadius: '5px' }}
+                    />
+                  )}
+                </div>
                 <div
                   className="notification-title-container"
                   style={{
@@ -151,7 +181,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                       textAlign: 'left',
                       whiteSpace: 'normal',
                       wordWrap: 'break-word',
-                      color: 'black',
+                      color: styleSettings[popup.style]?.color || 'black',
                     }}
                   >
                     {popup.title}
@@ -187,41 +217,55 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   &times;
                 </button>
               </div>
-              {popup.enableStars && (
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}>
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <FaStar
-                      key={star}
-                      style={{
-                        fontSize: '20px',
-                        color: star <= popup.rating ? 'gold' : 'grey',
-                        marginRight: '2px',
-                      }}
-                    />
-                  ))}
-                </div>
-              )}
               <div
                 className="notification-content"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center',
+                  alignItems: 'flex-start',
+                  padding: '0 10px 10px',
                   width: '100%',
                 }}
               >
-                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-                  <FaClock style={{ color: '#000', marginRight: '5px' }} />
-                  <span style={{ fontSize: '12px', color: 'black' }}>{popup.timing} seconds</span>
-                </div>
-                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-                  <FaPaintBrush style={{ color: '#000', marginRight: '5px' }} />
-                  <span style={{ fontSize: '12px', color: 'black' }}>{popup.style}</span>
-                </div>
-                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-                  <FaGlobe style={{ color: '#000', marginRight: '5px' }} />
-                  <span style={{ fontSize: '12px', color: 'black' }}>{popup.website}</span>
-                </div>
+                {popup.enableStars && (
+                  <div
+                    className="rating"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'flex-start',
+                      margin: 0,
+                      marginTop: '5px',
+                    }}
+                  >
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg
+                        key={star}
+                        className="w-4 h-4"
+                        fill={popup.enableStars ? 'gold' : 'gray'}
+                        viewBox="0 0 24 24"
+                        stroke="none"
+                        style={{
+                          fontSize: '12px',
+                          cursor: 'default',
+                          color: popup.enableStars ? 'gold' : 'grey',
+                          marginRight: '5px',
+                        }}
+                      >
+                        <path
+                          d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                        />
+                      </svg>
+                    ))}
+                  </div>
+                )}
+                <p className="notification-timing" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || 'black', marginTop: '5px' }}>
+                  <FaClock style={{ marginRight: '5px' }} />
+                  {popup.timing} seconds
+                </p>
+                <p className="notification-website" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || 'black', marginTop: '5px' }}>
+                  <FaGlobe style={{ marginRight: '5px' }} />
+                  {popup.website}
+                </p>
               </div>
             </div>
           ))
@@ -237,7 +281,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full mt-4"
         onClick={handleGenerateCode}
       >
-                Generate Code
+        Generate Code
       </button>
       {generatedCode && (
         <div
