@@ -35,7 +35,7 @@ const UseCases = () => {
               <div className="use-case-title text-xl font-bold text-white">🤑 Get more customers</div>
               {activeCase === 'frame3' && (
                 <div className="use-case-description">
-                  <p className="text-white">PoopUp delivers effective pop-up messages to remind your visitors of their pain points and drive them to take action. Watch your conversion rate skyrocket 🚀</p>
+                  <p className="text-white">Flashreviews delivers effective pop-up messages to remind your visitors of their pain points and drive them to take action. Watch your conversion rate skyrocket 🚀</p>
                 </div>
               )}
             </div>
@@ -57,7 +57,7 @@ const UseCases = () => {
             {activeCase === 'frame3' && (
               <div id="frame3" className="use-case-frame-content">
                 <video controls className="w-full h-60" autoPlay loop>
-                  <source src="feature_3.mp4" type="video/mp4" />
+                  <source src="feature_4.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
