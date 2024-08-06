@@ -89,6 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="font-weight: 600; font-size: 14px; text-align: justify; white-space: normal; word-wrap: break-word; width: 100%;">
                       ${popupData.title}
                     </div>
+                    ${popupData.enableStars ? `
+                      <div class="rating" style="display: flex; justify-content: flex-start; margin-top: 5px;">
+                        ${[1, 2, 3, 4, 5].map(star => `
+                          <svg key="${star}" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px; width: 16px; height: 16px;" onclick="handleStarClick(${star})">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                          </svg>
+                        `).join('')}
+                      </div>
+                    ` : ''}
                   </div>
                   <button
                     style="
@@ -116,15 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <form id="popupForm">
                   <div style="padding: 10px 0;">
-                    ${popupData.enableStars ? `
-                      <div style="display: flex; justify-content: flex-start;">
-                        ${[1, 2, 3, 4, 5].map(star => `
-                          <svg key="${star}" class="w-4 h-4" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px; width: 16px; height: 16px;" onclick="handleStarClick(${star})">
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
-                          </svg>
-                        `).join('')}
-                      </div>
-                    ` : ''}
                     <textarea id="review-comments" placeholder="Add your comments here..." name="comments" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; width: 100%; height: 50px; font-size: 12px; box-sizing: border-box;"></textarea>
                     <input type="hidden" name="popupId" value="${popupData._id}">
                     <input type="hidden" name="userEmail" value="${popupData.user}">
