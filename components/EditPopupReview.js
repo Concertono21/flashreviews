@@ -166,7 +166,7 @@ const EditPopupReview = ({
             onChange={handleStarToggle}
             style={{ marginRight: '5px' }}
           />
-                    <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
+          <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
         </div>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
           <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
@@ -178,6 +178,21 @@ const EditPopupReview = ({
             style={{ width: '50px', padding: '2px 5px', textAlign: 'center', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
             min="0"
           />
+        </div>
+        <div className="mb-2">
+          <select
+            id="popupWebsite"
+            value={popupSettings.website || ''}
+            onChange={handleWebsiteChange}
+            style={{ width: '100%', padding: '2px', fontSize: '12px', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
+          >
+            <option value="" disabled>Select a website</option>
+            {websites.map((websiteObj, index) => (
+              <option key={index} value={websiteObj.website}>
+                {websiteObj.website}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="mb-2">
           <select
