@@ -73,13 +73,22 @@ const EditPopupReview = ({
           position: 'relative',
         }}
       >
+        <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
+          <FaUpload style={{ color: currentStyle.color }} />
+        </label>
+        <input
+          type="file"
+          id="popupLogo"
+          onChange={handleLogoChange}
+          style={{ display: 'none' }}
+        />
         {popupSettings.logo && (
           <Image
             src={popupSettings.logo}
             alt="Logo"
             width={30}
             height={30}
-            style={{ objectFit: 'contain', borderRadius: '50%' }}
+            style={{ objectFit: 'contain', borderRadius: '50%', marginRight: '10px' }}
           />
         )}
         <input
@@ -123,32 +132,23 @@ const EditPopupReview = ({
           &times;
         </button>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '5px 0' }}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <FaStar
-            key={star}
-            onClick={() => handleRatingChange(star)}
-            style={{
-              fontSize: '14px',
-              cursor: 'pointer',
-              color: star <= popupSettings.rating ? 'gold' : 'grey',
-              marginRight: '2px',
-            }}
-          />
-        ))}
-      </div>
-      <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-          <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
-            <FaUpload style={{ color: currentStyle.color }} />
-          </label>
-          <input
-            type="file"
-            id="popupLogo"
-            onChange={handleLogoChange}
-            style={{ display: 'none' }}
-          />
+      {popupSettings.enableStars && (
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '5px 0' }}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <FaStar
+              key={star}
+              onClick={() => handleRatingChange(star)}
+              style={{
+                fontSize: '14px',
+                cursor: 'pointer',
+                color: star <= popupSettings.rating ? 'gold' : 'grey',
+                marginRight: '2px',
+              }}
+            />
+          ))}
         </div>
+      )}
+      <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
           <input
             type="checkbox"
