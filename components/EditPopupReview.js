@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { FaStar, FaClock, FaPalette } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -127,7 +128,19 @@ const EditPopupReview = ({
               color: currentStyle.color,
             }}
           >
-            {popupSettings.title}
+            <input
+              type="text"
+              value={popupSettings.title}
+              onChange={handleTitleChange}
+              style={{
+                backgroundColor: currentStyle.backgroundColor,
+                color: currentStyle.color,
+                border: 'none',
+                fontWeight: 'inherit',
+                fontSize: 'inherit',
+                width: '100%',
+              }}
+            />
           </div>
         </div>
         <button
@@ -161,81 +174,44 @@ const EditPopupReview = ({
         </button>
       </div>
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 10px', alignItems: 'flex-start' }}>
-        <div className="mb-4">
-          <label className="block mb-2" htmlFor="popupTitle" style={{ color: currentStyle.color }}>Title</label>
-          <input
-            type="text"
-            id="popupTitle"
-            value={popupSettings.title}
-            onChange={handleTitleChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-          />
-        </div>
-        <div className="mb-4">
+        <div className="mb-4 flex items-center">
           <label className="block mb-2" htmlFor="popupLogo" style={{ color: currentStyle.color }}>Upload Logo</label>
           <input
             type="file"
             id="popupLogo"
             onChange={handleLogoChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+            style={{ marginLeft: '10px' }}
           />
-          {popupSettings.logo && (
-            <div className="flex justify-center mt-2">
-              <Image
-                src={popupSettings.logo}
-                alt="Logo"
-                width={40}
-                height={40}
-                style={{ objectFit: 'contain' }}
-              />
-            </div>
-          )}
         </div>
-        <div className="mb-4">
-          <label className="block mb-2" htmlFor="popupWebsite" style={{ color: currentStyle.color }}>Website</label>
-          <select
-            id="popupWebsite"
-            value={popupSettings.website || ''}
-            onChange={handleWebsiteChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-          >
-            <option value="" disabled>Select a website</option>
-            {websites.map((websiteObj, index) => (
-              <option key={index} value={websiteObj.website}>
-                {websiteObj.website}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-4">
+        <div className="mb-4 flex items-center">
           <label className="block mb-2" style={{ color: currentStyle.color }}>Enable Star Rating</label>
-          <select
-            value={popupSettings.rating ? 'yes' : 'no'}
-            onChange={(e) => handleRatingChange(e.target.value === 'yes')}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
-          >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
+          <input
+            type="checkbox"
+            checked={popupSettings.rating}
+            onChange={(e) => handleRatingChange(e.target.checked)}
+            style={{ marginLeft: '10px' }}
+          />
+          <FaStar style={{ marginLeft: '5px', color: 'gold' }} />
         </div>
-        <div className="mb-4">
-          <label className="block mb-2" htmlFor="popupTiming" style={{ color: currentStyle.color }}>Timing (seconds)</label>
+        <div className="mb-4 flex items-center">
+          <label className="block mb-2" htmlFor="popupTiming" style={{ color: currentStyle.color }}>Timing</label>
           <input
             type="number"
             id="popupTiming"
             value={timing}
             onChange={handleTimingChangeInternal}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+            className="ml-2 p-1 border border-gray-300 rounded text-black"
             min="0"
           />
+          <FaClock style={{ marginLeft: '5px', color: 'grey' }} />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 flex items-center">
           <label className="block mb-2" htmlFor="popupStyle" style={{ color: currentStyle.color }}>Popup Style</label>
           <select
             id="popupStyle"
             value={popupSettings.style || 'classic-white'}
             onChange={handleStyleChange}
-            className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+            className="ml-2 p-1 border border-gray-300 rounded text-black"
           >
             <option value="classic-white">Classic White</option>
             <option value="dark-mode">Dark Mode</option>
@@ -243,6 +219,7 @@ const EditPopupReview = ({
             <option value="style4">Style 4</option>
             <option value="style5">Style 5</option>
           </select>
+          <FaPalette style={{ marginLeft: '5px', color: 'grey' }} />
         </div>
         <div className="flex space-x-4 w-full">
           <button
