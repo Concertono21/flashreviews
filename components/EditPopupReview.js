@@ -45,6 +45,14 @@ const EditPopupReview = ({
     setPopupSettings({ ...popupSettings, website: e.target.value });
   };
 
+  const handleStarToggle = () => {
+    const newRatingEnabled = !popupSettings.enableStars;
+    handleRatingChange(newRatingEnabled);
+    if (!newRatingEnabled) {
+      setPopupSettings({ ...popupSettings, rating: 0 });
+    }
+  };
+
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
 
   return (
@@ -74,7 +82,7 @@ const EditPopupReview = ({
         }}
       >
         <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
-          <FaUpload style={{ color: currentStyle.color }} />
+          {!popupSettings.logo && <FaUpload style={{ color: currentStyle.color }} />}
         </label>
         <input
           type="file"
@@ -83,13 +91,15 @@ const EditPopupReview = ({
           style={{ display: 'none' }}
         />
         {popupSettings.logo && (
-          <Image
-            src={popupSettings.logo}
-            alt="Logo"
-            width={30}
-            height={30}
-            style={{ objectFit: 'contain', borderRadius: '50%', marginRight: '10px' }}
-          />
+          <div onClick={() => document.getElementById('popupLogo').click()}>
+            <Image
+              src={popupSettings.logo}
+              alt="Logo"
+              width={30}
+              height={30}
+              style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
+            />
+          </div>
         )}
         <input
           type="text"
@@ -153,10 +163,10 @@ const EditPopupReview = ({
           <input
             type="checkbox"
             checked={popupSettings.enableStars}
-            onChange={(e) => handleRatingChange(e.target.checked)}
+            onChange={handleStarToggle}
             style={{ marginRight: '5px' }}
           />
-          <span style={{ fontSize: '12px', color: currentStyle.color }}>Enable Star Rating</span>
+          <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
         </div>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
           <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
@@ -165,7 +175,7 @@ const EditPopupReview = ({
             id="popupTiming"
             value={timing}
             onChange={handleTimingChangeInternal}
-            style={{ width: '50px', padding: '2px 5px', textAlign: 'center' }}
+            style={{ width: '50px', padding: '2px 5px', textAlign: 'center', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
             min="0"
           />
         </div>
@@ -174,7 +184,7 @@ const EditPopupReview = ({
             id="popupStyle"
             value={popupSettings.style || 'classic-white'}
             onChange={handleStyleChange}
-            style={{ width: '100%', padding: '2px', fontSize: '12px' }}
+            style={{ width: '100%', padding: '2px', fontSize: '12px', backgroundColor: currentStyle.backgroundColor, color: currentStyle.color, border: '1px solid grey' }}
           >
             <option value="classic-white">Classic White</option>
             <option value="dark-mode">Dark Mode</option>
