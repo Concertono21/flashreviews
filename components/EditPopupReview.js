@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { FaUpload, FaStar, FaClock } from 'react-icons/fa';
+import { FaStar, FaClock, FaUpload } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -52,16 +52,12 @@ const EditPopupReview = ({
       id="editPopup"
       className={popupSettings.style}
       style={{
-        position: 'relative',
         backgroundColor: currentStyle.backgroundColor,
         color: currentStyle.color,
         borderRadius: '20px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
         flexDirection: 'column',
-        transition: 'opacity 0.5s, transform 0.5s',
-        opacity: 1,
-        transform: 'translateX(0)',
         width: '250px',
         padding: '10px',
         marginBottom: '20px'
@@ -73,59 +69,34 @@ const EditPopupReview = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '10px',
+          padding: '5px',
           position: 'relative',
         }}
       >
-        <div
-          className="notification-icon"
+        {popupSettings.logo && (
+          <Image
+            src={popupSettings.logo}
+            alt="Logo"
+            width={30}
+            height={30}
+            style={{ objectFit: 'contain', borderRadius: '50%' }}
+          />
+        )}
+        <input
+          type="text"
+          value={popupSettings.title}
+          onChange={handleTitleChange}
           style={{
-            flex: '0 0 auto',
-            width: '30px',
-            height: '30px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginRight: '5px',
-            marginLeft: '10px',
+            backgroundColor: currentStyle.backgroundColor,
+            color: currentStyle.color,
+            border: 'none',
+            fontWeight: 'bold',
+            fontSize: '14px',
+            textAlign: 'center',
+            flex: 1,
+            margin: '0 10px'
           }}
-        >
-          {popupSettings.logo && (
-            <Image
-              src={popupSettings.logo}
-              alt="Logo"
-              width={30}
-              height={30}
-              style={{ objectFit: 'contain' }}
-            />
-          )}
-        </div>
-        <div
-          className="notification-title-container"
-          style={{
-            flexGrow: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            maxWidth: 'calc(100% - 30px)',
-            paddingRight: '20px',
-          }}
-        >
-          <div
-            className="notification-title"
-            style={{
-              fontWeight: 600,
-              fontSize: '14px',
-              textAlign: 'justify',
-              whiteSpace: 'normal',
-              wordWrap: 'break-word',
-              width: '100%',
-              color: currentStyle.color,
-            }}
-          >
-            {popupSettings.title}
-          </div>
-        </div>
+        />
         <button
           className="close-button"
           onClick={handleSavePopupSettings}
@@ -136,14 +107,10 @@ const EditPopupReview = ({
             cursor: 'pointer',
             color: '#cecece',
             flex: '0 0 auto',
-            alignSelf: 'flex-start',
             padding: 0,
             margin: 0,
             transition: 'color 0.3s',
             lineHeight: 1,
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
             width: '20px',
             height: '20px',
             textAlign: 'center',
@@ -156,39 +123,22 @@ const EditPopupReview = ({
           &times;
         </button>
       </div>
-      <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 10px', alignItems: 'flex-start' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {[1, 2, 3, 4, 5].map((star) => (
-            <FaStar
-              key={star}
-              onClick={() => handleRatingChange(star)}
-              style={{
-                fontSize: '14px',
-                cursor: 'pointer',
-                color: star <= popupSettings.rating ? 'gold' : 'grey',
-                marginRight: '2px',
-              }}
-            />
-          ))}
-        </div>
-        <div className="mb-2">
-          <input
-            type="text"
-            id="popupTitle"
-            value={popupSettings.title}
-            onChange={handleTitleChange}
+      <div style={{ display: 'flex', justifyContent: 'center', margin: '5px 0' }}>
+        {[1, 2, 3, 4, 5].map((star) => (
+          <FaStar
+            key={star}
+            onClick={() => handleRatingChange(star)}
             style={{
-              backgroundColor: currentStyle.backgroundColor,
-              color: currentStyle.color,
-              border: 'none',
-              fontWeight: 'bold',
-              fontSize: '16px',
-              width: '100%',
-              margin: '5px 0'
+              fontSize: '14px',
+              cursor: 'pointer',
+              color: star <= popupSettings.rating ? 'gold' : 'grey',
+              marginRight: '2px',
             }}
           />
-        </div>
-        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+        ))}
+      </div>
+      <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
           <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
             <FaUpload style={{ color: currentStyle.color }} />
           </label>
@@ -200,13 +150,13 @@ const EditPopupReview = ({
           />
         </div>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-          <label className="block mb-0" style={{ color: currentStyle.color, marginRight: '5px' }}>Enable Star Rating</label>
           <input
             type="checkbox"
             checked={popupSettings.enableStars}
             onChange={(e) => handleRatingChange(e.target.checked)}
-            style={{ marginLeft: '5px' }}
+            style={{ marginRight: '5px' }}
           />
+          <span style={{ fontSize: '12px', color: currentStyle.color }}>Enable Star Rating</span>
         </div>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
           <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
@@ -220,12 +170,11 @@ const EditPopupReview = ({
           />
         </div>
         <div className="mb-2">
-          <label className="block mb-0" htmlFor="popupStyle" style={{ color: currentStyle.color }}>Popup Style</label>
           <select
             id="popupStyle"
             value={popupSettings.style || 'classic-white'}
             onChange={handleStyleChange}
-            style={{ width: '100%', padding: '2px', marginTop: '5px' }}
+            style={{ width: '100%', padding: '2px', fontSize: '12px' }}
           >
             <option value="classic-white">Classic White</option>
             <option value="dark-mode">Dark Mode</option>
@@ -238,12 +187,14 @@ const EditPopupReview = ({
           <button
             className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
             onClick={handleSavePopupSettings}
+            style={{ fontSize: '12px' }}
           >
             Save Settings
           </button>
           <button
             className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
             onClick={handlePreviewPopup}
+            style={{ fontSize: '12px' }}
           >
             Preview Popup
           </button>
