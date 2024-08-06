@@ -66,7 +66,7 @@ const EditPopupReview = ({
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
         flexDirection: 'column',
-        width: '250px',
+        width: '300px',
         padding: '10px',
         marginBottom: '20px'
       }}
@@ -95,8 +95,8 @@ const EditPopupReview = ({
             <Image
               src={popupSettings.logo}
               alt="Logo"
-              width={30}
-              height={30}
+              width={60}
+              height={60}
               style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
             />
           </div>
@@ -115,33 +115,14 @@ const EditPopupReview = ({
             marginLeft: '10px'
           }}
         />
-        <button
-          className="close-button"
-          onClick={handleSavePopupSettings}
-          style={{
-            background: 'none',
-            border: 'none',
-            fontSize: '20px',
-            cursor: 'pointer',
-            color: '#cecece',
-            flex: '0 0 auto',
-            padding: 0,
-            margin: 0,
-            transition: 'color 0.3s',
-            lineHeight: 1,
-            width: '20px',
-            height: '20px',
-            textAlign: 'center',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          &times;
-        </button>
       </div>
-      {popupSettings.enableStars && (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <input
+          type="checkbox"
+          checked={popupSettings.enableStars}
+          onChange={handleStarToggle}
+          style={{ marginRight: '5px' }}
+        />
         <div style={{ display: 'flex', justifyContent: 'center', margin: '5px 0' }}>
           {[1, 2, 3, 4, 5].map((star) => (
             <FaStar
@@ -150,23 +131,14 @@ const EditPopupReview = ({
               style={{
                 fontSize: '14px',
                 cursor: 'pointer',
-                color: star <= popupSettings.rating ? 'gold' : 'grey',
+                color: star <= popupSettings.rating ? 'gold' : popupSettings.enableStars ? 'grey' : 'transparent',
                 marginRight: '2px',
               }}
             />
           ))}
         </div>
-      )}
+      </div>
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="mb-2" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-          <input
-            type="checkbox"
-            checked={popupSettings.enableStars}
-            onChange={handleStarToggle}
-            style={{ marginRight: '5px' }}
-          />
-          <span style={{ fontSize: '12px', color: currentStyle.color }}>Star</span>
-        </div>
         <div className="mb-2" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
           <input
