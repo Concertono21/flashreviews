@@ -117,7 +117,7 @@ const EditPopupReview = ({
           }}
         />
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px', marginBottom: '10px' }}>
         <input
           type="checkbox"
           checked={popupSettings.enableStars}
@@ -140,7 +140,7 @@ const EditPopupReview = ({
         </div>
       </div>
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
             <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
             <input
