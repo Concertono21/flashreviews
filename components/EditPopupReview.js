@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { FaStar, FaClock, FaUpload } from 'react-icons/fa';
+import { FaStar, FaClock, FaUpload, FaGlobe, FaPaintBrush } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -66,7 +66,7 @@ const EditPopupReview = ({
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
         flexDirection: 'column',
-        width: '300px',
+        width: '350px',
         padding: '10px',
         marginBottom: '20px'
       }}
@@ -95,8 +95,8 @@ const EditPopupReview = ({
             <Image
               src={popupSettings.logo}
               alt="Logo"
-              width={30}
-              height={30}
+              width={50}
+              height={50}
               style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
             />
           </div>
@@ -117,35 +117,27 @@ const EditPopupReview = ({
           }}
         />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <input
-            type="checkbox"
-            checked={popupSettings.enableStars}
-            onChange={handleStarToggle}
-            style={{ marginRight: '5px' }}
-          />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <input
+          type="checkbox"
+          checked={popupSettings.enableStars}
+          onChange={handleStarToggle}
+          style={{ marginRight: '5px' }}
+        />
+        <div style={{ display: 'flex' }}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <FaStar
+              key={star}
+              onClick={() => handleRatingChange(star)}
+              style={{
+                fontSize: '20px',
+                cursor: 'pointer',
+                color: popupSettings.enableStars ? 'gold' : 'grey',
+                marginRight: '2px',
+              }}
+            />
+          ))}
         </div>
-        {popupSettings.enableStars && (
-          <div style={{ display: 'flex' }}>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FaStar
-                key={star}
-                onClick={() => handleRatingChange(star)}
-                style={{
-                  fontSize: '14px',
-                  cursor: 'pointer',
-                  color: star <= popupSettings.rating ? 'gold' : 'transparent',
-                  borderColor: 'grey',
-                  borderWidth: '1px',
-                  borderStyle: 'solid',
-                  borderRadius: '3px',
-                  marginRight: '2px',
-                }}
-              />
-            ))}
-          </div>
-        )}
       </div>
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
@@ -168,7 +160,8 @@ const EditPopupReview = ({
               min="0"
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+            <FaPaintBrush style={{ color: currentStyle.color, marginRight: '5px' }} />
             <select
               id="popupStyle"
               value={popupSettings.style || 'classic-white'}
@@ -190,7 +183,8 @@ const EditPopupReview = ({
             </select>
           </div>
         </div>
-        <div className="mb-2">
+        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+          <FaGlobe style={{ color: currentStyle.color, marginRight: '5px' }} />
           <select
             id="popupWebsite"
             value={popupSettings.website || ''}
