@@ -9,8 +9,8 @@ const DashboardNavbar = ({
   session
 }) => (
   <div className="w-full bg-black text-white fixed top-0 z-10">
-    <nav className="flex items-center justify-between p-6 max-w-6xl mx-auto">
-      <div className="relative">
+    <nav className="flex items-center justify-between p-2 max-w-6xl mx-auto">
+      <div className="flex items-center space-x-2">
         <button
           className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={handleAccountButtonClick}
