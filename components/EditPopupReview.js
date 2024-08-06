@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { FaUpload, FaStar, FaClock } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -27,7 +28,6 @@ const EditPopupReview = ({
   handleRatingChange,
   handleSavePopupSettings,
   handlePreviewPopup,
-  handleGenerateCode,
   handleTimingChange,
   handleStyleChange,
   setPopupSettings,
@@ -52,18 +52,19 @@ const EditPopupReview = ({
       id="editPopup"
       className={popupSettings.style}
       style={{
+        position: 'relative',
         backgroundColor: currentStyle.backgroundColor,
         color: currentStyle.color,
         borderRadius: '20px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
         flexDirection: 'column',
-        padding: '20px',
-        width: '300px',
-        maxWidth: '100%',
-        marginTop: '20px',
-        cursor: 'default',
-        zIndex: 1000 // Ensure popup is above other elements
+        transition: 'opacity 0.5s, transform 0.5s',
+        opacity: 1,
+        transform: 'translateX(0)',
+        width: '250px',
+        padding: '10px',
+        marginBottom: '20px'
       }}
     >
       <div
@@ -80,8 +81,8 @@ const EditPopupReview = ({
           className="notification-icon"
           style={{
             flex: '0 0 auto',
-            width: '40px',
-            height: '40px',
+            width: '30px',
+            height: '30px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -93,8 +94,8 @@ const EditPopupReview = ({
             <Image
               src={popupSettings.logo}
               alt="Logo"
-              width={40}
-              height={40}
+              width={30}
+              height={30}
               style={{ objectFit: 'contain' }}
             />
           )}
@@ -106,8 +107,8 @@ const EditPopupReview = ({
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            maxWidth: 'calc(100% - 40px)',
-            paddingRight: '30px',
+            maxWidth: 'calc(100% - 30px)',
+            paddingRight: '20px',
           }}
         >
           <div
@@ -122,19 +123,7 @@ const EditPopupReview = ({
               color: currentStyle.color,
             }}
           >
-            <input
-              type="text"
-              value={popupSettings.title}
-              onChange={handleTitleChange}
-              style={{
-                backgroundColor: currentStyle.backgroundColor,
-                color: currentStyle.color,
-                border: 'none',
-                fontWeight: 'inherit',
-                fontSize: 'inherit',
-                width: '100%',
-              }}
-            />
+            {popupSettings.title}
           </div>
         </div>
         <button
@@ -168,44 +157,75 @@ const EditPopupReview = ({
         </button>
       </div>
       <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 10px', alignItems: 'flex-start' }}>
-        <div className="mb-4 flex items-center">
-          <label className="block mb-2" htmlFor="popupLogo" style={{ color: currentStyle.color }}>Upload Logo</label>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <FaStar
+              key={star}
+              onClick={() => handleRatingChange(star)}
+              style={{
+                fontSize: '14px',
+                cursor: 'pointer',
+                color: star <= popupSettings.rating ? 'gold' : 'grey',
+                marginRight: '2px',
+              }}
+            />
+          ))}
+        </div>
+        <div className="mb-2">
+          <input
+            type="text"
+            id="popupTitle"
+            value={popupSettings.title}
+            onChange={handleTitleChange}
+            style={{
+              backgroundColor: currentStyle.backgroundColor,
+              color: currentStyle.color,
+              border: 'none',
+              fontWeight: 'bold',
+              fontSize: '16px',
+              width: '100%',
+              margin: '5px 0'
+            }}
+          />
+        </div>
+        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+          <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
+            <FaUpload style={{ color: currentStyle.color }} />
+          </label>
           <input
             type="file"
             id="popupLogo"
             onChange={handleLogoChange}
-            style={{ marginLeft: '10px' }}
+            style={{ display: 'none' }}
           />
         </div>
-        <div className="mb-4 flex items-center">
-          <label className="block mb-2" style={{ color: currentStyle.color }}>Enable Star Rating</label>
+        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+          <label className="block mb-0" style={{ color: currentStyle.color, marginRight: '5px' }}>Enable Star Rating</label>
           <input
             type="checkbox"
-            checked={popupSettings.rating}
+            checked={popupSettings.enableStars}
             onChange={(e) => handleRatingChange(e.target.checked)}
-            style={{ marginLeft: '10px' }}
+            style={{ marginLeft: '5px' }}
           />
         </div>
-        <div className="mb-4 flex items-center">
-          <label className="block mb-2" htmlFor="popupTiming" style={{ color: currentStyle.color }}>Timing</label>
+        <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+          <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
           <input
             type="number"
             id="popupTiming"
             value={timing}
             onChange={handleTimingChangeInternal}
-            className="ml-2 p-1 border border-gray-300 rounded text-black"
+            style={{ width: '50px', padding: '2px 5px', textAlign: 'center' }}
             min="0"
-            style={{ width: '60px' }}
           />
         </div>
-        <div className="mb-4 flex items-center">
-          <label className="block mb-2" htmlFor="popupStyle" style={{ color: currentStyle.color }}>Popup Style</label>
+        <div className="mb-2">
+          <label className="block mb-0" htmlFor="popupStyle" style={{ color: currentStyle.color }}>Popup Style</label>
           <select
             id="popupStyle"
             value={popupSettings.style || 'classic-white'}
             onChange={handleStyleChange}
-            className="ml-2 p-1 border border-gray-300 rounded text-black"
-            style={{ width: '150px' }}
+            style={{ width: '100%', padding: '2px', marginTop: '5px' }}
           >
             <option value="classic-white">Classic White</option>
             <option value="dark-mode">Dark Mode</option>
@@ -214,7 +234,7 @@ const EditPopupReview = ({
             <option value="style5">Style 5</option>
           </select>
         </div>
-        <div className="flex space-x-4 w-full">
+        <div className="flex space-x-2 w-full">
           <button
             className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
             onClick={handleSavePopupSettings}
@@ -226,12 +246,6 @@ const EditPopupReview = ({
             onClick={handlePreviewPopup}
           >
             Preview Popup
-          </button>
-          <button
-            className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
-            onClick={handleGenerateCode}
-          >
-            Generate Code
           </button>
         </div>
       </div>
