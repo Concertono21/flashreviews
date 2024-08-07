@@ -62,7 +62,7 @@ const DashboardContent = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setReviews(data.reviews);
+        setReviews(data.reviews.slice(0, 5)); // Only display the last 5 reviews
       } else {
         throw new Error('Failed to fetch reviews');
       }
@@ -263,7 +263,7 @@ const DashboardContent = () => {
             handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
             handleSavePopupSettings={handleSavePopupSettings}
             handlePreviewPopup={() => setIsPreviewOpen(true)}
-            handleGenerateCode={() => setGeneratedCode(`<script src="https://flashreviews.vercel.app/embed.js" data-website="${websites[0].website}"></script>`)}
+            handleGenerateCode={handleGenerateCode}
             handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
             handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
             setPopupSettings={setPopupSettings}
