@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-const ViewReviews = () => {
-  const { data: session } = useSession();
-  const [reviews, setReviews] = useState([]);
+const ViewReviews = ({ session, reviews }) => {
   const [error, setError] = useState('');
   const router = useRouter();
 
@@ -27,7 +25,7 @@ const ViewReviews = () => {
 
         const data = await response.json();
         console.log('Fetched New Reviews Data:', data);
-        setReviews(data.reviews);
+        setReviews(data.reviews.slice(0, 5)); // Get only the last 5 reviews
       } catch (error) {
         console.error('Error:', error);
         setError('Failed to load reviews. Please try again.');
@@ -40,12 +38,12 @@ const ViewReviews = () => {
   }, [session]);
 
   return (
-    <div className={`bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 ${reviews.length === 0 ? 'h-auto' : 'min-h-0'}`}>
+    <div className={`bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 ${reviews.length === 0 ? 'h-auto' : ''}`}>
       <h2 className="text-xl font-bold mb-4 text-white">View Reviews</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {reviews.length > 0 ? (
         <ul>
-          {reviews.slice(0, 5).map((review) => (
+          {reviews.map((review) => (
             <li key={review._id} className="mb-4 text-white">
               <p><strong>Popup:</strong> {review.popupTitle}</p>
               <p><strong>Comments:</strong> {review.comments || 'No comments provided'}</p>
