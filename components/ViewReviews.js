@@ -40,7 +40,7 @@ const ViewReviews = () => {
   }, [session]);
 
   return (
-    <div className={`bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 ${reviews.length === 0 ? 'h-auto' : ''}`}>
+    <div className={`bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 ${reviews.length === 0 ? 'h-auto' : 'min-h-0'}`}>
       <h2 className="text-xl font-bold mb-4 text-white">View Reviews</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {reviews.length > 0 ? (
