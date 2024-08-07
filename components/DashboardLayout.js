@@ -22,8 +22,8 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col bg-black font-sans">
       <div className="w-full fixed top-0 bg-black z-50">
-        <div className="flex items-center justify-between p-2 max-w-6xl mx-auto">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between p-6 max-w-6xl mx-auto">
+          <div className="relative">
             <button
               className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
               onClick={handleAccountButtonClick}
