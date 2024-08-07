@@ -79,6 +79,7 @@ export default function Dashboard() {
 
         const reviewsData = await reviewsResponse.json();
         setNewReviewCount(reviewsData.newReviewCount);
+        setReviews(reviewsData.reviews.slice(0, 5)); // Get only the last 5 reviews
       } catch (error) {
         console.error('Error:', error);
         setError('Failed to load dashboard. Please try again.');
@@ -88,34 +89,6 @@ export default function Dashboard() {
     }
 
     fetchData();
-  }, [session]);
-
-  // New useEffect to fetch new reviews count
-  useEffect(() => {
-    if (session) {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('/api/dashboard/reviews?new=true', {
-            method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${session.user.accessToken}`,
-            },
-          });
-
-          if (!response.ok) {
-            throw new Error('Failed to fetch reviews');
-          }
-
-          const data = await response.json();
-          setNewReviewCount(data.newReviewCount);
-        } catch (error) {
-          console.error('Error:', error);
-          setError('Failed to fetch reviews. Please try again.');
-        }
-      };
-
-      fetchData();
-    }
   }, [session]);
 
   const refreshData = async () => {
@@ -158,6 +131,7 @@ export default function Dashboard() {
 
       const reviewsData = await reviewsResponse.json();
       setNewReviewCount(reviewsData.newReviewCount);
+      setReviews(reviewsData.reviews.slice(0, 5)); // Get only the last 5 reviews
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to load dashboard. Please try again.');
@@ -281,7 +255,7 @@ export default function Dashboard() {
                     ${popupSettings.title}
                   </div>
                 </div>
-                <button className="close-button" style="
+                                <button className="close-button" style="
                   background: none;
                   border: none;
                   font-size: 20px;
@@ -327,7 +301,7 @@ export default function Dashboard() {
                         onMouseEnter="handleStarHover(${star})"
                         onClick="handleStarClick(${star})"
                         className="w-4 h-4"
-                        fill="gray"
+                        fill="${popupSettings.rating >= star ? 'gold' : 'gray'}"
                         viewBox="0 0 24 24"
                         stroke="none"
                         style="
@@ -466,7 +440,7 @@ export default function Dashboard() {
         <h1 className="text-3xl font-bold mb-6 text-white">{loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full justify-items-center">
-          <ViewReviews session={session} />
+          <ViewReviews session={session} reviews={reviews} />
           <div>
             <EditPopupReview
               popupSettings={popupSettings}
