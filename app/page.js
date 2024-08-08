@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
+import Script from 'next/script';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -15,7 +16,6 @@ export default function Home() {
     const script = document.createElement('script');
     script.src = 'https://flashreviews.vercel.app/embed.js';
     script.setAttribute('data-website', 'https://flashreviews.vercel.app');
-    script.async = true;
     document.body.appendChild(script);
 
     return () => {
@@ -38,22 +38,34 @@ export default function Home() {
       <footer className="bg-black text-white text-center py-4">
         <ul className="flex justify-center space-x-4">
           <li>
-            <Link href="#home">Home</Link>
+            <Link href="#home">
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="#pricing">Pricing</Link>
+            <Link href="#pricing">
+              Pricing
+            </Link>
           </li>
           <li>
-            <Link href="#faq">FAQ</Link>
+            <Link href="#faq">
+              FAQ
+            </Link>
           </li>
           <li>
-            <Link href="/login">Get Started</Link>
+            <Link href="/login">
+              Get Started
+            </Link>
           </li>
         </ul>
         <p className="mt-4">
-          <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">
+            Terms of Service
+          </Link> | <Link href="/privacy">
+            Privacy Policy
+          </Link>
         </p>
       </footer>
     </div>
   );
-}
+} 
