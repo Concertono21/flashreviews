@@ -16,7 +16,6 @@ export default function Home() {
     <div>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app"></script>
       </head>
       <Navbar />
       <Hero />
@@ -56,6 +55,11 @@ export default function Home() {
           </Link>
         </p>
       </footer>
+      <Script 
+        src="https://flashreviews.vercel.app/embed.js" 
+        data-website="https://flashreviews.vercel.app" 
+        strategy="afterInteractive" 
+      />
     </div>
   );
 }
