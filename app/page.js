@@ -65,6 +65,7 @@ export default function Home() {
             Privacy Policy
           </Link>
         </p>
+        <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app"></script>
       </footer>
     </div>
   );
