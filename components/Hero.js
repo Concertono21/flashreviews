@@ -1,19 +1,6 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
 
 const Hero = () => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://flashreviews.vercel.app/embed.js';
-    script.setAttribute('data-website', 'https://flashreviews.vercel.app');
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content text-white">
