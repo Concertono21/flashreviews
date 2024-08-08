@@ -326,20 +326,3 @@ img {
   background-color: #ffcd9c;
   color: #fff;
 }
-
-.review-container {
-  background: transparent;
-  border: 1px solid #bafd00;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 28rem;
-  margin-top: 1.5rem;
-  transition: height 0.3s ease;
-}
-
-.review-list {
-  max-height: 20rem; /* or any max height suitable for your design */
-  overflow-y: auto;
-}

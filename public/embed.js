@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   transition: opacity 0.5s, transform 0.5s;
                   opacity: 1;
                   transform: translateX(0);
-                  width: 300px;
-                  height: 400px; /* Fixed height */
+                  width: 250px; /* Adjusted width */
+                  height: auto; /* Adjusted height */
                   max-width: 100%;
                   cursor: default;
                   padding: 10px;
