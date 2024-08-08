@@ -12,21 +12,11 @@ import Faq from '../components/Faq';
 import GetStartedSection from '../components/GetStartedSection';
 
 export default function Home() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://flashreviews.vercel.app/embed.js';
-    script.setAttribute('data-website', 'https://flashreviews.vercel.app');
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app"></script>
       </head>
       <Navbar />
       <Hero />
@@ -65,7 +55,6 @@ export default function Home() {
             Privacy Policy
           </Link>
         </p>
-        <script src="https://flashreviews.vercel.app/embed.js" data-website="https://flashreviews.vercel.app"></script>
       </footer>
     </div>
   );
