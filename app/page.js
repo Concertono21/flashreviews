@@ -1,6 +1,6 @@
 "use client";
 
-import Script from 'next/script';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -11,6 +11,18 @@ import Faq from '../components/Faq';
 import GetStartedSection from '../components/GetStartedSection';
 
 export default function Home() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://flashreviews.vercel.app/embed.js';
+    script.setAttribute('data-website', 'https://flashreviews.vercel.app');
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div>
       <head>
@@ -42,11 +54,6 @@ export default function Home() {
           <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
         </p>
       </footer>
-      <Script
-        src="https://flashreviews.vercel.app/embed.js"
-        strategy="afterInteractive"
-        data-website="https://flashreviews.vercel.app"
-      />
     </div>
   );
 }
