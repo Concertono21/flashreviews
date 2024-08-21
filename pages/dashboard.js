@@ -7,6 +7,7 @@ import ViewReviews from '../components/ViewReviews';
 import PopupHistory from '../components/PopupHistory';
 import WebsiteManager from '../components/WebsiteManager';
 import DashboardLayout from '../components/DashboardLayout';
+import { loadStripe } from '@stripe/stripe-js';
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -31,6 +32,7 @@ export default function Dashboard() {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
   const [newReviewCount, setNewReviewCount] = useState(0);
+  const [stripeLoading, setStripeLoading] = useState(false);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -266,7 +268,7 @@ export default function Dashboard() {
                   padding: 0;
                   margin: 0;
                   transition: color 0.3s;
-                  line-height: 1;
+                                    line-height: 1;
                   position: absolute;
                   top: 10px;
                   right: 10px;
@@ -296,7 +298,7 @@ export default function Dashboard() {
                     margin-top: 5px;
                   ">
                     ${[1, 2, 3, 4, 5].map((star) => `
-                                            <svg
+                      <svg
                         key=${star}
                         onMouseEnter="handleStarHover(${star})"
                         onClick="handleStarClick(${star})"
@@ -426,6 +428,24 @@ export default function Dashboard() {
     };
   }, []);
 
+  const handleGetStartedClick = async () => {
+    setStripeLoading(true);
+    const res = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+    });
+
+    const data = await res.json();
+
+    if (data.sessionId) {
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+      stripe.redirectToCheckout({ sessionId: data.sessionId });
+    } else {
+      console.error(data.error);
+    }
+
+    setStripeLoading(false);
+  };
+
   if (status === 'loading' || loading) {
     return <div className="min-h-screen flex items-center justify-center bg-black text-white">Loading...</div>;
   }
@@ -471,6 +491,13 @@ export default function Dashboard() {
           </div>
           <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
         </div>
+        <button 
+          onClick={handleGetStartedClick} 
+          disabled={stripeLoading}
+          className="mt-6 px-4 py-2 bg-green-500 text-white rounded shadow"
+        >
+          {stripeLoading ? 'Loading...' : 'Get Started'}
+        </button>
       </div>
       {isPreviewOpen && (
         <PreviewPopup 
