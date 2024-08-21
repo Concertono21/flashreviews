@@ -48,7 +48,7 @@ export default {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://flashreviews.vercel.app; object-src 'none';",
+            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://flashreviews.vercel.app https://js.stripe.com/v3; object-src 'none';",
           },
         ],
       },
