@@ -428,21 +428,23 @@ export default function Dashboard() {
     };
   }, []);
 
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
   const handleGetStartedClick = async () => {
     setStripeLoading(true);
+    const stripe = await stripePromise;
     const res = await fetch('/api/create-checkout-session', {
       method: 'POST',
     });
-
+  
     const data = await res.json();
-
+  
     if (data.sessionId) {
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
       stripe.redirectToCheckout({ sessionId: data.sessionId });
     } else {
       console.error(data.error);
     }
-
+  
     setStripeLoading(false);
   };
 
