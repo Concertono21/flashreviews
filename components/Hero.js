@@ -18,7 +18,7 @@ const Hero = () => {
           <br />
           <span
             style={{
-              background: 'linear-gradient(to top, #cccccc, #bafd00)',
+              background: 'linear-gradient(to top, #bafd00, #ffffff)',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
