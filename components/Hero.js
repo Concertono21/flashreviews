@@ -1,31 +1,28 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Hero = () => {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        <h1 className="text-7xl font-bold" style={{ fontWeight: 600 }}>
-          <span
-            style={{
-              background: 'linear-gradient(to top, #969696, #ffffff)',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            }}
-          >
-            Turn Visitors into Customers
-          </span>
+        <h1 
+          className="text-7xl font-bold" 
+          style={{ 
+            fontWeight: 600,
+            background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'none',
+            WebkitBackgroundClip: hovered ? 'text' : 'none',
+            color: hovered ? 'transparent' : '#fff',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            transition: 'background 0.3s ease'
+          }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          Turn Visitors into Customers
           <br />
-          <span
-            style={{
-              background: 'linear-gradient(to top, #969696, #ffffff)',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            }}
-          >
-            Deliver What Matters Most
-          </span>
+          Deliver What Matters Most
         </h1>
         <p
           className="text-xl mt-4"
@@ -45,7 +42,8 @@ const Hero = () => {
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             textAlign: 'left',       // Align text to the left
-            marginLeft: 'calc(50% - 90px)'  // Adjust the position to center the list
+            margin: '0 auto',        // Center the list
+            maxWidth: '300px'        // Control the width of the list
           }}
         >
           <li style={{ display: 'flex', alignItems: 'center' }}>
