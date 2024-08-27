@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content">
-        <h1 className="text-4xl font-bold" style={{ fontWeight: 800 }}>
+        <h1 className="text-4xl font-bold" style={{ fontWeight: 10000 }}>
           <span
             style={{
               background: 'linear-gradient(to top, #000000, #ffffff)',
@@ -18,7 +18,7 @@ const Hero = () => {
           <br />
           <span
             style={{
-              background: 'linear-gradient(to top, #000000, #bafd00)',
+              background: 'linear-gradient(to top, #cccccc, #bafd00)',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
