@@ -14,12 +14,12 @@ const Hero = () => {
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             backgroundImage: hovered 
               ? 'linear-gradient(to top, #bafd00, #ffffff)' 
-              : 'linear-gradient(to top, #bababa, #ffffff)',
+              : 'linear-gradient(to top, #969696, #ffffff)',
             backgroundClip: 'text',
             color: 'transparent',  // Ensures that the text color shows the gradient
             WebkitBackgroundClip: 'text',
             display: 'inline-block',  // Keeps the gradient confined to the text
-            transition: 'background-image 0.3s ease',
+            transition: 'background-image 0.5s ease',
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
