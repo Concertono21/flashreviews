@@ -203,17 +203,17 @@ export default function Dashboard() {
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              background-color: #fff;
-              border-radius: 20px;
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+              background-color: #1f1f1f;
+              border-radius: 12px;
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
               display: flex;
               flex-direction: column;
               transition: opacity 0.5s, transform 0.5s;
               opacity: 1;
-              width: 300px;
+              width: 350px;
               max-width: 100%;
               cursor: default;
-              padding: 10px;
+              padding: 20px;
               text-align: center;
               align-items: center;
             ">
@@ -232,140 +232,140 @@ export default function Dashboard() {
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  margin-right: 5px;
+                  margin-right: 10px;
                   margin-left: 10px;
                 ">
                   ${popupSettings.logo ? `<img src="${popupSettings.logo}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;" />` : ''}
-                </div>
-                <div className="notification-title-container" style="
-                  flex-grow: 1;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: flex-start;
-                  max-width: calc(100% - 40px);
-                  padding-right: 30px;
-                ">
-                  <div className="notification-title" style="
-                    font-weight: 600;
-                    font-size: 14px;
-                    text-align: justify;
-                    white-space: normal;
-                    word-wrap: break-word;
-                    width: 100%;
-                    color: black;
-                  ">
-                    ${popupSettings.title}
-                  </div>
-                </div>
-                                <button className="close-button" style="
-                  background: none;
-                  border: none;
-                  font-size: 20px;
-                  cursor: pointer;
-                  color: #cecece;
-                  flex: 0 0 auto;
-                  align-self: flex-start;
-                  padding: 0;
-                  margin: 0;
-                  transition: color 0.3s;
-                                    line-height: 1;
-                  position: absolute;
-                  top: 10px;
-                  right: 10px;
-                  width: 20px;
-                  height: 20px;
-                  text-align: center;
-                  border-radius: 50%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                " onclick="handleClose()">
-                  &times;
-                </button>
-              </div>
-              <div className="notification-content" style="
-                display: flex;
-                flex-direction: column;
-                padding: 0 10px 10px;
-                align-items: center;
-                width: 100%;
-              ">
-                ${popupSettings.enableStars ? `
-                  <div className="rating" style="
-                    display: flex;
-                    justify-content: center;
-                    margin: 0;
-                    margin-top: 5px;
-                  ">
-                    ${[1, 2, 3, 4, 5].map((star) => `
-                      <svg
-                        key=${star}
-                        onMouseEnter="handleStarHover(${star})"
-                        onClick="handleStarClick(${star})"
-                        className="w-4 h-4"
-                        fill="${popupSettings.rating >= star ? 'gold' : 'gray'}"
-                        viewBox="0 0 24 24"
-                        stroke="none"
-                        style="
-                          font-size: 12px;
-                          cursor: pointer;
-                          color: grey;
-                          margin-right: 5px;
-                        "
-                      >
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                      </svg>
-                    `).join('')}
-                  </div>
-                ` : ''}
-                <p className="notification-timing" style="
-                  font-size: 12px;
-                  color: black;
-                  margin-top: 5px;
-                ">
-                  Timing: ${popupSettings.timing} seconds
-                </p>
-                <textarea id="review-comments" placeholder="Enter your comments" style="
-                  margin-top: 10px;
-                  border: 1px solid #ccc;
-                  border-radius: 5px;
-                  padding: 10px;
-                  resize: none;
-                  width: 100%;
-                  height: 50px;
-                  font-size: 12px;
-                  box-sizing: border-box;
-                "></textarea>
-                <button onclick="submitReview('${popupSettings._id}', '${session.user.email}')" style="
-                  background-color: #acacac;
-                  color: white;
-                  border: none;
-                  padding: 10px;
-                  cursor: pointer;
-                  border-radius: 5px;
-                  font-size: 14px;
-                  width: 100%;
-                  margin-top: 10px;
-                ">Submit</button>
-              </div>
-            </div>
-          ` // Create the popup code dynamically
-        }),
-      });
+</div>
+<div className="notification-title-container" style="
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: calc(100% - 40px);
+  padding-right: 30px;
+">
+  <div className="notification-title" style="
+    font-weight: 600;
+    font-size: 14px;
+    text-align: justify;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100%;
+    color: #fff;  /* Changed to white for better contrast */
+  ">
+    ${popupSettings.title}
+  </div>
+</div>
+<button className="close-button" style="
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #cecece;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  padding: 0;
+  margin: 0;
+  transition: color 0.3s;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+" onclick="handleClose()">
+  &times;
+</button>
+</div>
+<div className="notification-content" style="
+display: flex;
+flex-direction: column;
+padding: 0 10px 10px;
+align-items: center;
+width: 100%;
+">
+${popupSettings.enableStars ? `
+  <div className="rating" style="
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-top: 5px;
+  ">
+    ${[1, 2, 3, 4, 5].map((star) => `
+      <svg
+        key=${star}
+        onMouseEnter="handleStarHover(${star})"
+        onClick="handleStarClick(${star})"
+        className="w-4 h-4"
+        fill="${popupSettings.rating >= star ? 'gold' : 'gray'}"
+        viewBox="0 0 24 24"
+        stroke="none"
+        style="
+          font-size: 12px;
+          cursor: pointer;
+          color: grey;
+          margin-right: 5px;
+        "
+      >
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+      </svg>
+    `).join('')}
+  </div>
+` : ''}
+<p className="notification-timing" style="
+  font-size: 12px;
+  color: #ccc;
+  margin-top: 5px;
+">
+  Timing: ${popupSettings.timing} seconds
+</p>
+<textarea id="review-comments" placeholder="Enter your comments" style="
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  resize: none;
+  width: 100%;
+  height: 50px;
+  font-size: 12px;
+  box-sizing: border-box;
+"></textarea>
+<button onclick="submitReview('${popupSettings._id}', '${session.user.email}')" style="
+  background-color: #bafd00;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  margin-top: 10px;
+">Submit</button>
+</div>
+</div>
+` // Create the popup code dynamically
+}),
+});
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to save popup settings.');
-      }
+if (!response.ok) {
+const errorData = await response.json();
+throw new Error(errorData.message || 'Failed to save popup settings.');
+}
 
-      alert('Popup settings saved.');
-      const newPopup = await response.json();
-      setPopupHistory([...popupHistory, newPopup.popup]);
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Failed to save popup settings. Please try again.');
-    }
-  };
+alert('Popup settings saved.');
+const newPopup = await response.json();
+setPopupHistory([...popupHistory, newPopup.popup]);
+} catch (error) {
+console.error('Error:', error);
+setError('Failed to save popup settings. Please try again.');
+}
+};
 
   const handleDeletePopup = async (id) => {
     try {

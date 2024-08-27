@@ -17,55 +17,6 @@
   }
 }
 
-/* Adjust the overall background */
-body {
-  background-color: #0f0f0f;
-}
-
-/* Card style */
-.card {
-  background-color: #1a1a1a;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px;
-  color: #e5e5e5;
-}
-
-/* Button style */
-button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 12px;
-}
-
-button:hover {
-  background-color: white;
-  color: black;
-}
-
-/* Grid adjustments */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.grid-item {
-  background-color: #1a1a1a;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Body Styles */
 body {
   color: rgb(var(--foreground-rgb));
