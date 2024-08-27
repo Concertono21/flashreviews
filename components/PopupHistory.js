@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { FaClock, FaGlobe } from 'react-icons/fa';
+import { FaClock, FaGlobe, FaPaintBrush } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
-    backgroundColor: "#1C1C1E",
-    color: "#F0F0F3"
+    backgroundColor: "#fff",
+    color: "#000"
   },
   "dark-mode": {
     backgroundColor: "#333",
-    color: "#F0F0F3"
+    color: "#fff"
   },
   "style4": {
-    backgroundColor: "#404040",
-    color: "#F0F0F3"
+    backgroundColor: "#ffcacb",
+    color: "#000"
   },
   "style5": {
-    backgroundColor: "#484848",
-    color: "#F0F0F3"
+    backgroundColor: "#ffcd9c",
+    color: "#000"
   }
 };
 
@@ -30,6 +30,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
 
   useEffect(() => {
     if (session) {
+      console.log('Fetching popups for user:', session.user.email); // Debugging info
       fetch('/api/dashboard/popups', {
         method: 'GET',
         headers: {
@@ -37,7 +38,10 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         },
       })
         .then(res => res.json())
-        .then(data => setPopupHistory(data.popups))
+        .then(data => {
+          console.log('Fetched Popups Data:', data); // Debugging info
+          setPopupHistory(data.popups);
+        })
         .catch(err => console.error('Failed to fetch popups:', err));
     }
   }, [session]);
@@ -87,10 +91,10 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
-      <h2 className="text-xl font-bold mb-4 text-[#F0F0F3]">Active Pop Up</h2>
+    <div className="bg-transparent p-6 rounded-lg shadow-md w-full max-w-md mt-6 mx-auto">
+      <h2 className="text-xl font-bold mb-4 text-white">Active Pop Up</h2>
       <select
-        className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
+        className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
         value={selectedWebsite}
         onChange={handleWebsiteChange}
       >
@@ -99,7 +103,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-[#2C2C2E] p-4 rounded-lg w-full max-w-md mx-auto">
+      <div className="bg-transparent p-4 rounded-lg w-full max-w-md mx-auto">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -107,17 +111,20 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
               className="notification"
               style={{
                 position: 'relative',
-                backgroundColor: styleSettings[popup.style]?.backgroundColor || '#2C2C2E',
-                color: styleSettings[popup.style]?.color || '#F0F0F3',
-                borderRadius: '10px',
-                boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+                backgroundColor: styleSettings[popup.style]?.backgroundColor || '#fff',
+                color: styleSettings[popup.style]?.color || '#000',
+                borderRadius: '20px',
+                boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
                 display: 'flex',
                 flexDirection: 'column',
+                transition: 'opacity 0.5s, transform 0.5s',
                 opacity: 1,
                 transform: 'translateX(0)',
                 width: '100%',
-                padding: '15px',
-                marginBottom: '15px',
+                height: '100%', // Adjusted height
+                cursor: 'default',
+                marginBottom: '10px',
+                padding: '10px',
                 textAlign: 'center',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -129,6 +136,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
+                  padding: '10px',
+                  position: 'relative',
                   width: '100%',
                 }}
               >
@@ -161,7 +170,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    paddingRight: '10px',
+                    paddingRight: '30px',
                   }}
                 >
                   <div
@@ -170,7 +179,9 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                       fontWeight: 600,
                       fontSize: '14px',
                       textAlign: 'left',
-                      color: styleSettings[popup.style]?.color || '#F0F0F3',
+                      whiteSpace: 'normal',
+                      wordWrap: 'break-word',
+                      color: styleSettings[popup.style]?.color || 'black',
                     }}
                   >
                     {popup.title}
@@ -184,17 +195,20 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     border: 'none',
                     fontSize: '20px',
                     cursor: 'pointer',
-                    color: '#F0F0F3',
+                    color: '#cecece',
                     flex: '0 0 auto',
                     alignSelf: 'flex-start',
                     padding: 0,
                     margin: 0,
+                    transition: 'color 0.3s',
+                    lineHeight: 1,
                     position: 'absolute',
                     top: '10px',
                     right: '10px',
                     width: '20px',
                     height: '20px',
                     textAlign: 'center',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -209,7 +223,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'flex-start',
-                  padding: '0 10px',
+                  padding: '0 10px 10px',
                   width: '100%',
                 }}
               >
@@ -244,11 +258,11 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                     ))}
                   </div>
                 )}
-                <p className="notification-timing" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || '#F0F0F3', marginTop: '5px' }}>
+                <p className="notification-timing" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || 'black', marginTop: '5px' }}>
                   <FaClock style={{ marginRight: '5px' }} />
                   {popup.timing} seconds
                 </p>
-                <p className="notification-website" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || '#F0F0F3', marginTop: '5px' }}>
+                <p className="notification-website" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || 'black', marginTop: '5px' }}>
                   <FaGlobe style={{ marginRight: '5px' }} />
                   {popup.website}
                 </p>
@@ -256,25 +270,25 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
             </div>
           ))
         ) : (
-          <p className="text-[#F0F0F3]">No popups created yet.</p>
+          <p className="text-white">No popups created yet.</p>
         )}
       </div>
-      <div className="bg-[#2C2C2E] border border-[#3A3A3C] p-4 rounded-lg mt-4 text-[#F0F0F3]">
+      <div className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white">
         <h3 className="text-lg font-bold mb-2">Make your FlashReviews live 🎉</h3>
         <p>Paste this snippet in the &lt;head&gt; of your website.</p>
       </div>
       <button
-        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full mt-4"
+        className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full mt-4"
         onClick={handleGenerateCode}
       >
         Generate Code
       </button>
       {generatedCode && (
         <div
-          className="bg-[#2C2C2E] border border-[#3A3A3C] p-4 rounded-lg mt-4 text-[#F0F0F3] relative"
+          className="bg-transparent border border-[#bafd00] p-4 rounded-lg mt-4 text-white relative"
           style={{ wordWrap: 'break-word' }}
         >
-          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: '#F0F0F3', marginRight: '30px' }}>
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', color: 'white', marginRight: '30px' }}>
             {generatedCode}
           </pre>
           <button
