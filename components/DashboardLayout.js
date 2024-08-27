@@ -20,15 +20,15 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#1C1C1E] font-sans text-gray-300">
-      <div className="w-full fixed top-0 bg-[#1C1C1E] z-50">
+    <div className="min-h-screen flex flex-col bg-black font-sans">
+      <div className="w-full fixed top-0 bg-black z-50">
         <div className="flex items-center justify-between p-6 max-w-6xl mx-auto">
           <div className="relative">
             <button
-              className="flex items-center space-x-2 bg-[#2C2C2E] text-gray-300 border-none px-4 py-2 rounded-full hover:bg-[#3A3A3C] transition-colors"
+              className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
               onClick={handleAccountButtonClick}
             >
-              <span className="bg-gray-300 text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full">
+              <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
                 {session?.user?.email?.[0]}
               </span>
               <span className="font-bold">Account ({session?.user?.email})</span>
@@ -43,13 +43,13 @@ const DashboardLayout = ({ children }) => {
               </svg>
             </button>
             {accountMenuOpen && (
-              <div className="absolute mt-2 w-48 bg-[#2C2C2E] rounded shadow-lg">
+              <div className="absolute mt-2 w-48 bg-transparent border border-[#bafd00] rounded shadow-lg">
                 <button
-                  className="flex items-center w-full px-4 py-2 text-left text-gray-300 hover:bg-[#3A3A3C] transition-colors"
+                  className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-white"
                   onClick={handleBillingClick}
                 >
                   <svg
-                    className="w-5 h-5 mr-2 text-gray-400"
+                    className="w-5 h-5 mr-2"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -60,11 +60,11 @@ const DashboardLayout = ({ children }) => {
                   Billing
                 </button>
                 <button
-                  className="flex items-center w-full px-4 py-2 text-left text-gray-300 hover:bg-[#3A3A3C] transition-colors"
+                  className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-white"
                   onClick={handleLogout}
                 >
                   <svg
-                    className="w-5 h-5 mr-2 text-gray-400"
+                    className="w-5 h-5 mr-2"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -78,7 +78,7 @@ const DashboardLayout = ({ children }) => {
             )}
           </div>
           <button
-            className="bg-[#2C2C2E] text-gray-300 border-none px-4 py-2 rounded-full hover:bg-[#3A3A3C] transition-colors"
+            className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
             onClick={() => router.push('/add-website')}
           >
             Get Started
