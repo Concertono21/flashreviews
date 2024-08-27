@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const Hero = () => {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -13,32 +11,19 @@ const Hero = () => {
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             cursor: 'pointer',
-            transition: 'background 0.3s ease'
+            transition: 'color 0.3s ease',
+            color: 'transparent',
+            backgroundClip: 'text',
+            background: 'linear-gradient(to top, #969696, #ffffff)',
+            WebkitBackgroundClip: 'text',
+            MozBackgroundClip: 'text',
+            msBackgroundClip: 'text',
+            OBackgroundClip: 'text',
           }}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
         >
-          <span
-            style={{
-              background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              transition: 'background 0.3s ease',
-            }}
-          >
-            Turn Visitors into Customers
-          </span>
+          Turn Visitors into Customers
           <br />
-          <span
-            style={{
-              background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              transition: 'background 0.3s ease',
-            }}
-          >
-            Deliver What Matters Most
-          </span>
+          Deliver What Matters Most
         </h1>
         <p
           className="text-xl mt-6 mb-10"
@@ -53,13 +38,13 @@ const Hero = () => {
         <ul
           className="benefits mt-8 mb-12"
           style={{
-            listStyleType: 'none',
-            padding: 0,
+            listStyleType: 'none',  // Remove default bullets
+            padding: 0,              // Remove default padding
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            textAlign: 'left',
-            margin: '0 auto',
-            maxWidth: '300px'
+            textAlign: 'left',       // Align text to the left
+            margin: '0 auto',        // Center the list
+            maxWidth: '300px'        // Control the width of the list
           }}
         >
           <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
