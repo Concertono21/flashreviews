@@ -6,38 +6,27 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero bg-black py-20 text-center">
-      <div 
-        className="hero-content"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <h1
-          className="text-7xl font-bold mb-12"
-          style={{
+      <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <h1 
+          className="text-7xl font-bold" 
+          style={{ 
             fontWeight: 600,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            cursor: 'pointer',
-            background: 'linear-gradient(to top, #969696, #ffffff)',
+            background: 'linear-gradient(to top, #bafd00, #ffffff)',  // Gradient for text
             WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: 'transparent',  // Transparent text to show gradient
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             transition: 'background 0.3s ease',
+            cursor: 'pointer',  // Pointer cursor to indicate hoverability
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
           <span
             style={{
-              background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
+              background: hovered ? 'linear-gradient(to top, #ffffff, #bafd00)' : 'inherit',  // Invert gradient on hover
               WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              MozBackgroundClip: 'text',
-              MozTextFillColor: 'transparent',
+              color: 'transparent',  // Keep text transparent to show gradient
               transition: 'background 0.3s ease',
-              display: 'inline-block',
             }}
           >
             Turn Visitors into Customers
@@ -45,20 +34,17 @@ const Hero = () => {
           <br />
           <span
             style={{
-              background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
+              background: hovered ? 'linear-gradient(to top, #ffffff, #bafd00)' : 'inherit',  // Invert gradient on hover
               WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              MozBackgroundClip: 'text',
-              MozTextFillColor: 'transparent',
+              color: 'transparent',
               transition: 'background 0.3s ease',
-              display: 'inline-block',
             }}
           >
             Deliver What Matters Most
           </span>
         </h1>
         <p
-          className="text-xl mt-6 mb-10"
+          className="text-xl mt-8 mb-8"  // Add more margin to create space
           style={{
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -68,15 +54,15 @@ const Hero = () => {
           enhancing your customer experience and driving growth.
         </p>
         <ul
-          className="benefits mt-8 mb-12"
+          className="benefits mt-8 mb-12"  // Add more top and bottom margin to create space
           style={{
-            listStyleType: 'none',
-            padding: 0,
+            listStyleType: 'none',  // Remove default bullets
+            padding: 0,              // Remove default padding
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            textAlign: 'left',
-            margin: '0 auto',
-            maxWidth: '300px',
+            textAlign: 'left',       // Align text to the left
+            margin: '0 auto',        // Center the list
+            maxWidth: '300px'        // Control the width of the list
           }}
         >
           <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
