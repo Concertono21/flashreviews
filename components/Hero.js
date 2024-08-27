@@ -33,17 +33,26 @@ const Hero = () => {
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
           }}
         >
-          Capture valuable feedback instantly with engaging pop-up reviews, enhancing your customer experience and driving growth.
+          Capture valuable feedback instantly with engaging pop-up reviews 
+          enhancing your customer experience and driving growth.
         </p>
         <ul
-          className="benefits list-disc mt-4 text-white"
+          className="benefits mt-4 text-white"
           style={{
+            listStyleType: 'none',  // Remove default bullets
+            padding: 0,              // Remove default padding
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
           }}
         >
-          <li>Pay once, use forever</li>
-          <li>1-minute no-code setup</li>
-          <li>Boost customer satisfaction</li>
+          <li style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#00A000', marginRight: '8px' }}>✔</span> Pay once, use forever
+          </li>
+          <li style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#00A000', marginRight: '8px' }}>✔</span> 1-minute no-code setup
+          </li>
+          <li style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#00A000', marginRight: '8px' }}>✔</span> Boost customer satisfaction
+          </li>
         </ul>
         <Link href="/login">
           <a
