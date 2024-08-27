@@ -36,6 +36,7 @@ const Hero = () => {
           }}
         >
           Capture valuable feedback instantly with engaging pop-up reviews 
+          <br />
           enhancing your customer experience and driving growth.
         </p>
         <ul
