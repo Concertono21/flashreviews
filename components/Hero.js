@@ -13,7 +13,7 @@ const Hero = () => {
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             background: hovered ? 'linear-gradient(to top, #bafd00, #ffffff)' : 'linear-gradient(to top, #ffffff, #bafd00)',
-            WebkitBackgroundClip: 'text',
+            WebkitBackgroundClip: 'transparent',
             WebkitTextFillColor: 'transparent',
             transition: 'background 0.3s ease',
             cursor: 'pointer',
