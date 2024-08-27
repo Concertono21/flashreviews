@@ -44,16 +44,17 @@ const Hero = () => {
             padding: 0,              // Remove default padding
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            textAlign: 'left', // Align text to the left
+            textAlign: 'left',       // Align text to the left
+            marginLeft: 'calc(50% - 90px)'  // Adjust the position to center the list
           }}
         >
-          <li style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <li style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> Pay once, use forever
           </li>
-          <li style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <li style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> 1-minute no-code setup
           </li>
-          <li style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <li style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> Boost customer satisfaction
           </li>
         </ul>
