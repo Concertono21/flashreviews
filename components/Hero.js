@@ -12,11 +12,14 @@ const Hero = () => {
           style={{ 
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            background: hovered ? 'linear-gradient(to top, #bafd00, #ffffff)' : 'linear-gradient(to top, #ffffff, #bafd00)',
-            WebkitBackgroundClip: 'transparent',
-            WebkitTextFillColor: 'transparent',
-            transition: 'background 0.3s ease',
-            cursor: 'pointer',
+            backgroundImage: hovered 
+              ? 'linear-gradient(to top, #bababa, #ffffff)' 
+              : 'linear-gradient(to top, #bafd00, #ffffff)',
+            backgroundClip: 'text',
+            color: 'transparent',  // Ensures that the text color shows the gradient
+            WebkitBackgroundClip: 'text',
+            display: 'inline-block',  // Keeps the gradient confined to the text
+            transition: 'background-image 0.3s ease',
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
@@ -26,7 +29,7 @@ const Hero = () => {
           Deliver What Matters Most
         </h1>
         <p
-          className="text-xl mt-8 mb-8"  // Add more margin to create space
+          className="text-xl mt-8 mb-8"
           style={{
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -36,15 +39,15 @@ const Hero = () => {
           enhancing your customer experience and driving growth.
         </p>
         <ul
-          className="benefits mt-8 mb-12"  // Add more top and bottom margin to create space
+          className="benefits mt-8 mb-12"
           style={{
-            listStyleType: 'none',  // Remove default bullets
-            padding: 0,              // Remove default padding
+            listStyleType: 'none',
+            padding: 0,
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            textAlign: 'left',       // Align text to the left
-            margin: '0 auto',        // Center the list
-            maxWidth: '300px'        // Control the width of the list
+            textAlign: 'left',
+            margin: '0 auto',
+            maxWidth: '300px',
           }}
         >
           <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
