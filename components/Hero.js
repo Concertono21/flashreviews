@@ -21,13 +21,17 @@ const Hero = () => {
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             cursor: 'pointer',
+            background: 'linear-gradient(to top, #969696, #ffffff)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            transition: 'background 0.3s ease',
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
           <span
             style={{
-              background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'linear-gradient(to top, #ffffff, #969696)',
+              background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               MozBackgroundClip: 'text',
@@ -41,7 +45,7 @@ const Hero = () => {
           <br />
           <span
             style={{
-              background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'linear-gradient(to top, #ffffff, #969696)',
+              background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               MozBackgroundClip: 'text',
@@ -66,13 +70,13 @@ const Hero = () => {
         <ul
           className="benefits mt-8 mb-12"
           style={{
-            listStyleType: 'none',  // Remove default bullets
-            padding: 0,              // Remove default padding
+            listStyleType: 'none',
+            padding: 0,
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            textAlign: 'left',       // Align text to the left
-            margin: '0 auto',        // Center the list
-            maxWidth: '300px',       // Control the width of the list
+            textAlign: 'left',
+            margin: '0 auto',
+            maxWidth: '300px',
           }}
         >
           <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
