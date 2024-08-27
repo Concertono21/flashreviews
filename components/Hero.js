@@ -11,37 +11,19 @@ const Hero = () => {
           className="text-7xl font-bold" 
           style={{ 
             fontWeight: 600,
-            background: 'linear-gradient(to top, #bafd00, #ffffff)',  // Gradient for text
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',  // Transparent text to show gradient
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            background: hovered ? 'linear-gradient(to top, #bafd00, #ffffff)' : 'linear-gradient(to top, #ffffff, #bafd00)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
             transition: 'background 0.3s ease',
-            cursor: 'pointer',  // Pointer cursor to indicate hoverability
+            cursor: 'pointer',
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <span
-            style={{
-              background: hovered ? 'linear-gradient(to top, #ffffff, #bafd00)' : 'inherit',  // Invert gradient on hover
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',  // Keep text transparent to show gradient
-              transition: 'background 0.3s ease',
-            }}
-          >
-            Turn Visitors into Customers
-          </span>
+          Turn Visitors into Customers
           <br />
-          <span
-            style={{
-              background: hovered ? 'linear-gradient(to top, #ffffff, #bafd00)' : 'inherit',  // Invert gradient on hover
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              transition: 'background 0.3s ease',
-            }}
-          >
-            Deliver What Matters Most
-          </span>
+          Deliver What Matters Most
         </h1>
         <p
           className="text-xl mt-8 mb-8"  // Add more margin to create space
