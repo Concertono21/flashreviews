@@ -13,17 +13,34 @@ const Hero = () => {
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             cursor: 'pointer',
-            color: 'transparent',
-            WebkitBackgroundClip: 'text',
-            background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'linear-gradient(to top, #ffffff, #969696)',
-            transition: 'background 0.3s ease',
+            position: 'relative',
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          Turn Visitors into Customers
+          <span
+            style={{
+              display: 'inline-block',
+              background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'linear-gradient(to top, #ffffff, #969696)',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              transition: 'background 0.3s ease',
+            }}
+          >
+            Turn Visitors into Customers
+          </span>
           <br />
-          Deliver What Matters Most
+          <span
+            style={{
+              display: 'inline-block',
+              background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'linear-gradient(to top, #ffffff, #969696)',
+              WebkitBackgroundClip: 'text',
+              color: 'transparent',
+              transition: 'background 0.3s ease',
+            }}
+          >
+            Deliver What Matters Most
+          </span>
         </h1>
         <p
           className="text-xl mt-6 mb-10"
