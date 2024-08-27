@@ -11,12 +11,9 @@ const Hero = () => {
           className="text-7xl font-bold mb-12"
           style={{ 
             fontWeight: 600,
-            background: 'linear-gradient(to top, #969696, #ffffff)',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            transition: 'background 0.3s ease',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            transition: 'background 0.3s ease'
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
@@ -56,13 +53,13 @@ const Hero = () => {
         <ul
           className="benefits mt-8 mb-12"
           style={{
-            listStyleType: 'none',  // Remove default bullets
-            padding: 0,              // Remove default padding
+            listStyleType: 'none',
+            padding: 0,
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-            textAlign: 'left',       // Align text to the left
-            margin: '0 auto',        // Center the list
-            maxWidth: '300px'        // Control the width of the list
+            textAlign: 'left',
+            margin: '0 auto',
+            maxWidth: '300px'
           }}
         >
           <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
