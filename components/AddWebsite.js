@@ -13,27 +13,29 @@ const AddWebsite = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] border border-gray-700 p-6 rounded-xl shadow-lg w-full max-w-md">
+    <div className="bg-[#1C1C1E] border border-[#2C2C2E] p-6 rounded-lg shadow-lg w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-4 text-gray-100">Add Website</h2>
+      <p className="text-gray-500 mb-4">Add your domain name to get started, no need to add "https://" or "www."</p>
       <input
         type="text"
         value={website}
         onChange={(e) => setWebsite(e.target.value)}
-        className="w-full p-3 mb-4 border border-gray-600 rounded-lg bg-[#2C2C2E] text-gray-200 focus:outline-none focus:border-[#bafd00]"
-        placeholder="Enter website URL"
+        className="w-full p-3 mb-4 border-none rounded-lg bg-[#2C2C2E] text-gray-200 focus:outline-none focus:ring-2 focus:ring-[#3A3A3C]"
+        placeholder="unicorn.com"
       />
       <button
-        className="bg-[#bafd00] text-black px-4 py-2 rounded-lg w-full font-semibold hover:bg-[#a8e600] transition-colors duration-200"
+        className="bg-[#3A3A3C] text-gray-200 px-4 py-2 rounded-lg w-full font-semibold hover:bg-[#48484A] transition-colors duration-200"
         onClick={handleAdd}
       >
-        Add
+        Add Website
       </button>
-      <ul className="mt-6 space-y-2">
+      <h3 className="text-xl font-semibold mt-6 text-gray-100">Websites</h3>
+      <ul className="mt-4 space-y-2">
         {websites.map((site, index) => (
           <li key={index} className="text-gray-300 flex justify-between items-center bg-[#2C2C2E] p-3 rounded-lg">
             {site.website}
             <button
-              className="bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-500 transition-colors duration-200"
+              className="bg-[#48484A] text-white px-3 py-1 rounded-lg hover:bg-[#5A5A5C] transition-colors duration-200"
               onClick={() => deleteWebsite(site.website)}
             >
               Delete
