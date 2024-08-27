@@ -8,7 +8,7 @@ const Hero = () => {
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <h1 
-          className="text-7xl font-bold mb-12"  // Add more bottom margin to create space
+          className="text-7xl font-bold mb-12"  // Added more bottom margin to create space
           style={{ 
             fontWeight: 600,
             background: hovered ? 'linear-gradient(to top, #ffffff, #969696)' : 'linear-gradient(to top, #969696, #ffffff)',
@@ -25,7 +25,7 @@ const Hero = () => {
           Deliver What Matters Most
         </h1>
         <p
-          className="text-xl mt-6 mb-10" // Add more margin-top and bottom to create space
+          className="text-xl mt-6 mb-10" // Added more margin-top and bottom to create space
           style={{
             color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -35,7 +35,7 @@ const Hero = () => {
           enhancing your customer experience and driving growth.
         </p>
         <ul
-          className="benefits mt-8 mb-12"  // Add more top and bottom margin to create space
+          className="benefits mt-8 mb-12"  // Added more top and bottom margin to create space
           style={{
             listStyleType: 'none',  // Remove default bullets
             padding: 0,              // Remove default padding
@@ -46,7 +46,7 @@ const Hero = () => {
             maxWidth: '300px'        // Control the width of the list
           }}
         >
-          <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>  // Add bottom margin to each list item
+          <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>  {/* Added bottom margin to each list item */}
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> Pay once, use forever
           </li>
           <li style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
