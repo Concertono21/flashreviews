@@ -7,7 +7,7 @@ const Hero = () => {
         <h1 className="text-7xl font-bold" style={{ fontWeight: 600 }}>
           <span
             style={{
-              background: 'linear-gradient(to top, #000000, #ffffff)',
+              background: 'linear-gradient(to top, #969696, #ffffff)',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -18,7 +18,7 @@ const Hero = () => {
           <br />
           <span
             style={{
-              background: 'linear-gradient(to top, #bafd00, #ffffff)',
+              background: 'linear-gradient(to top, #678c00, #ffffff)',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
