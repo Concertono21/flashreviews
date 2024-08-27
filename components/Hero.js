@@ -3,7 +3,7 @@ import Link from 'next/link';
 const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
-      <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginLeft: '15%', textAlign: 'left' }}>
+      <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         <h1 className="text-7xl font-bold" style={{ fontWeight: 600 }}>
           <span
             style={{
@@ -28,8 +28,9 @@ const Hero = () => {
           </span>
         </h1>
         <p
-          className="text-xl mt-4 text-grey"
+          className="text-xl mt-4"
           style={{
+            color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
           }}
         >
@@ -37,20 +38,22 @@ const Hero = () => {
           enhancing your customer experience and driving growth.
         </p>
         <ul
-          className="benefits mt-4 text-'#00A000'"
+          className="benefits mt-4"
           style={{
             listStyleType: 'none',  // Remove default bullets
             padding: 0,              // Remove default padding
+            color: '#969696',
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            textAlign: 'left', // Align text to the left
           }}
         >
-          <li style={{ display: 'flex', alignItems: 'center' }}>
+          <li style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> Pay once, use forever
           </li>
-          <li style={{ display: 'flex', alignItems: 'center' }}>
+          <li style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> 1-minute no-code setup
           </li>
-          <li style={{ display: 'flex', alignItems: 'center' }}>
+          <li style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <span style={{ color: '#bafd00', marginRight: '8px' }}>+</span> Boost customer satisfaction
           </li>
         </ul>
