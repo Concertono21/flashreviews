@@ -4,12 +4,13 @@ const Hero = () => {
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content">
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-4xl font-bold" style={{ fontWeight: 600 }}>
           <span
             style={{
-              background: 'linear-gradient(to top, black, white)',
+              background: 'linear-gradient(to top, #000000, #ffffff)',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             }}
           >
             Turn Visitors into Engaged Customers
@@ -17,9 +18,10 @@ const Hero = () => {
           <br />
           <span
             style={{
-              background: 'linear-gradient(to top, green, neon green)',
+              background: 'linear-gradient(to top, #00ff00, #39ff14)',
               WebkitBackgroundClip: 'text',
               color: 'transparent',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             }}
           >
             with Quick Review Popups
