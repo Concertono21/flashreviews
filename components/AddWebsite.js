@@ -15,7 +15,7 @@ const AddWebsite = ({ addWebsite, websites, deleteWebsite }) => {
   return (
     <div className="bg-[#1C1C1E] border border-[#2C2C2E] p-6 rounded-lg shadow-lg w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-4 text-gray-100">Add Website</h2>
-      <p className="text-gray-500 mb-4">Add your domain name to get started, no need to add "https://" or "www."</p>
+      <p className="text-gray-500 mb-4">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
       <input
         type="text"
         value={website}
