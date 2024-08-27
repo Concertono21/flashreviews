@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const Hero = () => {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <section id="home" className="hero bg-black py-20 text-center">
       <div className="hero-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -11,15 +13,13 @@ const Hero = () => {
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             cursor: 'pointer',
-            transition: 'color 0.3s ease',
             color: 'transparent',
-            backgroundClip: 'text',
-            background: 'linear-gradient(to top, #969696, #ffffff)',
             WebkitBackgroundClip: 'text',
-            MozBackgroundClip: 'text',
-            msBackgroundClip: 'text',
-            OBackgroundClip: 'text',
+            background: hovered ? 'linear-gradient(to top, #969696, #ffffff)' : 'linear-gradient(to top, #ffffff, #969696)',
+            transition: 'background 0.3s ease',
           }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         >
           Turn Visitors into Customers
           <br />
