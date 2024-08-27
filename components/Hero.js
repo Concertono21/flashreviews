@@ -19,7 +19,7 @@ const Hero = () => {
             color: 'transparent',  // Ensures that the text color shows the gradient
             WebkitBackgroundClip: 'text',
             display: 'inline-block',  // Keeps the gradient confined to the text
-            transition: 'background-image 0.5s ease',
+            transition: 'background-image 1s ease',
           }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
@@ -40,7 +40,7 @@ const Hero = () => {
           enhancing your customer experience and driving growth.
         </p>
         <ul
-          className="benefits mt-8 mb-12"
+          className="benefits mt-8 mb-8"
           style={{
             listStyleType: 'none',
             padding: 0,
