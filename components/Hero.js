@@ -13,7 +13,7 @@ const Hero = () => {
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             }}
           >
-            Turn Visitors into Engaged Customers
+            Convert Visitors into Customers by
           </span>
           <br />
           <span
@@ -24,7 +24,7 @@ const Hero = () => {
               fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             }}
           >
-            with Quick Review Popups
+            Delivering What Matters Most
           </span>
         </h1>
         <p className="text-xl mt-4 text-white">
