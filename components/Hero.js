@@ -13,8 +13,8 @@ const Hero = () => {
             fontWeight: 600,
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
             backgroundImage: hovered 
-              ? 'linear-gradient(to top, #bababa, #ffffff)' 
-              : 'linear-gradient(to top, #bafd00, #ffffff)',
+              ? 'linear-gradient(to top, #bafd00, #ffffff)' 
+              : 'linear-gradient(to top, #bababa, #ffffff)',
             backgroundClip: 'text',
             color: 'transparent',  // Ensures that the text color shows the gradient
             WebkitBackgroundClip: 'text',
