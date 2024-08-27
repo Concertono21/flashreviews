@@ -103,7 +103,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
-      <div className="bg-transparent p-4 rounded-lg w-full max-w-md mx-auto flex flex-col items-center">
+      <div className="bg-transparent p-4 rounded-lg w-full max-w-md mx-auto">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
             <div
@@ -121,7 +121,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 opacity: 1,
                 transform: 'translateX(0)',
                 width: '100%',
-                maxWidth: '320px',
+                height: '100%', // Adjusted height
                 cursor: 'default',
                 marginBottom: '10px',
                 padding: '10px',
@@ -261,7 +261,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 <p className="notification-timing" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || 'black', marginTop: '5px' }}>
                   <FaClock style={{ marginRight: '5px' }} />
                   {popup.timing} seconds
-                  </p>
+                </p>
                 <p className="notification-website" style={{ fontSize: '12px', color: styleSettings[popup.style]?.color || 'black', marginTop: '5px' }}>
                   <FaGlobe style={{ marginRight: '5px' }} />
                   {popup.website}
