@@ -257,7 +257,7 @@ export default function Dashboard() {
                     ${popupSettings.title}
                   </div>
                 </div>
-                                <button className="close-button" style="
+                                                                <button className="close-button" style="
                   background: none;
                   border: none;
                   font-size: 20px;
@@ -268,7 +268,7 @@ export default function Dashboard() {
                   padding: 0;
                   margin: 0;
                   transition: color 0.3s;
-                                    line-height: 1;
+                  line-height: 1;
                   position: absolute;
                   top: 10px;
                   right: 10px;
