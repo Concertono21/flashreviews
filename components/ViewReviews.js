@@ -40,13 +40,13 @@ const ViewReviews = () => {
   }, [session]);
 
   return (
-    <div className={`bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md mt-6 ${reviews.length === 0 ? 'h-auto' : 'min-h-0'}`}>
-      <h2 className="text-xl font-bold mb-4 text-white">View Reviews</h2>
+    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto mt-6`}>
+      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">View Reviews</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {reviews.length > 0 ? (
         <ul>
           {reviews.slice(0, 5).map((review) => (
-            <li key={review._id} className="mb-4 text-white">
+            <li key={review._id} className="mb-4 text-[#F0F0F3]">
               <p><strong>Popup:</strong> {review.popupTitle}</p>
               <p><strong>Comments:</strong> {review.comments || 'No comments provided'}</p>
               {review.rating !== undefined && (
@@ -73,10 +73,10 @@ const ViewReviews = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-white">No reviews available.</p>
+        <p className="text-[#F0F0F3]">No reviews available.</p>
       )}
       <button
-        className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full mt-4"
+        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full mt-4"
         onClick={() => router.push('/dashboard/all-reviews')}
       >
         View All Reviews
