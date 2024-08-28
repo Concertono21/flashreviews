@@ -86,7 +86,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
             <li key={index} className="text-[#F0F0F3] flex justify-between items-center">
               <span className="flex-grow">{typeof site.website === 'string' ? site.website : JSON.stringify(site.website)}</span>
               <button
-                className="border border-black text-black px-4 py-2 rounded-full ml-4 transition-all duration-200 hover:bg-gray-300 hover:text-black"
+                className="border border-black text-[#F0F0F3] px-4 py-2 w-24 rounded-sm ml-4 transition-all duration-200 bg-transparent hover:bg-gray-300 hover:border-gray-300"
                 onClick={() => handleDeleteWebsite(site.website)}
               >
                 Delete
