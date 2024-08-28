@@ -243,36 +243,42 @@ const DashboardContent = () => {
       <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-white">{loading ? 'Loading...' : `${popupsCount} FlashReviews`}</h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <div className="flex flex-col md:flex-row md:space-x-4 w-full">
-          <div className="flex-1 mb-4 md:mb-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          <div className="w-full">
             <ViewReviews reviews={reviews} />
           </div>
-          <div className="flex-1">
+          <div className="w-full">
             <h2 className="text-xl font-bold text-white mb-4">Active Pop Up</h2>
-            <PopupHistory popupHistory={popupHistory} handleDeletePopup={handleDeletePopup} websites={websites} />
+            <PopupHistory 
+              popupHistory={popupHistory} 
+              handleDeletePopup={handleDeletePopup} 
+              websites={websites} 
+            />
+          </div>
+          <div className="w-full">
+            <EditPopupReview
+              popupSettings={popupSettings}
+              handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
+              handleLogoChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
+                  reader.readAsDataURL(file);
+                }
+              }}
+              handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
+              handleSavePopupSettings={handleSavePopupSettings}
+              handlePreviewPopup={handlePreviewPopup}
+              handleGenerateCode={handleGenerateCode}
+              handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
+              handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
+            />
+          </div>
+          <div className="w-full">
+            <AddWebsite addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
           </div>
         </div>
-        <EditPopupReview
-          popupSettings={popupSettings}
-          handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
-          handleLogoChange={(e) => {
-            const file = e.target.files[0];
-            if (file) {
-              const reader = new FileReader();
-              reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
-              reader.readAsDataURL(file);
-            }
-          }}
-          handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
-          handleSavePopupSettings={handleSavePopupSettings}
-          handlePreviewPopup={() => setIsPreviewOpen(true)}
-          handleGenerateCode={handleGenerateCode}
-          handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
-          handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
-          setPopupSettings={setPopupSettings}
-          websites={websites}
-        />
-        <AddWebsite addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
       </div>
       {isPreviewOpen && (
         <PreviewPopup 
