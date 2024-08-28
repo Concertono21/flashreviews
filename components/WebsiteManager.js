@@ -63,28 +63,28 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-transparent border border-[#bafd00] p-6 rounded-lg shadow-md w-full max-w-md">
-      <h2 className="text-xl font-bold mb-4 text-white">Fancy a new FlashReviews?</h2>
-      <p className="mb-4 text-white">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
+      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Fancy a new FlashReviews?</h2>
+      <p className="mb-4 text-[#F0F0F3]">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
       <input
         type="text"
         placeholder="unicorn.com"
         value={website}
         onChange={(e) => setWebsite(e.target.value)}
-        className="w-full p-2 mb-4 border border-gray-300 rounded text-black"
+        className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
       />
       <button
-        className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
+        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
         onClick={handleAddWebsite}
       >
         Add Website
       </button>
       <div className="mt-4">
-        <h3 className="text-lg font-bold text-white">Websites</h3>
-        <ul>
+        <h3 className="text-lg font-bold text-[#F0F0F3]">Websites</h3>
+        <ul className="space-y-4 mt-2">
           {websites.map((site, index) => (
-            <li key={index} className="text-white flex justify-between items-center">
-              {typeof site.website === 'string' ? site.website : JSON.stringify(site.website)}  {/* Ensure this is a string or JSX element */}
+            <li key={index} className="text-[#F0F0F3] flex justify-between items-center">
+              {typeof site.website === 'string' ? site.website : JSON.stringify(site.website)} 
               <button
                 className="bg-red-500 text-white px-2 py-1 rounded-full ml-4"
                 onClick={() => handleDeleteWebsite(site.website)}
