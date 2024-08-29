@@ -58,7 +58,7 @@ const DashboardNavbar = ({
       <div className="flex justify-end">
         <button
           className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
-          onClick={() => router.push('/add-website')}
+          onClick={() => window.location.href = 'https://buy.stripe.com/00g7u09Eo3Dx7ja144'}
         >
           Get Started
         </button>
