@@ -44,9 +44,9 @@ const DashboardLayout = ({ children }) => {
               </svg>
             </button>
             {accountMenuOpen && (
-              <div className="absolute mt-2 w-48 bg-transparent border border-[#bafd00] rounded shadow-lg">
+              <div className="absolute mt-2 w-48 bg-black border border-[#bafd00] rounded-lg shadow-lg">
                 <button
-                  className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-white"
+                  className="flex items-center w-full px-4 py-2 text-left text-white hover:bg-[#bafd00] hover:text-black rounded-t-lg"
                   onClick={handleBillingClick}
                 >
                   <svg
@@ -61,7 +61,7 @@ const DashboardLayout = ({ children }) => {
                   Billing
                 </button>
                 <button
-                  className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-white"
+                  className="flex items-center w-full px-4 py-2 text-left text-white hover:bg-[#bafd00] hover:text-black rounded-b-lg"
                   onClick={handleLogout}
                 >
                   <svg
