@@ -90,8 +90,20 @@ const DashboardLayout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div className="pt-24 flex flex-col items-center justify-center flex-grow">
-        {children}
+
+      {/* Layout for Main Content */}
+      <div className="pt-24 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-6">
+          {/* Left Column (View Reviews and Fancy a New Popup) */}
+          <div>{children[0]}</div>  {/* View Reviews */}
+          <div>{children[1]}</div>  {/* Fancy a New Popup */}
+        </div>
+
+        <div className="space-y-6">
+          {/* Right Column (Edit Popup and Active Popups) */}
+          <div>{children[2]}</div>  {/* Edit Popup */}
+          <div>{children[3]}</div>  {/* Active Popups */}
+        </div>
       </div>
     </div>
   );
