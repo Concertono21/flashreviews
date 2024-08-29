@@ -27,7 +27,7 @@ const DashboardLayout = ({ children }) => {
           {/* Account Button on the Left */}
           <div className="relative">
             <button
-              className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
+              className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
               onClick={handleAccountButtonClick}
             >
               <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
@@ -45,7 +45,7 @@ const DashboardLayout = ({ children }) => {
               </svg>
             </button>
             {accountMenuOpen && (
-              <div className="absolute mt-2 w-48 bg-black border border-[#bafd00] rounded-lg shadow-lg">
+              <div className="absolute mt-2 w-48 bg-black border border-[#3A3A3C] rounded-lg shadow-lg">
                 <button
                   className="flex items-center justify-between w-full px-4 py-2 text-left text-[#F0F0F3] transition-all duration-200 bg-transparent border border-black hover:bg-gray-300 hover:border-gray-300"
                   onClick={handleBillingClick}
@@ -67,7 +67,7 @@ const DashboardLayout = ({ children }) => {
           {/* Get Started Button on the Right */}
           <div className="flex justify-end">
             <button
-              className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
+              className="bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
               onClick={() => router.push('/add-website')}
             >
               Get Started
