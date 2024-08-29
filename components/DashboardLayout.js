@@ -24,7 +24,7 @@ const DashboardLayout = ({ children }) => {
       <div className="w-full fixed top-0 bg-black z-50">
         <div className="flex items-center justify-between p-6 max-w-6xl mx-auto">
           {/* Account Button on the Left */}
-          <div className="relative flex-grow">
+          <div className="relative">
             <button
               className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
               onClick={handleAccountButtonClick}
@@ -80,7 +80,7 @@ const DashboardLayout = ({ children }) => {
           </div>
           
           {/* Get Started Button on the Right */}
-          <div className="flex justify-end flex-shrink-0">
+          <div className="flex justify-end">
             <button
               className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
               onClick={() => router.push('/add-website')}
@@ -91,18 +91,22 @@ const DashboardLayout = ({ children }) => {
         </div>
       </div>
 
-      {/* Layout for Main Content */}
-      <div className="pt-24 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-6">
-          {/* Left Column (View Reviews and Fancy a New Popup) */}
-          <div>{children[0]}</div>  {/* View Reviews */}
-          <div>{children[1]}</div>  {/* Fancy a New Popup */}
+      {/* Main Content */}
+      <div className="pt-24 max-w-6xl mx-auto flex flex-col space-y-6">
+        {/* View Reviews Section - Independent */}
+        <div className="flex justify-center">
+          {children[0]}
         </div>
 
-        <div className="space-y-6">
-          {/* Right Column (Edit Popup and Active Popups) */}
-          <div>{children[2]}</div>  {/* Edit Popup */}
-          <div>{children[3]}</div>  {/* Active Popups */}
+        {/* Other Sections */}
+        <div className="flex flex-col md:flex-row md:space-x-6">
+          <div className="flex-grow md:w-1/2 space-y-6">
+            {children[1]} {/* Fancy a New Popup */}
+          </div>
+          <div className="flex-grow md:w-1/2 space-y-6">
+            {children[2]} {/* Edit Popup */}
+            {children[3]} {/* Active Popups */}
+          </div>
         </div>
       </div>
     </div>
