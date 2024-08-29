@@ -55,8 +55,7 @@ const EditPopupReview = ({
 
   return (
     <div
-      id="editPopup"
-      className={popupSettings.style}
+      className="rounded-lg shadow-md p-6"
       style={{
         backgroundColor: currentStyle.backgroundColor,
         color: currentStyle.color,
@@ -64,8 +63,9 @@ const EditPopupReview = ({
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         display: 'flex',
         flexDirection: 'column',
-        width: '350px',
-        padding: '10px',
+        width: '100%',
+        maxWidth: '400px',
+        padding: '20px',
         marginBottom: '20px'
       }}
     >
