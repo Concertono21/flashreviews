@@ -120,8 +120,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   border: 'none',
                   fontSize: '20px',
                   cursor: 'pointer',
-                  top: '5px',
-                  left: '150px', // Positioning to the top left corner
+                  top: '-10px',
+                  left: '165px', // Positioning to the top left corner
                 }}
               >
                 &times;
