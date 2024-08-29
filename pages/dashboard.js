@@ -458,64 +458,63 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout>
-        <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
-            <h1 className="text-3xl font-bold mb-6 text-white">{loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}</h1>
-            {error && <p className="text-red-500 mb-4">{error}</p>}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full justify-items-center">
-                {/* View Reviews Component */}
-                <div className="col-span-1">
-                    <ViewReviews session={session} reviews={reviews} />
-                </div>
-
-                {/* Edit Popup and Popup History Components */}
-                <div className="col-span-1 flex flex-col gap-4">
-                    <EditPopupReview
-                        popupSettings={popupSettings}
-                        handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
-                        handleLogoChange={(e) => {
-                            const file = e.target.files[0];
-                            if (file) {
-                                const reader = new FileReader();
-                                reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
-                                reader.readAsDataURL(file);
-                            }
-                        }}
-                        handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
-                        handleSavePopupSettings={handleSavePopupSettings}
-                        handlePreviewPopup={() => setIsPreviewOpen(true)}
-                        handleGenerateCode={() => setGeneratedCode(`<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`)}
-                        handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
-                        handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
-                        setPopupSettings={setPopupSettings}
-                        websites={websites}
-                    />
-                    <PopupHistory
-                        popupHistory={popupHistory}
-                        handleDeletePopup={handleDeletePopup}
-                        websites={websites}
-                        refreshData={refreshData}
-                    />
-                </div>
-
-                {/* Website Manager Component */}
-                <div className="col-span-2">
-                    <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
-                </div>
-            </div>
-            <button
-                onClick={handleGetStartedClick}
-                disabled={stripeLoading}
-                className="mt-6 px-4 py-2 bg-green-500 text-white rounded shadow"
-            >
-                {stripeLoading ? 'Loading...' : 'Get Started'}
-            </button>
-        </div>
-        {isPreviewOpen && (
-            <PreviewPopup
-                popupSettings={popupSettings}
-                handleClose={() => setIsPreviewOpen(false)}
+      <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
+        <h1 className="text-3xl font-bold mb-6 text-white">
+          {loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}
+        </h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {/* Left Column: View Reviews and Website Manager */}
+          <div className="flex flex-col gap-4">
+            <ViewReviews session={session} reviews={reviews} />
+            <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
+          </div>
+  
+          {/* Right Column: Edit Popup and Popup History */}
+          <div className="flex flex-col gap-4">
+            <EditPopupReview
+              popupSettings={popupSettings}
+              handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
+              handleLogoChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (e) => setPopupSettings({ ...popupSettings, logo: e.target.result });
+                  reader.readAsDataURL(file);
+                }
+              }}
+              handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
+              handleSavePopupSettings={handleSavePopupSettings}
+              handlePreviewPopup={() => setIsPreviewOpen(true)}
+              handleGenerateCode={() =>
+                setGeneratedCode(
+                  `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`
+                )
+              }
+              handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
+              handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
+              setPopupSettings={setPopupSettings}
+              websites={websites}
             />
-        )}
+            <PopupHistory
+              popupHistory={popupHistory}
+              handleDeletePopup={handleDeletePopup}
+              websites={websites}
+              refreshData={refreshData}
+            />
+          </div>
+        </div>
+        <button
+          onClick={handleGetStartedClick}
+          disabled={stripeLoading}
+          className="mt-6 px-4 py-2 bg-green-500 text-white rounded shadow"
+        >
+          {stripeLoading ? 'Loading...' : 'Get Started'}
+        </button>
+      </div>
+      {isPreviewOpen && (
+        <PreviewPopup popupSettings={popupSettings} handleClose={() => setIsPreviewOpen(false)} />
+      )}
     </DashboardLayout>
-);
+  );
 }
