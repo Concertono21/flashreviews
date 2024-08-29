@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa'; // Import new icons
+import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa';
 
 const DashboardLayout = ({ children }) => {
   const { data: session } = useSession();
@@ -68,7 +68,11 @@ const DashboardLayout = ({ children }) => {
           <div className="flex justify-end">
             <button
               className="bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
-              onClick={() => window.location.href = 'https://buy.stripe.com/00g7u09Eo3Dx7ja144'}
+              onClick={() => {
+                const stripeLink = 'https://buy.stripe.com/00g7u09Eo3Dx7ja144';
+                const userEmail = session?.user?.email || '';
+                window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(userEmail)}`;
+              }}
             >
               Get Started
             </button>
