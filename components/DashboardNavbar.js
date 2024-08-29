@@ -9,8 +9,9 @@ const DashboardNavbar = ({
   session
 }) => (
   <div className="w-full bg-black text-white fixed top-0 z-10">
-    <nav className="flex items-center justify-between p-2 max-w-6xl mx-auto">
-      <div className="flex items-center space-x-2">
+    <nav className="flex items-center justify-between p-4 max-w-6xl mx-auto">
+      {/* Account Button on the Left */}
+      <div className="relative">
         <button
           className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={handleAccountButtonClick}
@@ -30,9 +31,9 @@ const DashboardNavbar = ({
           </svg>
         </button>
         {accountMenuOpen && (
-          <div className="absolute mt-2 w-48 bg-transparent border border-[#bafd00] rounded shadow-lg">
+          <div className="absolute mt-2 left-0 w-48 bg-black border border-[#bafd00] rounded shadow-lg z-20">
             <button
-              className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-white"
+              className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-[#2C2C2E]"
               onClick={handleBillingClick}
             >
               <svg className="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +42,7 @@ const DashboardNavbar = ({
               Billing
             </button>
             <button
-              className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-white"
+              className="flex items-center w-full px-4 py-2 text-left text-[#bafd00] hover:bg-[#2C2C2E]"
               onClick={handleLogout}
             >
               <svg className="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,6 +53,8 @@ const DashboardNavbar = ({
           </div>
         )}
       </div>
+      
+      {/* Get Started Button on the Right */}
       <button
         className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
         onClick={() => router.push('/add-website')}
