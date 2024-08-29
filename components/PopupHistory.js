@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { FaClock, FaGlobe, FaPaintBrush } from 'react-icons/fa';
+import { FaClock, FaGlobe } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -116,41 +116,39 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                 textAlign: 'left',
               }}
             >
-              <div
-                className="flex justify-between items-center mb-2"
+              <button
+                className="absolute text-[#cecece] hover:text-black transition-colors"
+                onClick={() => handleDelete(popup._id)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '20px',
+                  cursor: 'pointer',
+                  top: '10px',
+                  left: '10px', // Positioning to the top left corner
+                }}
               >
-                <div className="flex items-center">
-                  {popup.logo && (
-                    <Image
-                      src={popup.logo}
-                      alt="Logo"
-                      width={40}
-                      height={40}
-                      style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
-                    />
-                  )}
-                  <div>
-                    <p className="font-semibold text-sm" style={{ color: styleSettings[popup.style]?.color || 'black' }}>{popup.title}</p>
-                    <p className="text-xs" style={{ color: styleSettings[popup.style]?.color || 'black' }}>
-                      <FaClock className="inline-block mr-1" />{popup.timing} seconds
-                    </p>
-                    <p className="text-xs" style={{ color: styleSettings[popup.style]?.color || 'black' }}>
-                      <FaGlobe className="inline-block mr-1" />{popup.website}
-                    </p>
-                  </div>
+                &times;
+              </button>
+              <div className="flex items-start">
+                {popup.logo && (
+                  <Image
+                    src={popup.logo}
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    style={{ objectFit: 'contain', borderRadius: '5px', marginRight: '10px' }}
+                  />
+                )}
+                <div style={{ flexGrow: 1 }}>
+                  <p className="font-semibold text-sm" style={{ color: styleSettings[popup.style]?.color || 'black', marginRight: '30px' }}>{popup.title}</p>
+                  <p className="text-xs" style={{ color: styleSettings[popup.style]?.color || 'black' }}>
+                    <FaClock className="inline-block mr-1" />{popup.timing} seconds
+                  </p>
+                  <p className="text-xs" style={{ color: styleSettings[popup.style]?.color || 'black' }}>
+                    <FaGlobe className="inline-block mr-1" />{popup.website}
+                  </p>
                 </div>
-                <button
-                  className="text-[#cecece] hover:text-black transition-colors"
-                  onClick={() => handleDelete(popup._id)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '20px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  &times;
-                </button>
               </div>
               {popup.enableStars && (
                 <div className="flex justify-start mb-2">
