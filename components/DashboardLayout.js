@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa'; // Import new icons
 
 const DashboardLayout = ({ children }) => {
   const { data: session } = useSession();
@@ -46,34 +47,18 @@ const DashboardLayout = ({ children }) => {
             {accountMenuOpen && (
               <div className="absolute mt-2 w-48 bg-black border border-[#bafd00] rounded-lg shadow-lg">
                 <button
-                  className="flex items-center w-full px-4 py-2 text-left text-white hover:bg-[#bafd00] hover:text-black rounded-t-lg"
+                  className="flex items-center justify-between w-full px-4 py-2 text-left text-[#F0F0F3] transition-all duration-200 bg-transparent border border-black hover:bg-gray-300 hover:border-gray-300"
                   onClick={handleBillingClick}
                 >
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V5a3 3 0 00-3-3H6a3 3 0 00-3 3v4m0 0v10a3 3 0 003 3h8a3 3 0 003-3V9m-6 3l-4-4m0 0l4-4m-4 4h12.75" />
-                  </svg>
-                  Billing
+                  <FaCreditCard className="w-5 h-5 mr-2" />
+                  <span>Billing</span>
                 </button>
                 <button
-                  className="flex items-center w-full px-4 py-2 text-left text-white hover:bg-[#bafd00] hover:text-black rounded-b-lg"
+                  className="flex items-center justify-between w-full px-4 py-2 text-left text-[#F0F0F3] transition-all duration-200 bg-transparent border border-black hover:bg-gray-300 hover:border-gray-300"
                   onClick={handleLogout}
                 >
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10v1m-6 5l4-4m0 0l-4-4m4 4H3" />
-                  </svg>
-                  Logout
+                  <FaSignOutAlt className="w-5 h-5 mr-2" />
+                  <span>Logout</span>
                 </button>
               </div>
             )}
