@@ -54,9 +54,9 @@ const EditPopupReview = ({
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
 
   return (
-    <div className="bg-[#1C1C1E] p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h2 className="text-2xl font-bold text-white mb-4">Edit Popup</h2> {/* Added Title */}
-      <div className="bg-white p-4 rounded-lg shadow-lg">
+    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto mt-6`}>
+      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Edit Popup</h2>
+      <div className="bg-[#2C2C2E] p-4 rounded-lg shadow-lg">
         <div
           id="editPopup"
           className={popupSettings.style}
@@ -67,9 +67,7 @@ const EditPopupReview = ({
             boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
             display: 'flex',
             flexDirection: 'column',
-            width: '100%',
             padding: '10px',
-            marginBottom: '20px'
           }}
         >
           <div
@@ -210,14 +208,14 @@ const EditPopupReview = ({
             </div>
             <div className="flex space-x-2 w-full">
               <button
-                className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
+                className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
                 onClick={handleSavePopupSettings}
                 style={{ fontSize: '12px' }}
               >
                 Save Settings
               </button>
               <button
-                className="bg-black text-[#bafd00] px-4 py-2 rounded-full w-full"
+                className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
                 onClick={handlePreviewPopup}
                 style={{ fontSize: '12px' }}
               >
