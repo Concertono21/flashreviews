@@ -15,7 +15,13 @@ const Pricing = () => {
             <li>1 website</li>
             <li>Simple analytics</li>
           </ul>
-          <a href="signin.html" className="get-started bg-green-500 text-black px-6 py-3 rounded mt-6 inline-block" style={{ backgroundColor: '#bafd00' }}>Get Started</a>
+          <button
+            onClick={() => window.location.href = 'https://buy.stripe.com/00g7u09Eo3Dx7ja144'}
+            className="get-started bg-green-500 text-black px-6 py-3 rounded mt-6 inline-block"
+            style={{ backgroundColor: '#bafd00' }}
+          >
+            Get Started
+          </button>
           <p className="note mt-4">Pay once. Access forever.</p>
         </div>
         <div className="pricing-card popular bg-black border-2 border-green-400 p-6 rounded-lg shadow-lg mx-4 relative" style={{ borderColor: '#bafd00' }}>
@@ -31,7 +37,13 @@ const Pricing = () => {
             <li>Unlimited websites</li>
             <li>Simple analytics</li>
           </ul>
-          <a href="signin.html" className="get-started bg-orange-500 text-black px-6 py-3 rounded mt-6 inline-block" style={{ backgroundColor: '#bafd00' }}>Get Started</a>
+          <button
+            onClick={() => window.location.href = 'https://buy.stripe.com/00g7u09Eo3Dx7ja144'}
+            className="get-started bg-orange-500 text-black px-6 py-3 rounded mt-6 inline-block"
+            style={{ backgroundColor: '#bafd00' }}
+          >
+            Get Started
+          </button>
           <p className="note mt-4">Pay once. Access forever.</p>
         </div>
       </div>
