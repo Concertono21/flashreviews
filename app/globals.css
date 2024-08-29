@@ -17,6 +17,16 @@
   }
 }
 
+.popup-history {
+  display: block;
+  width: 100%;
+}
+
+.view-reviews {
+  display: block;
+  width: 100%;
+}
+
 /* Body Styles */
 body {
   color: rgb(var(--foreground-rgb));
