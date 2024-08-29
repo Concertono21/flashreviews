@@ -50,9 +50,9 @@ const ViewReviews = () => {
               <p><strong>Popup:</strong> {review.popupTitle}</p>
               <p><strong>Comments:</strong> {review.comments || 'No comments provided'}</p>
               {review.rating !== undefined && (
-                <div>
-                  <strong>Rating:</strong>
-                  <div style={{ display: 'flex', marginTop: '5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
+                  <strong style={{ marginRight: '5px' }}>Rating:</strong>
+                  <div style={{ display: 'flex' }}>
                     {[1, 2, 3, 4, 5].map((star) => (
                       <svg
                         key={star}
@@ -60,7 +60,7 @@ const ViewReviews = () => {
                         fill={review.rating >= star ? 'gold' : 'gray'}
                         viewBox="0 0 24 24"
                         stroke="none"
-                        style={{ fontSize: '12px', color: 'grey', marginRight: '5px' }}
+                        style={{ fontSize: '12px', color: 'grey', marginRight: '2px' }}
                       >
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                       </svg>
