@@ -29,7 +29,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (session) {
+    if (session?.user?.stripePlan) {
       fetch('/api/dashboard/popups', {
         method: 'GET',
         headers: {
@@ -43,6 +43,10 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         .catch(err => console.error('Failed to fetch popups:', err));
     }
   }, [session]);
+
+  if (!session?.user?.stripePlan) {
+    return null; // Don't render anything if stripePlan is null
+  }
 
   const handleWebsiteChange = (e) => {
     setSelectedWebsite(e.target.value);
