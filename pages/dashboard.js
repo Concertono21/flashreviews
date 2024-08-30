@@ -41,13 +41,61 @@ export default function Dashboard() {
   }, [status, router]);
 
   useEffect(() => {
-    if (session) {
-      refreshData(); // Fetch data when the session is available
+    if (!session) return;
+
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/dashboard/popups', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${session.user.accessToken}`,
+          },
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch dashboard data');
+
+        const data = await response.json();
+        setPopupsCount(data.popups.length);
+        setPopupHistory(data.popups);
+
+        const websitesResponse = await fetch('/api/dashboard/websites', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${session.user.accessToken}`,
+          },
+        });
+
+        if (!websitesResponse.ok) throw new Error('Failed to fetch websites data');
+
+        const websitesData = await websitesResponse.json();
+        setWebsites(websitesData.websites || []);
+
+        const reviewsResponse = await fetch('/api/dashboard/reviews?new=true', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${session.user.accessToken}`,
+          },
+        });
+
+        if (!reviewsResponse.ok) throw new Error('Failed to fetch reviews data');
+
+        const reviewsData = await reviewsResponse.json();
+        setNewReviewCount(reviewsData.newReviewCount);
+        setReviews(reviewsData.reviews.slice(0, 5)); // Get only the last 5 reviews
+      } catch (error) {
+        console.error('Error:', error);
+        setError('Failed to load dashboard. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
+
+    fetchData();
   }, [session]);
 
   const refreshData = async () => {
-    setLoading(true);
+    if (!session) return;
+
     try {
       const response = await fetch('/api/dashboard/popups', {
         method: 'GET',
@@ -89,8 +137,6 @@ export default function Dashboard() {
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to load dashboard. Please try again.');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -251,7 +297,7 @@ export default function Dashboard() {
                     margin: 0;
                     margin-top: 5px;
                   ">
-                                      ${[1, 2, 3, 4, 5].map((star) => `
+                    ${[1, 2, 3, 4, 5].map((star) => `
                       <svg
                         key=${star}
                         onMouseEnter="handleStarHover(${star})"
@@ -390,15 +436,15 @@ export default function Dashboard() {
     const res = await fetch('/api/create-checkout-session', {
       method: 'POST',
     });
-
+  
     const data = await res.json();
-
+  
     if (data.sessionId) {
       stripe.redirectToCheckout({ sessionId: data.sessionId });
     } else {
       console.error(data.error);
     }
-
+  
     setStripeLoading(false);
   };
 
