@@ -257,10 +257,10 @@ export default function Dashboard() {
                     ${popupSettings.title}
                   </div>
                 </div>
-                                                                <button className="close-button" style="
+                                                                                                                                 <button className="close-button" style="
                   background: none;
                   border: none;
-                                                                        font-size: 20px;
+                  font-size: 20px;
                   cursor: pointer;
                   color: #cecece;
                   flex: 0 0 auto;
@@ -513,7 +513,10 @@ export default function Dashboard() {
         </button>
       </div>
       {isPreviewOpen && (
-        <PreviewPopup popupSettings={popupSettings} handleClose={() => setIsPreviewOpen(false)} />
+        <PreviewPopup
+          popupSettings={popupSettings}
+          handleClose={() => setIsPreviewOpen(false)}
+        />
       )}
     </DashboardLayout>
   );
