@@ -126,6 +126,8 @@ const EditPopupReview = ({
                 }}
               />
             </div>
+            
+            {/* Move the stars and checkbox here, below the title input */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px', marginBottom: '10px' }}>
               <input
                 type="checkbox"
@@ -149,6 +151,7 @@ const EditPopupReview = ({
                 ))}
               </div>
             </div>
+
             <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
