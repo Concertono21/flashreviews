@@ -23,7 +23,7 @@ const allowedOrigins = await fetchAllowedOrigins();
 
 export default {
   env: {
-    NEXT_PUBLIC_BASE_URL: 'https://flashreviews.vercel.app',
+    NEXT_PUBLIC_BASE_URL: 'https://www.flashreviews.co',
     MAILGUN_API_KEY: 'your_mailgun_api_key',
     MAILGUN_DOMAIN: 'your_mailgun_domain',
   },
@@ -48,7 +48,7 @@ export default {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://flashreviews.vercel.app https://js.stripe.com/v3; object-src 'none';",
+            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.flashreviews.co https://js.stripe.com/v3; object-src 'none';",
           },
         ],
       },

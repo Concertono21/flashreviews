@@ -14,8 +14,8 @@ import GetStartedSection from '../components/GetStartedSection';
 export default function Home() {
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://flashreviews.vercel.app/embed.js';
-    script.setAttribute('data-website', 'https://flashreviews.vercel.app');
+    script.src = 'http://www.flashreviews.co/embed.js';
+    script.setAttribute('data-website', 'http://www.flashreviews.co');
     document.body.appendChild(script);
 
     return () => {
