@@ -139,11 +139,10 @@ const EditPopupReview = ({
                     key={star}
                     onClick={() => handleRatingChange(star)}
                     style={{
-                      fontSize: '20px',
+                      fontSize: '10px',
                       cursor: 'pointer',
                       color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
-                      marginRight: '2px',                      
-                      marginLeft: '-100px',
+                      marginRight: '20px',                      
 
                     }}
                   />
