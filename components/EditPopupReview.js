@@ -142,7 +142,9 @@ const EditPopupReview = ({
                       fontSize: '20px',
                       cursor: 'pointer',
                       color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
-                      marginRight: '2px',
+                      marginRight: '2px',                      
+                      marginLeft: '-100px',
+
                     }}
                   />
                 ))}
