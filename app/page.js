@@ -17,7 +17,7 @@ export default function Home() {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://flashreviews.co/embed.js" data-website="https://www.flashreviews.co"></script>
+        <script src="https://flashreviews.co/embed.js" data-website="flashreviews.co"></script>
       </Head>
       <Navbar />
       <Hero />
