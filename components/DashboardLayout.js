@@ -94,10 +94,10 @@ const DashboardLayout = ({ children }) => {
             </div>
 
             <div className="flex flex-col md:flex-row md:space-x-6 w-full">
-              <div className="flex-grow md:w-1/2 space-y-6">
+              <div className="flex-grow md:w-1/2 space-y-4"> {/* Reduced space-y value */}
                 {children[1]} {/* Fancy a New Popup */}
               </div>
-              <div className="flex-grow md:w-1/2 space-y-6">
+              <div className="flex-grow md:w-1/2 space-y-4"> {/* Reduced space-y value */}
                 {children[2]} {/* Edit Popup */}
                 {children[3]} {/* Active Popups */}
               </div>
