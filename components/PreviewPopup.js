@@ -82,7 +82,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginRight: '5px', // Space between logo and text
+              marginRight: '3px', // Space between logo and text
             }}
           >
             <Image
