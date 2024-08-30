@@ -63,7 +63,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto md:mx-0">
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full sm:max-w-md mx-auto">
       <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Fancy a new FlashReviews?</h2>
       <p className="mb-4 text-[#F0F0F3]">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
       <input

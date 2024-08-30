@@ -20,18 +20,18 @@ const Navbar = () => {
         </div>
         <ul className="hidden sm:flex space-x-6"> {/* Hidden on mobile, visible on sm and up */}
           <li>
-            <Link href="#pricing" legacyBehavior>
+            <Link href="#pricing">
               <a className="hover:underline">Pricing</a>
             </Link>
           </li>
           <li>
-            <Link href="#faq" legacyBehavior>
+            <Link href="#faq">
               <a className="hover:underline">FAQ</a>
             </Link>
           </li>
         </ul>
         <div>
-          <Link href="/login" legacyBehavior>
+          <Link href="/login">
             <a onClick={handleGetStartedClick} className="px-4 py-2 rounded" style={{ backgroundColor: '#bafd00', color: 'black' }}>Get Started</a>
           </Link>
         </div>

@@ -82,7 +82,7 @@ const DashboardLayout = ({ children }) => {
         </div>
       </div>
 
-      <div className="pt-24 max-w-6xl mx-auto flex flex-col space-y-6">
+      <div className="pt-24 w-full lg:max-w-6xl mx-auto flex flex-col space-y-6">
         {session?.user?.stripePlan === null ? (
           <div className="flex justify-center">
             {children[0]} {/* Website Manager */}
