@@ -29,7 +29,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    console.log("Stripe Plan:", session?.user?.stripePlan); // Debugging log
+    console.log("Stripe Plan:", session?.user?.stripePlan);
     if (session?.user?.stripePlan) {
       fetch('/api/dashboard/popups', {
         method: 'GET',
@@ -46,7 +46,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   }, [session]);
 
   if (!session?.user?.stripePlan) {
-    return null; // Don't render anything if stripePlan is null
+    return null;
   }
 
   const handleWebsiteChange = (e) => {
@@ -81,7 +81,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
       }
 
       handleDeletePopup(id);
-      refreshData(); // Refresh data after deletion
+      refreshData();
     } catch (error) {
       console.error('Error:', error);
       alert(error.message);
@@ -94,8 +94,8 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full sm:max-w-md mx-auto mt-6">
-      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Active Popups</h2>
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full max-w-full mx-auto mt-6">
+      <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-[#F0F0F3]">Active Popups</h2>
       <select
         className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
         value={selectedWebsite}
@@ -126,7 +126,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   fontSize: '20px',
                   cursor: 'pointer',
                   top: '-10px',
-                  left: '165px', // Positioning to the top left corner
+                  left: '165px',
                 }}
               >
                 &times;
