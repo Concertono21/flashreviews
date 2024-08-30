@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import Script from 'next/script';
+import Head from 'next/head';  // Import Head from next/head
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -25,9 +25,11 @@ export default function Home() {
 
   return (
     <div>
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
+        {/* Add the script directly in the head */}
+        <script src="https://flashreviews.co/embed.js" data-website="https://www.flashreviews.co"></script>
+      </Head>
       <Navbar />
       <Hero />
       <Marketing />
@@ -68,4 +70,4 @@ export default function Home() {
       </footer>
     </div>
   );
-} 
+}
