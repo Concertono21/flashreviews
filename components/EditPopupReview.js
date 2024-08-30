@@ -126,9 +126,8 @@ const EditPopupReview = ({
                 }}
               />
             </div>
-            
-            {/* Move the stars and checkbox here, below the title input */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px', marginBottom: '10px' }}>
+            {/* Move stars and checkbox here */}
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
               <input
                 type="checkbox"
                 checked={popupSettings.enableStars}
@@ -144,15 +143,13 @@ const EditPopupReview = ({
                       fontSize: '15px',
                       cursor: 'pointer',
                       color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
-                      marginRight: '1px',                      
-
+                      marginRight: '1px',
                     }}
                   />
                 ))}
               </div>
             </div>
-
-            <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
                   <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
