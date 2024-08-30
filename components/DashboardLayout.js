@@ -82,18 +82,18 @@ const DashboardLayout = ({ children }) => {
         </div>
       </div>
 
-      <div className="pt-24 max-w-6xl mx-auto flex flex-col md:space-y-6 space-y-4">
+      <div className="pt-24 max-w-6xl mx-auto flex flex-col md:space-y-6 space-y-4 px-4 sm:px-6 md:px-8">
         {session?.user?.stripePlan === null ? (
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full">
             {children[0]} {/* Website Manager */}
           </div>
         ) : (
           <>
-            <div className="flex justify-center">
+            <div className="flex justify-center w-full">
               {children[0]} {/* View Reviews */}
             </div>
 
-            <div className="flex flex-col md:flex-row md:space-x-6">
+            <div className="flex flex-col md:flex-row md:space-x-6 w-full">
               <div className="flex-grow md:w-1/2 space-y-6">
                 {children[1]} {/* Fancy a New Popup */}
               </div>
