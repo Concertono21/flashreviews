@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from 'react';
-import Head from 'next/head';  // Import Head from next/head
+import Head from 'next/head';
+import Script from 'next/script'; // Import Script from next/script
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -27,9 +28,12 @@ export default function Home() {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* Add the script directly in the head */}
-        <script src="https://flashreviews.co/embed.js" data-website="https://www.flashreviews.co"></script>
       </Head>
+      <Script
+        src="https://flashreviews.co/embed.js"
+        data-website="https://www.flashreviews.co"
+        strategy="lazyOnload" // Load the script lazily, when the page is fully loaded
+      />
       <Navbar />
       <Hero />
       <Marketing />
