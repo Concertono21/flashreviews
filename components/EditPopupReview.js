@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { FaStar, FaClock, FaUpload, FaGlobe, FaPaintBrush } from 'react-icons/fa';
+import { FaStar, FaClock, FaCloudUploadAlt, FaGlobe, FaPaintBrush } from 'react-icons/fa';
 
 const styleSettings = {
   "classic-white": {
@@ -91,7 +91,7 @@ const EditPopupReview = ({
               <div style={{ width: '50px', height: '50px', marginRight: '10px' }}>
                 <label htmlFor="popupLogo" style={{ cursor: 'pointer', display: 'block' }}>
                   {!popupSettings.logo && (
-                    <FaUpload style={{ color: currentStyle.color, fontSize: '24px', width: '100%', height: '100%' }} />
+                    <FaCloudUploadAlt style={{ color: currentStyle.color, fontSize: '24px', width: '100%', height: '100%' }} />
                   )}
                   {popupSettings.logo && (
                     <div onClick={() => document.getElementById('popupLogo').click()}>
