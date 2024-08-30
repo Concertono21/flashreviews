@@ -131,7 +131,7 @@ const EditPopupReview = ({
                 type="checkbox"
                 checked={popupSettings.enableStars}
                 onChange={handleStarToggle}
-                style={{ marginRight: '-15px' }}
+                style={{ marginRight: '15px' }}
               />
               <div style={{ display: 'flex' }}>
                 {[1, 2, 3, 4, 5].map((star) => (
