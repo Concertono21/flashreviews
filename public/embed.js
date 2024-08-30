@@ -67,12 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
                   transition: opacity 0.5s, transform 0.5s;
                   opacity: 1;
                   transform: translateX(0);
-                  width: 250px; /* Adjusted width */
-                  height: auto; /* Adjusted height */
+                  width: 300px;
                   max-width: 100%;
                   cursor: default;
-                  padding: 10px;
-                  z-index: 1000; /* Ensure popup is above other elements */
+                  z-index: 1000;
                 "
               >
                 <div
@@ -80,19 +78,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+                    padding: 10px;
+                    position: relative;
                   "
                 >
-                  <div style="flex: 0 0 auto; width: 40px; height: 40px; margin-right: 10px;">
-                    <img src="${popupData.logo}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
-                  </div>
-                  <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; max-width: calc(100% - 40px);">
+                  ${popupData.logo ? `
+                    <div style="flex: 0 0 auto; width: 40px; height: 40px; margin-right: 0px;">
+                      <img src="${popupData.logo}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                  ` : ''}
+                  <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: flex-start; max-width: ${popupData.logo ? 'calc(100% - 60px)' : 'calc(100% - 25px)'}; padding-right: 25px;">
                     <div style="font-weight: 600; font-size: 14px; text-align: justify; white-space: normal; word-wrap: break-word; width: 100%;">
                       ${popupData.title}
                     </div>
                     ${popupData.enableStars ? `
                       <div class="rating" style="display: flex; justify-content: flex-start; margin-top: 5px;">
                         ${[1, 2, 3, 4, 5].map(star => `
-                          <svg key="${star}" fill="gray" viewBox="0 0 24 24" stroke="none" style="font-size: 12px; cursor: pointer; color: grey; margin-right: 5px; width: 16px; height: 16px;" onclick="handleStarClick(${star})">
+                          <svg key="${star}" fill="gray" viewBox="0 0 24 24" stroke="none" style="width: 16px; height: 16px; cursor: pointer; margin-right: 5px;" onclick="handleStarClick(${star})">
                             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
                           </svg>
                         `).join('')}
@@ -117,19 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
                       display: flex;
                       align-items: center;
                       justify-content: center;
+                      position: absolute;
+                      top: 10px;
+                      right: 10px;
                     "
                     onclick="document.getElementById('previewNotification').remove();"
                   >
                     &times;
                   </button>
                 </div>
-                <form id="popupForm">
-                  <div style="padding: 10px 0;">
-                    <textarea id="review-comments" placeholder="Add your comments here..." name="comments" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; width: 100%; height: 50px; font-size: 12px; box-sizing: border-box;"></textarea>
-                    <input type="hidden" name="popupId" value="${popupData._id}">
-                    <input type="hidden" name="userEmail" value="${popupData.user}">
-                    <button type="submit" style="background-color: #acacac; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; font-size: 14px; width: 100%;">Submit</button>
-                  </div>
+                <form id="popupForm" style="padding: 0 10px 10px; align-items: flex-start;">
+                  <textarea id="review-comments" placeholder="Add your comments here..." name="comments" style="margin-top: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; width: 100%; height: 50px; font-size: 12px; box-sizing: border-box;"></textarea>
+                  <input type="hidden" name="popupId" value="${popupData._id}">
+                  <input type="hidden" name="userEmail" value="${popupData.user}">
+                  <button type="submit" style="background-color: #acacac; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; font-size: 14px; width: 100%;">Submit</button>
                 </form>
               </div>
             `;
@@ -160,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
-                  'Origin': website, // Use the website origin
+                  'Origin': website,
                 },
                 credentials: 'include',
                 body: JSON.stringify({
@@ -187,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   alert('Failed to save your feedback. Please try again.');
                 });
             });
-          }, popupData.timing * 1000); // Delay showing the popup based on the timing setting
+          }, popupData.timing * 1000);
         };
 
         showPopup();
