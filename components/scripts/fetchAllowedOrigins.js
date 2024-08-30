@@ -1,3 +1,5 @@
+// scripts/fetchAllowedOrigins.js
+
 const { MongoClient } = require('mongodb');
 const fs = require('fs');
 const path = require('path');
@@ -13,12 +15,12 @@ async function fetchAllowedOrigins() {
     const websites = await websitesCollection.find().toArray();
     const allowedOrigins = websites.map(website => website.website);
 
-    // Save allowed origins to a file for use in next.config.mjs
+    // Write allowed origins to a JSON file
     const filePath = path.join(__dirname, 'allowedOrigins.json');
     fs.writeFileSync(filePath, JSON.stringify(allowedOrigins));
   } catch (error) {
     console.error('Error fetching allowed origins:', error);
-    process.exit(1);  // Exit with an error code if something goes wrong
+    process.exit(1); // Exit with an error code
   } finally {
     await client.close();
   }
