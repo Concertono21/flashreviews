@@ -84,68 +84,72 @@ const EditPopupReview = ({
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
                 padding: '5px',
                 position: 'relative',
               }}
             >
-              <label htmlFor="popupLogo" style={{ cursor: 'pointer', marginRight: '5px' }}>
-                {!popupSettings.logo && <FaUpload style={{ color: currentStyle.color, fontSize: '24px' }} />}
-              </label>
-              <input
-                type="file"
-                id="popupLogo"
-                onChange={handleLogoChange}
-                style={{ display: 'none' }}
-              />
-              {popupSettings.logo && (
-                <div onClick={() => document.getElementById('popupLogo').click()}>
-                  <Image
-                    src={popupSettings.logo}
-                    alt="Logo"
-                    width={25}  // Reduced size by 50%
-                    height={25}  // Reduced size by 50%
-                    style={{ objectFit: 'contain', marginRight: '10px' }}
+              <div style={{ width: '50px', height: '50px', marginRight: '10px' }}>
+                <label htmlFor="popupLogo" style={{ cursor: 'pointer', display: 'block' }}>
+                  {!popupSettings.logo && (
+                    <FaUpload style={{ color: currentStyle.color, fontSize: '24px', width: '100%', height: '100%' }} />
+                  )}
+                  {popupSettings.logo && (
+                    <div onClick={() => document.getElementById('popupLogo').click()}>
+                      <Image
+                        src={popupSettings.logo}
+                        alt="Logo"
+                        width={50}  // Keeping the reserved space for the logo
+                        height={50}  // Keeping the reserved space for the logo
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </div>
+                  )}
+                </label>
+                <input
+                  type="file"
+                  id="popupLogo"
+                  onChange={handleLogoChange}
+                  style={{ display: 'none' }}
+                />
+              </div>
+              <div style={{ flex: 1 }}>
+                <input
+                  type="text"
+                  value={popupSettings.title}
+                  onChange={handleTitleChange}
+                  style={{
+                    backgroundColor: currentStyle.backgroundColor,
+                    color: currentStyle.color,
+                    border: 'none',
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                    textAlign: 'left',
+                    width: '100%',
+                    marginBottom: '10px', // Add some space after the title
+                  }}
+                />
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px'}}>
+                  <input
+                    type="checkbox"
+                    checked={popupSettings.enableStars}
+                    onChange={handleStarToggle}
+                    style={{ marginRight: '15px' }}
                   />
+                  <div style={{ display: 'flex' }}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <FaStar
+                        key={star}
+                        onClick={() => handleRatingChange(star)}
+                        style={{
+                          fontSize: '15px',
+                          cursor: 'pointer',
+                          color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
+                          marginRight: '1px',
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
-              )}
-              <input
-                type="text"
-                value={popupSettings.title}
-                onChange={handleTitleChange}
-                style={{
-                  backgroundColor: currentStyle.backgroundColor,
-                  color: currentStyle.color,
-                  border: 'none',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                  textAlign: 'left',
-                  flex: 1,
-                  marginLeft: '10px'
-                }}
-              />
-            </div>
-            {/* Move stars and checkbox here */}
-            <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px'}}>
-              <input
-                type="checkbox"
-                checked={popupSettings.enableStars}
-                onChange={handleStarToggle}
-                style={{ marginRight: '15px' }}
-              />
-              <div style={{ display: 'flex' }}>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <FaStar
-                    key={star}
-                    onClick={() => handleRatingChange(star)}
-                    style={{
-                      fontSize: '15px',
-                      cursor: 'pointer',
-                      color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
-                      marginRight: '1px',
-                    }}
-                  />
-                ))}
               </div>
             </div>
             <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
