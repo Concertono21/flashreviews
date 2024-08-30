@@ -5,7 +5,6 @@ const DashboardNavbar = ({
   handleAccountButtonClick,
   handleBillingClick,
   handleLogout,
-  router,
   session
 }) => (
   <div className="w-full bg-black text-white fixed top-0 z-10">
@@ -19,7 +18,9 @@ const DashboardNavbar = ({
           <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
             {session?.user?.email?.[0]}
           </span>
-          <span className="font-bold">Account ({session?.user?.email})</span>
+          <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis">
+            Account ({session?.user?.email})
+          </span>
           <svg
             className={`w-4 h-4 transition-transform ${accountMenuOpen ? 'rotate-180' : ''}`}
             xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +56,7 @@ const DashboardNavbar = ({
       </div>
 
       {/* Get Started Button on the Right */}
-      <div className="flex justify-end">
+      <div className="flex justify-end flex-shrink-0">
         <button
           className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={() => window.location.href = 'https://buy.stripe.com/test_6oEbJX2vY6mz12M4gh'}
