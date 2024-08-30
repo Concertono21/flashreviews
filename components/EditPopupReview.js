@@ -62,7 +62,7 @@ const EditPopupReview = ({
   const currentStyle = styleSettings[popupSettings?.style] || styleSettings["classic-white"];
 
   return (
-    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto mt-6`}>
+    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full sm:max-w-md mx-auto mt-6`}>
       <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Edit Popup</h2>
       <div className="bg-[#2C2C2E] p-4 rounded-lg shadow-lg">
         {popupSettings && (
