@@ -11,7 +11,6 @@ const AddWebsite = ({ addWebsite, websites, deleteWebsite }) => {
       alert('Website already exists or invalid input.');
     }
   };
-
   return (
     <div className="bg-[#1C1C1E] border border-[#2C2C2E] p-6 rounded-lg shadow-lg w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-4 text-gray-100">Add Website</h2>

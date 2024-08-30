@@ -504,13 +504,6 @@ export default function Dashboard() {
             />
           </div>
         </div>
-        <button
-          onClick={handleGetStartedClick}
-          disabled={stripeLoading}
-          className="mt-6 px-4 py-2 bg-green-500 text-white rounded shadow"
-        >
-          {stripeLoading ? 'Loading...' : 'Get Started'}
-        </button>
       </div>
       {isPreviewOpen && (
         <PreviewPopup
