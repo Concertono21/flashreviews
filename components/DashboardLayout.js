@@ -20,11 +20,14 @@ const DashboardLayout = ({ children }) => {
     setAccountMenuOpen(!accountMenuOpen);
   };
 
+  if (!session?.user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-black font-sans">
       <div className="w-full fixed top-0 bg-black z-50">
         <div className="flex items-center justify-between p-6 max-w-6xl mx-auto">
-          {/* Account Button on the Left */}
           <div className="relative">
             <button
               className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
@@ -63,8 +66,7 @@ const DashboardLayout = ({ children }) => {
               </div>
             )}
           </div>
-          
-          {/* Get Started Button on the Right */}
+
           <div className="flex justify-end">
             <button
               className="bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
@@ -80,7 +82,6 @@ const DashboardLayout = ({ children }) => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="pt-24 max-w-6xl mx-auto flex flex-col space-y-6">
         {session?.user?.stripePlan === null ? (
           <div className="flex justify-center">
