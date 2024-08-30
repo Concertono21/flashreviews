@@ -29,6 +29,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   const { data: session } = useSession();
 
   useEffect(() => {
+    console.log("Stripe Plan:", session?.user?.stripePlan); // Debugging log
     if (session?.user?.stripePlan) {
       fetch('/api/dashboard/popups', {
         method: 'GET',
