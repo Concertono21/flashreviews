@@ -63,7 +63,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto">
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto md:mx-0">
       <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Fancy a new FlashReviews?</h2>
       <p className="mb-4 text-[#F0F0F3]">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
       <input
@@ -74,7 +74,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
         className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
       />
       <button
-        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
+        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full hover:bg-[#2C2C2E]"
         onClick={handleAddWebsite}
       >
         Add Website
