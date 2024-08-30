@@ -19,7 +19,7 @@ export default NextAuth({
 
         if (user && await bcrypt.compare(credentials.password, user.password)) {
           const accessToken = jwt.sign({ id: user._id }, process.env.NEXTAUTH_SECRET, { expiresIn: '1h' });
-          return { id: user._id, email: user.email, accessToken };
+          return { id: user._id, email: user.email, accessToken, stripePlan: user.stripePlan || null };
         }
         return null;
       }
@@ -34,6 +34,7 @@ export default NextAuth({
       session.user.id = token.id;
       session.user.email = token.email;
       session.user.accessToken = token.accessToken;
+      session.user.stripePlan = token.stripePlan; // Include stripePlan in session
       return session;
     },
     async jwt({ token, user }) {
@@ -41,6 +42,7 @@ export default NextAuth({
         token.id = user.id;
         token.email = user.email;
         token.accessToken = user.accessToken;
+        token.stripePlan = user.stripePlan; // Include stripePlan in token
       }
       return token;
     }
