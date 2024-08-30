@@ -23,7 +23,6 @@ const styleSettings = {
 const PreviewPopup = ({ popupSettings, handleClose }) => {
   const [comments, setComments] = useState('');
   const [rating, setRating] = useState(0);
-  const [generatedCode, setGeneratedCode] = useState('');
 
   const handleStarHover = (star) => {
     setRating(star);
@@ -31,44 +30,6 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
 
   const handleStarClick = (star) => {
     setRating(star);
-  };
-
-  const handleSubmit = async () => {
-    const review = {
-      title: popupSettings.title,
-      rating,
-      comments,
-      website: popupSettings.website,
-    };
-
-    try {
-      const response = await fetch('/api/submit-review', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(review),
-      });
-
-      if (response.ok) {
-        alert('Review submitted successfully!');
-        setComments(''); // Clear the comments after submission
-        setRating(0); // Reset the rating after submission
-      } else {
-        const result = await response.json();
-        alert(result.message || 'Failed to submit review.');
-      }
-    } catch (error) {
-      console.error('Error submitting review:', error);
-      alert('An error occurred while submitting your review.');
-    }
-
-    handleClose();
-  };
-
-  const generateCode = () => {
-    const code = `
-      <script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${popupSettings.website}" data-style="${popupSettings.style}"></script>
-    `;
-    setGeneratedCode(code);
   };
 
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
@@ -245,53 +206,21 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
           }}
         ></textarea>
         <button
-          onClick={handleSubmit}
+          onClick={() => {}} // Disable the functionality by providing an empty onClick handler
           style={{
             backgroundColor: '#acacac',
             color: 'white',
             border: 'none',
             padding: '10px',
-            cursor: 'pointer',
+            cursor: 'not-allowed', // Change cursor to indicate it's not clickable
             borderRadius: '5px',
             fontSize: '14px',
             width: '100%',
           }}
+          disabled
         >
           Submit
         </button>
-        <button
-          onClick={generateCode}
-          style={{
-            backgroundColor: '#bafd00',
-            color: 'black',
-            border: 'none',
-            padding: '10px',
-            cursor: 'pointer',
-            borderRadius: '5px',
-            fontSize: '14px',
-            width: '100%',
-            marginTop: '10px',
-          }}
-        >
-          Generate Code
-        </button>
-        {generatedCode && (
-          <textarea
-            readOnly
-            value={generatedCode}
-            style={{
-              marginTop: '10px',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-              padding: '10px',
-              resize: 'none',
-              width: '100%',
-              height: '150px',
-              fontSize: '12px',
-              boxSizing: 'border-box',
-            }}
-          />
-        )}
       </div>
     </div>
   );
