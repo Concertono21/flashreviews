@@ -53,6 +53,11 @@ const EditPopupReview = ({
 
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
 
+  // If stripePlan is null, return null and don't render the component
+  if (!session?.user?.stripePlan) {
+    return null;
+  }
+
   return (
     <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-md mx-auto mt-6`}>
       <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Edit Popup</h2>
