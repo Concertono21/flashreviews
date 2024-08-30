@@ -22,14 +22,19 @@ const styleSettings = {
 
 const PreviewPopup = ({ popupSettings, handleClose }) => {
   const [comments, setComments] = useState('');
+  const [hoverRating, setHoverRating] = useState(0);
   const [rating, setRating] = useState(0);
 
   const handleStarHover = (star) => {
-    setRating(star);
+    setHoverRating(star);
   };
 
   const handleStarClick = (star) => {
     setRating(star);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverRating(0); // Reset hover rating when the mouse leaves the star area
   };
 
   const currentStyle = styleSettings[popupSettings.style] || styleSettings["classic-white"];
@@ -118,6 +123,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
           {popupSettings.enableStars && (
             <div
               className="rating"
+              onMouseLeave={handleMouseLeave} // Reset hover state when mouse leaves
               style={{
                 display: 'flex',
                 justifyContent: 'flex-start',
@@ -130,7 +136,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
                   onMouseEnter={() => handleStarHover(star)}
                   onClick={() => handleStarClick(star)}
                   className="w-4 h-4"
-                  fill={rating >= star ? 'gold' : 'gray'}
+                  fill={hoverRating >= star || rating >= star ? 'gold' : 'gray'}
                   viewBox="0 0 24 24"
                   stroke="none"
                   style={{
@@ -206,13 +212,13 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
           }}
         ></textarea>
         <button
-          onClick={() => {}} // Disable the functionality by providing an empty onClick handler
+          onClick={() => {}}
           style={{
             backgroundColor: '#acacac',
             color: 'white',
             border: 'none',
             padding: '10px',
-            cursor: 'not-allowed', // Change cursor to indicate it's not clickable
+            cursor: 'not-allowed',
             borderRadius: '5px',
             fontSize: '14px',
             width: '100%',
