@@ -35,7 +35,7 @@ const EditPopupReview = ({
 }) => {
   const [timing, setTiming] = useState(popupSettings?.timing || 3);
 
-  // Early return to prevent rendering if stripePlan is null
+  // Check if stripePlan is null, and if so, don't render the component
   if (!popupSettings || popupSettings.stripePlan === null) {
     return null;
   }
