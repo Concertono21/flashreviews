@@ -58,7 +58,7 @@ const DashboardNavbar = ({
       <div className="flex justify-end">
         <button
           className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
-          onClick={() => window.location.href = 'https://buy.stripe.com/00g7u09Eo3Dx7ja144'}
+          onClick={() => window.location.href = 'https://buy.stripe.com/test_6oEbJX2vY6mz12M4gh'}
         >
           Get Started
         </button>
