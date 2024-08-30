@@ -127,7 +127,7 @@ const EditPopupReview = ({
               />
             </div>
             {/* Move stars and checkbox here */}
-            <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px',marginleft: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px',marginleft: '-100px' }}>
               <input
                 type="checkbox"
                 checked={popupSettings.enableStars}
