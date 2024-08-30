@@ -82,7 +82,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginRight: '3px', // Space between logo and text
+              marginRight: '0px', // Space between logo and text
             }}
           >
             <Image
@@ -101,8 +101,8 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            maxWidth: popupSettings.logo ? 'calc(100% - 60px)' : 'calc(100% - 20px)', // Adjust width based on logo presence
-            paddingRight: '20px',
+            maxWidth: popupSettings.logo ? 'calc(100% - 60px)' : 'calc(100% - 25px)', // Adjust width based on logo presence
+            paddingRight: '25px',
           }}
         >
           <div
