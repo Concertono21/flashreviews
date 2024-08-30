@@ -68,7 +68,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: popupSettings.logo ? 'space-between' : 'flex-start',
-          padding: '10px',
+          padding: popupSettings.logo ? '10px' : '10px 20px', // Adjust padding if no logo
           position: 'relative',
         }}
       >
