@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head'; // Import Head from Next.js
 import EditPopupReview from '../components/EditPopupReview';
 import PreviewPopup from '../components/PreviewPopup';
 import ViewReviews from '../components/ViewReviews';
@@ -262,7 +263,7 @@ export default function Dashboard() {
                   border: none;
                   font-size: 20px;
                   cursor: pointer;
-                  color: #cecece;
+                                    color: #cecece;
                   flex: 0 0 auto;
                   align-self: flex-start;
                   padding: 0;
@@ -436,15 +437,15 @@ export default function Dashboard() {
     const res = await fetch('/api/create-checkout-session', {
       method: 'POST',
     });
-  
+
     const data = await res.json();
-  
+
     if (data.sessionId) {
       stripe.redirectToCheckout({ sessionId: data.sessionId });
     } else {
       console.error(data.error);
     }
-  
+
     setStripeLoading(false);
   };
 
@@ -458,6 +459,9 @@ export default function Dashboard() {
 
   return (
     <DashboardLayout>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-white">
           {loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}
@@ -469,7 +473,7 @@ export default function Dashboard() {
             <ViewReviews session={session} reviews={reviews} />
             <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
           </div>
-  
+
           {/* Right Column: Edit Popup and Popup History */}
           <div className="flex flex-col gap-4 flex-grow">
             <EditPopupReview
