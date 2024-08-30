@@ -128,7 +128,7 @@ const EditPopupReview = ({
                     marginBottom: '10px', // Add some space after the title
                   }}
                 />
-                <div style={{ display: 'flex', alignItems: 'center', marginTop: '10px'}}>
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: '-5px' }}> {/* Adjusted marginTop */}
                   <input
                     type="checkbox"
                     checked={popupSettings.enableStars}
