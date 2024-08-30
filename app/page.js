@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-sync-scripts */
+
 "use client";
 
 import Head from 'next/head';
@@ -15,7 +17,7 @@ export default function Home() {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://flashreviews.co/embed.js" data-website="https://concertono21.tumblr.com"></script>
+        <script src="https://flashreviews.co/embed.js" data-website="https://www.flashreviews.co"></script>
       </Head>
       <Navbar />
       <Hero />
