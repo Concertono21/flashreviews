@@ -102,7 +102,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
             flexDirection: 'column',
             alignItems: 'flex-start',
             maxWidth: popupSettings.logo ? 'calc(100% - 60px)' : 'calc(100% - 20px)', // Adjust width based on logo presence
-            paddingRight: '15px',
+            paddingRight: '20px',
           }}
         >
           <div
