@@ -6,20 +6,20 @@ import { FaClock, FaGlobe } from 'react-icons/fa';
 const styleSettings = {
   "classic-white": {
     backgroundColor: "#fff",
-    color: "#000"
+    color: "#000",
   },
   "dark-mode": {
     backgroundColor: "#333",
-    color: "#fff"
+    color: "#fff",
   },
   "style4": {
     backgroundColor: "#ffcacb",
-    color: "#000"
+    color: "#000",
   },
   "style5": {
     backgroundColor: "#ffcd9c",
-    color: "#000"
-  }
+    color: "#000",
+  },
 };
 
 const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
@@ -29,7 +29,6 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    console.log("Stripe Plan:", session?.user?.stripePlan);
     if (session?.user?.stripePlan) {
       fetch('/api/dashboard/popups', {
         method: 'GET',
@@ -38,9 +37,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
         },
       })
         .then(res => res.json())
-        .then(data => {
-          setPopupHistory(data.popups);
-        })
+        .then(data => setPopupHistory(data.popups))
         .catch(err => console.error('Failed to fetch popups:', err));
     }
   }, [session]);
@@ -56,15 +53,6 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
   const filteredPopups = selectedWebsite === 'all'
     ? popupHistory
     : popupHistory.filter(popup => popup.website === selectedWebsite);
-
-  const handleGenerateCode = () => {
-    if (selectedWebsite === 'all') {
-      alert('Please select a website to generate the code.');
-    } else {
-      const code = `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${selectedWebsite}"></script>`;
-      setGeneratedCode(code);
-    }
-  };
 
   const handleDelete = async (id) => {
     try {
@@ -88,13 +76,9 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
     }
   };
 
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(generatedCode);
-    alert('Code copied to clipboard!');
-  };
-
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full max-w-full mx-auto mt-6">
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full max-w-full mx-auto mt-4">
+      {/* Reduced the margin-top from mt-6 to mt-4 */}
       <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-[#F0F0F3]">Active Popups</h2>
       <select
         className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
