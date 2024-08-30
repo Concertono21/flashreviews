@@ -83,28 +83,32 @@ const DashboardLayout = ({ children }) => {
       </div>
 
       <div className="pt-24 max-w-6xl mx-auto flex flex-col space-y-6">
-        {session?.user?.stripePlan === null ? (
-          <div className="flex justify-center">
-            {children[0]} {/* Website Manager */}
-          </div>
-        ) : (
-          <>
-            <div className="flex justify-center">
-              {children[0]} {/* View Reviews */}
-            </div>
-
-            <div className="flex flex-col md:flex-row md:space-x-6">
-              <div className="flex-grow md:w-1/2 space-y-6">
-                {children[1]} {/* Fancy a New Popup */}
-              </div>
-              <div className="flex-grow md:w-1/2 space-y-6">
-                {children[2]} {/* Edit Popup */}
-                {children[3]} {/* Active Popups */}
-              </div>
-            </div>
-          </>
-        )}
+  {session?.user?.stripePlan === null ? (
+    <div className="flex justify-center">
+      {children[0]} {/* Website Manager */}
+    </div>
+  ) : (
+    <>
+      <div className="flex flex-col md:flex-row md:space-x-6">
+        <div className="flex-grow md:w-1/2 space-y-6">
+          {children[0]} {/* View Reviews */}
+        </div>
+        <div className="flex-grow md:w-1/2 space-y-6">
+          {children[1]} {/* Fancy a New Popup */}
+        </div>
       </div>
+
+      <div className="flex flex-col md:flex-row md:space-x-6">
+        <div className="flex-grow md:w-1/2 space-y-6">
+          {children[2]} {/* Edit Popup */}
+        </div>
+        <div className="flex-grow md:w-1/2 space-y-6">
+          {children[3]} {/* Active Popups */}
+        </div>
+      </div>
+    </>
+  )}
+</div>
     </div>
   );
 };
