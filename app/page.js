@@ -1,8 +1,5 @@
-"use client";
-
-import { useEffect } from 'react';
-import Head from 'next/head';
-import Script from 'next/script'; // Import Script from next/script
+import Script from 'next/script';
+import Head from 'next/head'; // Import Head from Next.js
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -13,26 +10,15 @@ import Faq from '../components/Faq';
 import GetStartedSection from '../components/GetStartedSection';
 
 export default function Home() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.flashreviews.co/embed.js';
-    script.setAttribute('data-website', 'https://www.flashreviews.co');
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Script
-        src="https://flashreviews.co/embed.js"
+      <Script 
+        src="https://www.flashreviews.co/embed.js"
+        strategy="afterInteractive" // Ensures that the script is loaded after the page is interactive
         data-website="https://www.flashreviews.co"
-        strategy="lazyOnload" // Load the script lazily, when the page is fully loaded
       />
       <Navbar />
       <Hero />
