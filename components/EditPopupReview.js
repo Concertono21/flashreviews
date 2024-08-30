@@ -33,7 +33,13 @@ const EditPopupReview = ({
   setPopupSettings,
   websites,
 }) => {
-  // Ensure popupSettings is not undefined before trying to access its properties
+  const { data: session } = useSession(); // Import and use useSession from next-auth/react
+
+  // Show nothing if stripePlan is null
+  if (!session?.user?.stripePlan) {
+    return null;
+  }
+
   const [timing, setTiming] = useState(popupSettings?.timing || 3);
 
   const handleTimingChangeInternal = (e) => {
@@ -52,7 +58,7 @@ const EditPopupReview = ({
     setPopupSettings({
       ...popupSettings,
       enableStars: newRatingEnabled,
-      rating: newRatingEnabled ? popupSettings?.rating : 0,
+      rating: newRatingEnabled ? popupSettings.rating : 0,
     });
   };
 
