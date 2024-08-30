@@ -463,15 +463,15 @@ export default function Dashboard() {
           {loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}
         </h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full min-h-[500px]">
           {/* Left Column: View Reviews and Website Manager */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 flex-grow">
             <ViewReviews session={session} reviews={reviews} />
             <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
           </div>
   
           {/* Right Column: Edit Popup and Popup History */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 flex-grow">
             <EditPopupReview
               popupSettings={popupSettings}
               handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
