@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa';
+import WebsiteManager from '../components/WebsiteManager'; // Assuming WebsiteManager is in the components folder
 
 const DashboardLayout = ({ children }) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [stripePlan, setStripePlan] = useState(null);
+
+  useEffect(() => {
+    // Assuming stripePlan is stored in the session.user
+    // Modify this part if you need to fetch stripePlan from an API
+    if (session && session.user) {
+      setStripePlan(session.user.stripePlan);
+    }
+  }, [session]);
 
   const handleLogout = () => {
     router.push('/');
@@ -82,21 +92,30 @@ const DashboardLayout = ({ children }) => {
 
       {/* Main Content */}
       <div className="pt-24 max-w-6xl mx-auto flex flex-col space-y-6">
-        {/* View Reviews Section - Independent */}
-        <div className="flex justify-center">
-          {children[0]}
-        </div>
+        {/* Check if stripePlan is null */}
+        {stripePlan === null ? (
+          <div className="flex justify-center">
+            <WebsiteManager /> {/* Render WebsiteManager if stripePlan is null */}
+          </div>
+        ) : (
+          <>
+            {/* View Reviews Section - Independent */}
+            <div className="flex justify-center">
+              {children[0]}
+            </div>
 
-        {/* Other Sections */}
-        <div className="flex flex-col md:flex-row md:space-x-6">
-          <div className="flex-grow md:w-1/2 space-y-6">
-            {children[1]} {/* Fancy a New Popup */}
-          </div>
-          <div className="flex-grow md:w-1/2 space-y-6">
-            {children[2]} {/* Edit Popup */}
-            {children[3]} {/* Active Popups */}
-          </div>
-        </div>
+            {/* Other Sections */}
+            <div className="flex flex-col md:flex-row md:space-x-6">
+              <div className="flex-grow md:w-1/2 space-y-6">
+                {children[1]} {/* Fancy a New Popup */}
+              </div>
+              <div className="flex-grow md:w-1/2 space-y-6">
+                {children[2]} {/* Edit Popup */}
+                {children[3]} {/* Active Popups */}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
