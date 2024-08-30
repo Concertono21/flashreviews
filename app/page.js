@@ -15,6 +15,7 @@ export default function Home() {
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://flashreviews.co/embed.js" data-website="https://concertono21.tumblr.com"></script>
       </Head>
       <Navbar />
       <Hero />
