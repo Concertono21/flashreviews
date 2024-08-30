@@ -472,7 +472,7 @@ setError('Failed to save popup settings. Please try again.');
           </div>
   
           {/* Right Column: Edit Popup and Popup History */}
-          <div className="flex flex-col gap-4 flex-grow">
+          <div className="flex flex-col gap-2 flex-grow"> {/* Adjusted gap to 2 */}
             <EditPopupReview
               popupSettings={popupSettings}
               handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
