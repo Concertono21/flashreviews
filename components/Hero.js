@@ -1,3 +1,5 @@
+"use client"; // Add this at the top of the file
+
 import Link from 'next/link';
 import { useState } from 'react';
 

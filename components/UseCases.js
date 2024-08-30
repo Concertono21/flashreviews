@@ -1,3 +1,5 @@
+"use client"; // Add this at the top of the file
+
 import Image from 'next/image';
 import { useState } from 'react';
 
