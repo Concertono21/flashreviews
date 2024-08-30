@@ -260,7 +260,7 @@ export default function Dashboard() {
                                                                 <button className="close-button" style="
                   background: none;
                   border: none;
-                                    font-size: 20px;
+                                                                        font-size: 20px;
                   cursor: pointer;
                   color: #cecece;
                   flex: 0 0 auto;
