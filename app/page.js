@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
+import Head from 'next/head';
 import Script from 'next/script';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
@@ -25,9 +26,14 @@ export default function Home() {
 
   return (
     <div>
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
+      </Head>
+      <Script 
+        src="https://www.flashreviews.co/embed.js"
+        strategy="afterInteractive" // Load after page becomes interactive
+        data-website="https://www.flashreviews.co"
+      />
       <Navbar />
       <Hero />
       <Marketing />
@@ -38,34 +44,22 @@ export default function Home() {
       <footer className="bg-black text-white text-center py-4">
         <ul className="flex justify-center space-x-4">
           <li>
-            <Link href="#home">
-              Home
-            </Link>
+            <Link href="#home">Home</Link>
           </li>
           <li>
-            <Link href="#pricing">
-              Pricing
-            </Link>
+            <Link href="#pricing">Pricing</Link>
           </li>
           <li>
-            <Link href="#faq">
-              FAQ
-            </Link>
+            <Link href="#faq">FAQ</Link>
           </li>
           <li>
-            <Link href="/login">
-              Get Started
-            </Link>
+            <Link href="/login">Get Started</Link>
           </li>
         </ul>
         <p className="mt-4">
-          <Link href="/terms">
-            Terms of Service
-          </Link> | <Link href="/privacy">
-            Privacy Policy
-          </Link>
+          <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
         </p>
       </footer>
     </div>
   );
-} 
+}
