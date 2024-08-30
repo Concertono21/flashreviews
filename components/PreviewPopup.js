@@ -67,7 +67,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start', // Always justify content to start
+          justifyContent: 'space-between',
           padding: '10px',
           position: 'relative',
         }}
@@ -82,7 +82,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginRight: '10px', // Always give space to text if logo is present
+              marginRight: '10px', // Space between logo and text
             }}
           >
             <Image
@@ -101,7 +101,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            maxWidth: 'calc(100% - 50px)', // Adjust to take into account the logo space
+            maxWidth: popupSettings.logo ? 'calc(100% - 60px)' : 'calc(100% - 30px)', // Adjust width based on logo presence
             paddingRight: '30px',
           }}
         >
@@ -115,7 +115,6 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               wordWrap: 'break-word',
               width: '100%',
               color: currentStyle.color,
-              marginLeft: popupSettings.logo ? '0' : '10px', // Add space if no logo
             }}
           >
             {popupSettings.title}
@@ -128,7 +127,6 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
                 display: 'flex',
                 justifyContent: 'flex-start',
                 marginTop: '5px',
-                marginLeft: popupSettings.logo ? '0' : '10px', // Align stars with title
               }}
             >
               {[1, 2, 3, 4, 5].map((star) => (
