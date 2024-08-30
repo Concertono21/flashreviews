@@ -10,7 +10,7 @@ const DashboardNavbar = ({
   <div className="w-full bg-black text-white fixed top-0 z-10">
     <nav className="flex items-center justify-between p-4 max-w-6xl mx-auto">
       {/* Account Button on the Left */}
-      <div className="relative flex-grow">
+      <div className="relative flex flex-grow">
         <button
           className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={handleAccountButtonClick}
@@ -18,7 +18,7 @@ const DashboardNavbar = ({
           <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
             {session?.user?.email?.[0]}
           </span>
-          <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis">
+          <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-xs">
             Account ({session?.user?.email})
           </span>
           <svg
@@ -56,7 +56,7 @@ const DashboardNavbar = ({
       </div>
 
       {/* Get Started Button on the Right */}
-      <div className="flex justify-end flex-shrink-0">
+      <div className="flex justify-end">
         <button
           className="bg-transparent text-white border-2 border-[#bafd00] px-4 py-2 rounded-full"
           onClick={() => window.location.href = 'https://buy.stripe.com/test_6oEbJX2vY6mz12M4gh'}
