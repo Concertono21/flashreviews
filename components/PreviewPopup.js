@@ -128,7 +128,6 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
                 display: 'flex',
                 justifyContent: 'flex-start',
                 marginTop: '5px',
-                marginRight: '7px',
               }}
             >
               {[1, 2, 3, 4, 5].map((star) => (
@@ -144,7 +143,7 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
                     width: '16px',
                     height: '16px',
                     cursor: 'pointer',
-                    marginRight: '7px',
+                    marginRight: '5px',
                   }}
                 >
                   <path
