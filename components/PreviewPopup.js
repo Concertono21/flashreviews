@@ -67,25 +67,25 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
         style={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: popupSettings.logo ? 'space-between' : 'flex-start',
           padding: '10px',
           position: 'relative',
         }}
       >
-        <div
-          className="notification-icon"
-          style={{
-            flex: '0 0 auto',
-            width: '40px',
-            height: '40px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginRight: '5px',
-            marginLeft: '10px',
-          }}
-        >
-          {popupSettings.logo && (
+        {popupSettings.logo && (
+          <div
+            className="notification-icon"
+            style={{
+              flex: '0 0 auto',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginRight: '5px',
+              marginLeft: '10px',
+            }}
+          >
             <Image
               src={popupSettings.logo}
               alt="Logo"
@@ -93,8 +93,8 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
               height={40}
               style={{ objectFit: 'contain' }}
             />
-          )}
-        </div>
+          </div>
+        )}
         <div
           className="notification-title-container"
           style={{
@@ -102,8 +102,8 @@ const PreviewPopup = ({ popupSettings, handleClose }) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            maxWidth: 'calc(100% - 40px)',
-            paddingRight: '30px',
+            maxWidth: popupSettings.logo ? 'calc(100% - 40px)' : '100%',
+            paddingRight: popupSettings.logo ? '30px' : '0',
           }}
         >
           <div
