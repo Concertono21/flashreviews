@@ -63,8 +63,8 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full sm:max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Fancy a new FlashReviews?</h2>
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-full mx-auto">
+      <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-[#F0F0F3]">Fancy a new FlashReviews?</h2>
       <p className="mb-4 text-[#F0F0F3]">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
       <input
         type="text"
@@ -74,17 +74,17 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
         className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
       />
       <button
-        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full hover:bg-[#2C2C2E]"
+        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full sm:w-auto hover:bg-[#2C2C2E]"
         onClick={handleAddWebsite}
       >
         Add Website
       </button>
-      <div className="mt-4">
-        <h3 className="text-lg font-bold text-[#F0F0F3]">Websites</h3>
+      <div className="mt-2 sm:mt-4">
+        <h3 className="text-lg sm:text-base font-bold text-[#F0F0F3]">Websites</h3>
         <ul className="space-y-4 mt-2">
           {websites.map((site, index) => (
             <li key={index} className="text-[#F0F0F3] flex justify-between items-center">
-              <span className="flex-grow">{typeof site.website === 'string' ? site.website : JSON.stringify(site.website)}</span>
+              <span className="flex-grow overflow-hidden text-ellipsis whitespace-nowrap">{typeof site.website === 'string' ? site.website : JSON.stringify(site.website)}</span>
               <button
                 className="border border-black text-[#F0F0F3] px-4 py-2 w-24 rounded-sm ml-4 transition-all duration-200 bg-transparent hover:bg-gray-300 hover:border-gray-300"
                 onClick={() => handleDeleteWebsite(site.website)}
