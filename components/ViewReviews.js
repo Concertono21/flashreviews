@@ -45,7 +45,7 @@ const ViewReviews = () => {
   }
 
   return (
-    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full sm:max-w-md mx-auto mt-6`}>
+    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-4 sm:p-6 rounded-lg shadow-md w-full max-w-full mx-auto mt-4 sm:mt-6`}>
       <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">View Reviews</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {reviews.length > 0 ? (
