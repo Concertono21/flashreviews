@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
     "scripts": {
-      "prebuild": "node components/scripts/fetchAllowedOrigins.js",
+      "prebuild": "node scripts/fetchAllowedOrigins.js",
       "dev": "next dev",
       "build": "next build",
       "start": "next start",
