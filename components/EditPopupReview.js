@@ -33,14 +33,12 @@ const EditPopupReview = ({
   setPopupSettings,
   websites,
 }) => {
-  const { data: session } = useSession(); // Import and use useSession from next-auth/react
+  const [timing, setTiming] = useState(popupSettings?.timing || 3);
 
-  // Show nothing if stripePlan is null
-  if (!session?.user?.stripePlan) {
+  // Early return to prevent rendering if stripePlan is null
+  if (!popupSettings || popupSettings.stripePlan === null) {
     return null;
   }
-
-  const [timing, setTiming] = useState(popupSettings?.timing || 3);
 
   const handleTimingChangeInternal = (e) => {
     const newTiming = e.target.value;
