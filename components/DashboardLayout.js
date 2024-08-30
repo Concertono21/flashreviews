@@ -82,7 +82,6 @@ const DashboardLayout = ({ children }) => {
 
       {/* Main Content */}
       <div className="pt-24 max-w-6xl mx-auto flex flex-col space-y-6">
-        {/* View Reviews Section - Independent */}
         {session?.user?.stripePlan === null ? (
           <div className="flex justify-center">
             {children[0]} {/* Website Manager */}
@@ -93,7 +92,6 @@ const DashboardLayout = ({ children }) => {
               {children[0]} {/* View Reviews */}
             </div>
 
-            {/* Other Sections */}
             <div className="flex flex-col md:flex-row md:space-x-6">
               <div className="flex-grow md:w-1/2 space-y-6">
                 {children[1]} {/* Fancy a New Popup */}
