@@ -6,20 +6,20 @@ import { FaClock, FaGlobe } from 'react-icons/fa';
 const styleSettings = {
   "classic-white": {
     backgroundColor: "#fff",
-    color: "#000",
+    color: "#000"
   },
   "dark-mode": {
     backgroundColor: "#333",
-    color: "#fff",
+    color: "#fff"
   },
   "style4": {
     backgroundColor: "#ffcacb",
-    color: "#000",
+    color: "#000"
   },
   "style5": {
     backgroundColor: "#ffcd9c",
-    color: "#000",
-  },
+    color: "#000"
+  }
 };
 
 const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
@@ -48,11 +48,22 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
 
   const handleWebsiteChange = (e) => {
     setSelectedWebsite(e.target.value);
+    setGeneratedCode(''); // Clear code when changing website
   };
 
-  const filteredPopups = selectedWebsite === 'all'
-    ? popupHistory
-    : popupHistory.filter(popup => popup.website === selectedWebsite);
+  const handleGenerateCode = () => {
+    if (selectedWebsite === 'all') {
+      alert('Please select a website to generate the code.');
+    } else {
+      const code = `<script src="https://flashreviews.co/embed.js" data-website="${selectedWebsite}"></script>`;
+      setGeneratedCode(code);
+    }
+  };
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(generatedCode);
+    alert('Code copied to clipboard!');
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -76,9 +87,12 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
     }
   };
 
+  const filteredPopups = selectedWebsite === 'all'
+    ? popupHistory
+    : popupHistory.filter(popup => popup.website === selectedWebsite);
+
   return (
     <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full max-w-full mx-auto mt-4">
-      {/* Reduced the margin-top from mt-6 to mt-4 */}
       <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-[#F0F0F3]">Active Popups</h2>
       <select
         className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
@@ -90,6 +104,29 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           <option key={index} value={website.website}>{website.website}</option>
         ))}
       </select>
+
+      <button
+        onClick={handleGenerateCode}
+        className="bg-blue-500 text-white px-4 py-2 rounded mb-4 w-full"
+      >
+        Generate Embed Code
+      </button>
+
+      {generatedCode && (
+        <div className="bg-[#2C2C2E] p-4 rounded-lg mb-4">
+          <p className="text-sm text-[#F0F0F3] mb-2">Embed Code:</p>
+          <div className="bg-[#1C1C1E] p-2 rounded-lg text-[#F0F0F3] break-all">
+            <code>{generatedCode}</code>
+          </div>
+          <button
+            onClick={handleCopyCode}
+            className="bg-green-500 text-white px-4 py-2 rounded mt-2 w-full"
+          >
+            Copy to Clipboard
+          </button>
+        </div>
+      )}
+
       <div className="bg-[#2C2C2E] p-4 rounded-lg">
         {Array.isArray(filteredPopups) && filteredPopups.length > 0 ? (
           filteredPopups.map((popup) => (
