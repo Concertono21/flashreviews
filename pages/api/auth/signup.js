@@ -24,9 +24,15 @@ const handler = async (req, res) => {
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
+      // New fields to initialize when creating a user
       const newUser = {
         email,
         password: hashedPassword,
+        stripePlan: null, // Default value for stripePlan, indicating no plan
+        // Add other fields as needed
+        createdAt: new Date(), // For example, tracking when the user was created
+        updatedAt: new Date(), // For example, tracking when the user was last updated
+        isActive: true, // You might have a field to track if the user is active
       };
 
       const result = await db.collection('users').insertOne(newUser);
