@@ -11,7 +11,6 @@ const ViewReviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        console.log('Fetching new reviews...');
         const response = await fetch('/api/dashboard/reviews?new=true', {
           method: 'GET',
           headers: {
@@ -21,15 +20,12 @@ const ViewReviews = () => {
 
         if (!response.ok) {
           const errorData = await response.json();
-          console.error('API Response Error:', errorData);
           throw new Error('Failed to fetch reviews');
         }
 
         const data = await response.json();
-        console.log('Fetched New Reviews Data:', data);
         setReviews(data.reviews);
       } catch (error) {
-        console.error('Error:', error);
         setError('Failed to load reviews. Please try again.');
       }
     };
@@ -39,14 +35,21 @@ const ViewReviews = () => {
     }
   }, [session]);
 
-  // If stripePlan is null, return null and don't render the component
   if (!session?.user?.stripePlan) {
     return null;
   }
 
   return (
-    <div className={`bg-[#1C1C1E] border border-[#3A3A3C] p-4 sm:p-6 rounded-lg shadow-md w-full max-w-full mx-auto mt-4 sm:mt-6`}>
-      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">View Reviews</h2>
+    <div
+      className="bg-[#1C1C1E] border border-[#3A3A3C] p-4 rounded-lg shadow-md mx-auto mt-4"
+      style={{
+        width: '375px',  // Fixed width for iPhone
+        height: '667px',  // Fixed height for iPhone 6/7/8
+        overflowY: 'scroll', // Allow scrolling for overflow content
+        maxWidth: '100%', 
+      }}
+    >
+      <h2 className="text-xl font-semibold mb-4 text-[#F0F0F3]">View Reviews</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {reviews.length > 0 ? (
         <ul>
@@ -82,6 +85,9 @@ const ViewReviews = () => {
       )}
       <button
         className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full mt-4"
+        style={{
+          fontSize: '14px',
+        }}
         onClick={() => router.push('/dashboard/all-reviews')}
       >
         View All Reviews
