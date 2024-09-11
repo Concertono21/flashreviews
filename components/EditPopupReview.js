@@ -62,190 +62,196 @@ const EditPopupReview = ({
   const currentStyle = styleSettings[popupSettings?.style] || styleSettings["classic-white"];
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-4 rounded-lg shadow-lg w-full sm:max-w-lg mx-auto mt-6">  {/* Adjusted max-width */}
-  <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Edit Popup</h2>
-  <div className="bg-[#2C2C2E] p-4 rounded-lg shadow-lg">
-    {popupSettings && (
-      <div
-        id="editPopup"
-        className={popupSettings.style}
-        style={{
-          backgroundColor: currentStyle.backgroundColor,
-          color: currentStyle.color,
-          borderRadius: '20px',
-          boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '10px',
-          width: '100%',  // Ensure the popup takes the full width of its container
-        }}
-      >
-        {/* Header */}
-        <div
-          className="notification-header"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '5px',
-            position: 'relative',
-          }}
-        >
-          <div style={{ width: '50px', height: '50px', marginRight: '10px' }}>
-            <label htmlFor="popupLogo" style={{ cursor: 'pointer', display: 'block' }}>
-              {!popupSettings.logo && (
-                <FaCloudUploadAlt style={{ color: currentStyle.color, fontSize: '24px', width: '100%', height: '100%' }} />
-              )}
-              {popupSettings.logo && (
-                <div onClick={() => document.getElementById('popupLogo').click()}>
-                  <Image
-                    src={popupSettings.logo}
-                    alt="Logo"
-                    width={50}
-                    height={50}
-                    style={{ objectFit: 'contain' }}
-                  />
-                </div>
-              )}
-            </label>
-            <input
-              type="file"
-              id="popupLogo"
-              onChange={handleLogoChange}
-              style={{ display: 'none' }}
-            />
-          </div>
-          <div style={{ flex: 1 }}>
-            <input
-              type="text"
-              value={popupSettings.title}
-              onChange={handleTitleChange}
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-4 rounded-lg shadow-lg mx-auto mt-6"
+      style={{
+        width: '375px',  // Fixed width for iPhone screen
+        maxWidth: '100%',
+        overflowY: 'auto'
+      }}
+    >
+      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Edit Popup</h2>
+      <div className="bg-[#2C2C2E] p-4 rounded-lg shadow-lg">
+        {popupSettings && (
+          <div
+            id="editPopup"
+            className={popupSettings.style}
+            style={{
+              backgroundColor: currentStyle.backgroundColor,
+              color: currentStyle.color,
+              borderRadius: '20px',
+              boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '10px',
+              width: '100%',
+            }}
+          >
+            {/* Header */}
+            <div
+              className="notification-header"
               style={{
-                backgroundColor: currentStyle.backgroundColor,
-                color: currentStyle.color,
-                border: 'none',
-                fontWeight: 'bold',
-                fontSize: '14px',
-                textAlign: 'left',
-                width: '100%',
-                marginBottom: '10px',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '5px',
+                position: 'relative',
               }}
-            />
-            <div style={{ display: 'flex', alignItems: 'center', marginTop: '-5px' }}>
-              <input
-                type="checkbox"
-                checked={popupSettings.enableStars}
-                onChange={handleStarToggle}
-                style={{ marginRight: '15px' }}
-              />
-              <div style={{ display: 'flex' }}>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <FaStar
-                    key={star}
-                    onClick={() => handleRatingChange(star)}
-                    style={{
-                      fontSize: '15px',
-                      cursor: 'pointer',
-                      color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
-                      marginRight: '1px',
-                    }}
+            >
+              <div style={{ width: '50px', height: '50px', marginRight: '10px' }}>
+                <label htmlFor="popupLogo" style={{ cursor: 'pointer', display: 'block' }}>
+                  {!popupSettings.logo && (
+                    <FaCloudUploadAlt style={{ color: currentStyle.color, fontSize: '24px', width: '100%', height: '100%' }} />
+                  )}
+                  {popupSettings.logo && (
+                    <div onClick={() => document.getElementById('popupLogo').click()}>
+                      <Image
+                        src={popupSettings.logo}
+                        alt="Logo"
+                        width={50}
+                        height={50}
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </div>
+                  )}
+                </label>
+                <input
+                  type="file"
+                  id="popupLogo"
+                  onChange={handleLogoChange}
+                  style={{ display: 'none' }}
+                />
+              </div>
+              <div style={{ flex: 1 }}>
+                <input
+                  type="text"
+                  value={popupSettings.title}
+                  onChange={handleTitleChange}
+                  style={{
+                    backgroundColor: currentStyle.backgroundColor,
+                    color: currentStyle.color,
+                    border: 'none',
+                    fontWeight: 'bold',
+                    fontSize: '14px',
+                    textAlign: 'left',
+                    width: '100%',
+                    marginBottom: '10px',
+                  }}
+                />
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: '-5px' }}>
+                  <input
+                    type="checkbox"
+                    checked={popupSettings.enableStars}
+                    onChange={handleStarToggle}
+                    style={{ marginRight: '15px' }}
                   />
-                ))}
+                  <div style={{ display: 'flex' }}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <FaStar
+                        key={star}
+                        onClick={() => handleRatingChange(star)}
+                        style={{
+                          fontSize: '15px',
+                          cursor: 'pointer',
+                          color: popupSettings.enableStars ? (star <= popupSettings.rating ? 'gold' : 'grey') : 'grey',
+                          marginRight: '1px',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Content */}
-        <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-            <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-              <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
-              <input
-                type="number"
-                id="popupTiming"
-                value={timing}
-                onChange={handleTimingChangeInternal}
-                style={{
-                  width: '50px',
-                  padding: '2px 5px',
-                  textAlign: 'center',
-                  backgroundColor: currentStyle.backgroundColor,
-                  color: currentStyle.color,
-                  border: 'none',
-                  borderBottom: '1px solid grey'
-                }}
-                min="0"
-              />
+            {/* Content */}
+            <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+                  <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
+                  <input
+                    type="number"
+                    id="popupTiming"
+                    value={timing}
+                    onChange={handleTimingChangeInternal}
+                    style={{
+                      width: '50px',
+                      padding: '2px 5px',
+                      textAlign: 'center',
+                      backgroundColor: currentStyle.backgroundColor,
+                      color: currentStyle.color,
+                      border: 'none',
+                      borderBottom: '1px solid grey'
+                    }}
+                    min="0"
+                  />
+                </div>
+                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
+                  <FaPaintBrush style={{ color: currentStyle.color, marginRight: '5px' }} />
+                  <select
+                    id="popupStyle"
+                    value={popupSettings.style || 'classic-white'}
+                    onChange={handleStyleChange}
+                    style={{
+                      padding: '2px',
+                      fontSize: '12px',
+                      backgroundColor: currentStyle.backgroundColor,
+                      color: currentStyle.color,
+                      border: 'none',
+                      borderBottom: '1px solid grey'
+                    }}
+                  >
+                    <option value="classic-white">Classic White</option>
+                    <option value="dark-mode">Dark Mode</option>
+                    <option value="apple-notification">Apple Notification</option>
+                    <option value="style4">Style 4</option>
+                    <option value="style5">Style 5</option>
+                  </select>
+                </div>
+              </div>
+              <div className="mb-2" style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                <FaGlobe style={{ color: currentStyle.color, marginRight: '5px' }} />
+                <select
+                  id="popupWebsite"
+                  value={popupSettings.website || ''}
+                  onChange={handleWebsiteChange}
+                  style={{
+                    width: '100%',
+                    padding: '2px',
+                    fontSize: '12px',
+                    backgroundColor: currentStyle.backgroundColor,
+                    color: currentStyle.color,
+                    border: 'none',
+                    borderBottom: '1px solid grey'
+                  }}
+                >
+                  <option value="" disabled>Select a website</option>
+                  {websites.map((websiteObj, index) => (
+                    <option key={index} value={websiteObj.website}>
+                      {websiteObj.website}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="flex space-x-2 w-full">
+                <button
+                  className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
+                  onClick={handleSavePopupSettings}
+                  style={{ fontSize: '12px' }}
+                >
+                  Save Settings
+                </button>
+                <button
+                  className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
+                  onClick={handlePreviewPopup}
+                  style={{ fontsize: '12px' }}
+                  >
+                    Preview Popup
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-              <FaPaintBrush style={{ color: currentStyle.color, marginRight: '5px' }} />
-              <select
-                id="popupStyle"
-                value={popupSettings.style || 'classic-white'}
-                onChange={handleStyleChange}
-                style={{
-                  padding: '2px',
-                  fontSize: '12px',
-                  backgroundColor: currentStyle.backgroundColor,
-                  color: currentStyle.color,
-                  border: 'none',
-                  borderBottom: '1px solid grey'
-                }}
-              >
-                <option value="classic-white">Classic White</option>
-                <option value="dark-mode">Dark Mode</option>
-                <option value="apple-notification">Apple Notification</option>
-                <option value="style4">Style 4</option>
-                <option value="style5">Style 5</option>
-              </select>
-            </div>
-          </div>
-          <div className="mb-2" style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            <FaGlobe style={{ color: currentStyle.color, marginRight: '5px' }} />
-            <select
-              id="popupWebsite"
-              value={popupSettings.website || ''}
-              onChange={handleWebsiteChange}
-              style={{
-                width: '100%',
-                padding: '2px',
-                fontSize: '12px',
-                backgroundColor: currentStyle.backgroundColor,
-                color: currentStyle.color,
-                border: 'none',
-                borderBottom: '1px solid grey'
-              }}
-            >
-              <option value="" disabled>Select a website</option>
-              {websites.map((websiteObj, index) => (
-                <option key={index} value={websiteObj.website}>
-                  {websiteObj.website}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="flex space-x-2 w-full">
-            <button
-              className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
-              onClick={handleSavePopupSettings}
-              style={{ fontSize: '12px' }}
-            >
-              Save Settings
-            </button>
-            <button
-              className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
-              onClick={handlePreviewPopup}
-              style={{ fontSize: '12px' }}
-            >
-              Preview Popup
-            </button>
-          </div>
+          )}
         </div>
       </div>
-    )}
-  </div>
-</div>
-  );
-};
-
-export default EditPopupReview;
+    );
+  };
+  
+  export default EditPopupReview;

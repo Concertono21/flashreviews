@@ -92,7 +92,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
     : popupHistory.filter(popup => popup.website === selectedWebsite);
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full max-w-full mx-auto mt-4">
+    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-lg w-full max-w-[375px] mx-auto mt-4">
       <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-[#F0F0F3]">Active Popups</h2>
       <select
         className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
