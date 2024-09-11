@@ -139,19 +139,20 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
               }}
             >
               <button
-                className="absolute text-[#cecece] hover:text-black transition-colors"
-                onClick={() => handleDelete(popup._id)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '20px',
-                  cursor: 'pointer',
-                  top: '-10px',
-                  left: '165px',
-                }}
-              >
-                &times;
-              </button>
+  className="absolute text-[#cecece] hover:text-black transition-colors"
+  onClick={() => handleDelete(popup._id)}
+  style={{
+    background: 'none',
+    border: 'none',
+    fontSize: '20px',
+    cursor: 'pointer',
+    top: '10px',       // Adjust top position
+    right: '10px',     // Use right to position the button in the top-right corner
+    position: 'absolute',
+  }}
+>
+  &times;
+</button>
               <div className="flex items-start">
                 {popup.logo && (
                   <Image
