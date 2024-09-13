@@ -1,4 +1,7 @@
-import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa'; // Add this line
 
 const DashboardLayout = ({ children }) => {
   const { data: session } = useSession();
