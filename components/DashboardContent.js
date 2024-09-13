@@ -5,7 +5,6 @@ import PreviewPopup from './PreviewPopup';
 import AddWebsite from './AddWebsite';
 import ViewReviews from './ViewReviews';
 import PopupHistory from './PopupHistory';
-import ErrorBoundary from './ErrorBoundary';
 
 const DashboardContent = () => {
   const { data: session, status } = useSession();
@@ -31,7 +30,7 @@ const DashboardContent = () => {
       const response = await fetch('/api/dashboard/popups', {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${session.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
       });
 
@@ -56,7 +55,7 @@ const DashboardContent = () => {
       const response = await fetch('/api/dashboard/reviews?new=true', {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${session.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
       });
 
@@ -119,7 +118,7 @@ const DashboardContent = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
         body: JSON.stringify(newPopup),
       });
@@ -147,13 +146,13 @@ const DashboardContent = () => {
   };
 
   const handleDeletePopup = async (id) => {
-    setPopupHistory(popupHistory.filter(popup => popup.id !== id));
+    setPopupHistory(popupHistory.filter((popup) => popup.id !== id));
 
     try {
       const response = await fetch(`/api/dashboard/popups/${id}`, {
         method: 'DELETE',
         headers: {
-          'Authorization': `Bearer ${session.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
       });
 
@@ -177,7 +176,7 @@ const DashboardContent = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.user.accessToken}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
         body: JSON.stringify({ website }),
       });
@@ -201,7 +200,7 @@ const DashboardContent = () => {
         const response = await fetch(`/api/dashboard/websites/${website}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${session.user.accessToken}`,
+            Authorization: `Bearer ${session.user.accessToken}`,
           },
         });
 
@@ -210,8 +209,8 @@ const DashboardContent = () => {
           throw new Error(errorData.message || 'Failed to delete website.');
         }
 
-        setWebsites(websites.filter(w => w.website !== website));
-        setPopupHistory(popupHistory.filter(popup => popup.website !== website));
+        setWebsites(websites.filter((w) => w.website !== website));
+        setPopupHistory(popupHistory.filter((popup) => popup.website !== website));
       } catch (error) {
         console.error('Error:', error);
         setError('Failed to delete website. Please try again.');
@@ -240,7 +239,7 @@ const DashboardContent = () => {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center">
-      <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-5xl p-5 bg-black rounded shadow-md space-y-4 md:space-y-0 md:space-x-4">
+      <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl p-5 bg-black rounded-lg shadow-md space-y-4 md:space-y-0 md:space-x-4">
         <div className="w-full md:w-1/3">
           <ViewReviews reviews={reviews} />
         </div>
@@ -281,5 +280,3 @@ const DashboardContent = () => {
     </div>
   );
 };
-
-export default DashboardContent;
