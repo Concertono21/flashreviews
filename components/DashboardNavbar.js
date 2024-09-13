@@ -18,7 +18,7 @@ const DashboardNavbar = ({
           <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
             {session?.user?.email?.[0]}
           </span>
-          <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-[100px] sm:max-w-xs">
+          <span className="font-bold whitespace-nowrap overflow-hidden text-ellipsis max-w-[80px] sm:max-w-xs">
             Account ({session?.user?.email})
           </span>
           <svg
