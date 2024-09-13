@@ -464,15 +464,21 @@ setError('Failed to save popup settings. Please try again.');
           {loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}
         </h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full min-h-[500px]">
+          
           {/* Left Column: View Reviews and Website Manager */}
           <div className="flex flex-col gap-4 flex-grow">
             <ViewReviews session={session} reviews={reviews} />
-            <WebsiteManager addWebsite={addWebsite} websites={websites} deleteWebsite={deleteWebsite} />
+            <WebsiteManager 
+              addWebsite={addWebsite} 
+              websites={websites} 
+              deleteWebsite={deleteWebsite} 
+            />
           </div>
   
           {/* Right Column: Edit Popup and Popup History */}
-          <div className="flex flex-col gap-2 flex-grow"> {/* Adjusted gap to 2 */}
+          <div className="flex flex-col gap-2 flex-grow">
             <EditPopupReview
               popupSettings={popupSettings}
               handleTitleChange={(e) => setPopupSettings({ ...popupSettings, title: e.target.value })}
@@ -487,14 +493,11 @@ setError('Failed to save popup settings. Please try again.');
               handleRatingChange={(rating) => setPopupSettings({ ...popupSettings, rating })}
               handleSavePopupSettings={handleSavePopupSettings}
               handlePreviewPopup={() => setIsPreviewOpen(true)}
-              handleGenerateCode={() =>
-                setGeneratedCode(
-                  `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`
-                )
-              }
+              handleGenerateCode={() => setGeneratedCode(
+                `<script src="${process.env.NEXT_PUBLIC_BASE_URL}/embed.js" data-website="${websites[0].website}"></script>`
+              )}
               handleTimingChange={(timing) => setPopupSettings({ ...popupSettings, timing })}
               handleStyleChange={(e) => setPopupSettings({ ...popupSettings, style: e.target.value })}
-              setPopupSettings={setPopupSettings}
               websites={websites}
             />
             <PopupHistory
@@ -506,6 +509,7 @@ setError('Failed to save popup settings. Please try again.');
           </div>
         </div>
       </div>
+  
       {isPreviewOpen && (
         <PreviewPopup
           popupSettings={popupSettings}
