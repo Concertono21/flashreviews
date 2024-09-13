@@ -1,3 +1,5 @@
+import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa';
+
 const DashboardLayout = ({ children }) => {
   const { data: session } = useSession();
   const router = useRouter();
