@@ -36,7 +36,9 @@ const DashboardLayout = ({ children }) => {
               <span className="bg-white text-black text-xl font-bold w-6 h-6 flex items-center justify-center rounded-full border border-black">
                 {session?.user?.email?.[0]}
               </span>
-              <span className="font-bold">Account ({session?.user?.email})</span>
+              <span className="font-bold text-ellipsis overflow-hidden max-w-[100px] sm:max-w-xs">
+                Account ({session?.user?.email})
+              </span>
               <svg
                 className={`w-4 h-4 transition-transform ${accountMenuOpen ? 'rotate-180' : ''}`}
                 xmlns="http://www.w3.org/2000/svg"
@@ -93,11 +95,11 @@ const DashboardLayout = ({ children }) => {
               {children[0]} {/* View Reviews */}
             </div>
 
-            <div className="flex flex-col md:flex-row md:space-x-6 w-full">
-              <div className="flex-grow md:w-1/2 space-y-4"> {/* Reduced space-y value */}
+            <div className="flex flex-col md:flex-row md:space-x-4 w-full">
+              <div className="flex-grow md:w-1/2 space-y-3">
                 {children[1]} {/* Fancy a New Popup */}
               </div>
-              <div className="flex-grow md:w-1/2 space-y-4"> {/* Reduced space-y value */}
+              <div className="flex-grow md:w-1/2 space-y-3">
                 {children[2]} {/* Edit Popup */}
                 {children[3]} {/* Active Popups */}
               </div>
