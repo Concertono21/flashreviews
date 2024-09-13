@@ -84,29 +84,35 @@ const DashboardLayout = ({ children }) => {
         </div>
       </div>
 
-      <div className="pt-24 max-w-6xl mx-auto flex flex-col md:space-y-4 space-y-3 px-4 sm:px-6 md:px-8">
-        {session?.user?.stripePlan === null ? (
-          <div className="flex justify-center w-full">
-            {children[0]} {/* Website Manager */}
-          </div>
-        ) : (
-          <>
-            <div className="flex justify-center w-full">
-              {children[0]} {/* View Reviews */}
-            </div>
+      <div className="w-full fixed top-0 bg-black z-50">
+  <div className="flex items-center justify-between p-4 sm:p-6 max-w-6xl mx-auto">
+    {/* Navbar Content */}
+  </div>
+</div>
 
-            <div className="flex flex-col md:flex-row md:space-x-4 w-full">
-              <div className="flex-grow md:w-1/2 space-y-3">
-                {children[1]} {/* Fancy a New Popup */}
-              </div>
-              <div className="flex-grow md:w-1/2 space-y-3">
-                {children[2]} {/* Edit Popup */}
-                {children[3]} {/* Active Popups */}
-              </div>
-            </div>
-          </>
-        )}
+<div className="pt-32 sm:pt-24 max-w-6xl mx-auto flex flex-col md:space-y-4 space-y-3 px-4 sm:px-6 md:px-8">
+  {session?.user?.stripePlan === null ? (
+    <div className="flex justify-center w-full">
+      {children[0]} {/* Website Manager */}
+    </div>
+  ) : (
+    <>
+      <div className="flex justify-center w-full">
+        {children[0]} {/* View Reviews */}
       </div>
+
+      <div className="flex flex-col md:flex-row md:space-x-4 w-full">
+        <div className="flex-grow md:w-1/2 space-y-3">
+          {children[1]} {/* Fancy a New Popup */}
+        </div>
+        <div className="flex-grow md:w-1/2 space-y-3">
+          {children[2]} {/* Edit Popup */}
+          {children[3]} {/* Active Popups */}
+        </div>
+      </div>
+    </>
+  )}
+</div>
     </div>
   );
 };
