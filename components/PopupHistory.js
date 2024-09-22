@@ -132,14 +132,14 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
           filteredPopups.map((popup) => (
             <div
               key={popup._id}
-              className="bg-[#1C1C1E] p-4 rounded-lg shadow-md mb-4 relative"
+              className="relative bg-[#1C1C1E] p-4 rounded-lg shadow-md mb-4"
               style={{
                 backgroundColor: styleSettings[popup.style]?.backgroundColor || '#fff',
                 color: styleSettings[popup.style]?.color || '#000',
               }}
             >
               <button
-                className="absolute top-0 right-0 m-2 text-[#cecece] hover:text-black transition-colors"
+                className="absolute top-2 right-2 text-[#cecece] hover:text-black transition-colors"
                 onClick={() => handleDelete(popup._id)}
                 style={{
                   background: 'none',
@@ -147,6 +147,7 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   fontSize: '20px',
                   cursor: 'pointer',
                 }}
+                aria-label="Delete popup"
               >
                 &times;
               </button>
