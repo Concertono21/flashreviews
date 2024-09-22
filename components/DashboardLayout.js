@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa'; // Add this line
+import { FaCreditCard, FaSignOutAlt } from 'react-icons/fa';
 
 const DashboardLayout = ({ children }) => {
   const { data: session } = useSession();
@@ -25,10 +25,10 @@ const DashboardLayout = ({ children }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-black font-sans">
+    <div className="min-h-screen flex flex-col bg-black font-sans overflow-x-hidden">
       {/* Navbar */}
       <div className="w-full fixed top-0 bg-black z-50">
-        <div className="flex items-center justify-between p-4 max-w-6xl mx-auto">
+        <div className="flex items-center justify-between p-4 w-full px-4 sm:px-6 md:px-8">
           <div className="relative">
             <button
               className="flex items-center space-x-2 bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
@@ -41,13 +41,20 @@ const DashboardLayout = ({ children }) => {
                 Account ({session?.user?.email})
               </span>
               <svg
-                className={`w-4 h-4 transition-transform ${accountMenuOpen ? 'rotate-180' : ''}`}
+                className={`w-4 h-4 transition-transform ${
+                  accountMenuOpen ? 'rotate-180' : ''
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
             {accountMenuOpen && (
@@ -74,9 +81,12 @@ const DashboardLayout = ({ children }) => {
             <button
               className="bg-transparent text-white border-2 border-[#3A3A3C] px-4 py-2 rounded-full"
               onClick={() => {
-                const stripeLink = 'https://buy.stripe.com/test_6oEbJX2vY6mz12M4gh';
+                const stripeLink =
+                  'https://buy.stripe.com/test_6oEbJX2vY6mz12M4gh';
                 const userEmail = session?.user?.email || '';
-                window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(userEmail)}`;
+                window.location.href = `${stripeLink}?prefilled_email=${encodeURIComponent(
+                  userEmail
+                )}`;
               }}
             >
               Get Started
@@ -86,7 +96,7 @@ const DashboardLayout = ({ children }) => {
       </div>
 
       {/* Content */}
-      <div className="pt-20 max-w-6xl mx-auto flex flex-col md:space-y-4 space-y-3 px-4 sm:px-6 md:px-8">
+      <div className="pt-20 w-full flex flex-col md:space-y-4 space-y-3 px-4 sm:px-6 md:px-8">
         {session?.user?.stripePlan === null ? (
           <div className="flex justify-center w-full">
             {children[0]} {/* Website Manager */}
