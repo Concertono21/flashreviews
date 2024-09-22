@@ -65,39 +65,39 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
 
   return (
     <div className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800 text-center">
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
         Add a New Website
       </h2>
-      <p className="mb-6 text-gray-600 text-center text-sm">
+      <p className="mb-6 text-gray-600 text-center">
         Enter your domain name to get started. No need to add{' '}
         <span className="text-gray-500">https://</span> or{' '}
         <span className="text-gray-500">www.</span>
       </p>
-      <div className="flex items-center mb-4">
+      <div className="flex items-center mb-6">
         <input
           type="text"
           placeholder="example.com"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
-          className="flex-grow p-2 border border-gray-300 rounded-l-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm"
+          className="flex-grow p-3 border border-gray-300 rounded-l-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
         />
         <button
-          className="bg-gray-800 text-white px-4 py-2 rounded-r-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm"
+          className="bg-gray-800 text-white px-5 py-3 rounded-r-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
           onClick={handleAddWebsite}
         >
           Add
         </button>
       </div>
       {websites.length > 0 && (
-        <div className="mt-4">
-          <h3 className="text-lg font-medium text-gray-800 mb-2">
+        <div className="mt-8">
+          <h3 className="text-xl font-medium text-gray-800 mb-4">
             Your Websites
           </h3>
           <ul className="space-y-2">
             {websites.map((site, index) => (
               <li
                 key={index}
-                className="flex justify-between items-center text-gray-800 text-sm"
+                className="flex justify-between items-center text-gray-800"
               >
                 <span className="overflow-hidden text-ellipsis whitespace-nowrap">
                   {typeof site.website === 'string'
@@ -105,12 +105,11 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none ml-2"
+                  className="w-6 h-6 flex justify-center items-center text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
                   onClick={() => handleDeleteWebsite(site.website)}
                   aria-label="Delete website"
-                  style={{ minWidth: '24px' }}
                 >
-                  <FiTrash2 className="w-4 h-4" />
+                  <FiTrash2 className="w-5 h-5" />
                 </button>
               </li>
             ))}
