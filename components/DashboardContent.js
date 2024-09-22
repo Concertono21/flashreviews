@@ -239,12 +239,12 @@ const DashboardContent = () => {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center">
-      <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl p-5 bg-black rounded-lg shadow-md space-y-4 md:space-y-0 md:space-x-4">
+      <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl p-6 bg-gray-100 rounded-2xl shadow-xl space-y-4 md:space-y-0 md:space-x-4">
         <div className="w-full md:w-1/3">
           <ViewReviews reviews={reviews} />
         </div>
         <div className="w-full md:w-2/3">
-          <h2 className="text-xl font-bold text-white mb-4">Active Pop Up</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Active Pop Ups</h2>
           <PopupHistory 
             popupHistory={popupHistory} 
             handleDeletePopup={handleDeletePopup} 
