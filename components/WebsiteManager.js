@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { FiTrash2 } from 'react-icons/fi';
 
 const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   const [website, setWebsite] = useState('');
@@ -63,7 +64,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
+    <div className="bg-gray-100 border border-gray-300 p-8 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
         Add a New Website
       </h2>
@@ -72,40 +73,43 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
         <span className="text-gray-500">https://</span> or{' '}
         <span className="text-gray-500">www.</span>
       </p>
-      <input
-        type="text"
-        placeholder="example.com"
-        value={website}
-        onChange={(e) => setWebsite(e.target.value)}
-        className="w-full p-3 mb-4 border border-gray-300 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
-      />
-      <button
-        className="bg-gray-800 text-white px-5 py-3 rounded-full w-full hover:bg-gray-700 transition-colors duration-200"
-        onClick={handleAddWebsite}
-      >
-        Add Website
-      </button>
+      <div className="flex items-center mb-6">
+        <input
+          type="text"
+          placeholder="example.com"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          className="flex-grow p-3 border border-gray-300 rounded-l-full bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        />
+        <button
+          className="bg-gray-800 text-white px-5 py-3 rounded-r-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          onClick={handleAddWebsite}
+        >
+          Add
+        </button>
+      </div>
       {websites.length > 0 && (
         <div className="mt-8">
-          <h3 className="text-xl font-medium text-gray-800 mb-4">
+          <h3 className="text-xl font-medium text-gray-800 mb-4 text-center">
             Your Websites
           </h3>
           <ul className="space-y-4">
             {websites.map((site, index) => (
               <li
                 key={index}
-                className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-300"
+                className="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-200"
               >
-                <span className="text-gray-800 overflow-hidden text-ellipsis whitespace-nowrap">
+                <span className="text-gray-800 font-medium overflow-hidden text-ellipsis whitespace-nowrap">
                   {typeof site.website === 'string'
                     ? site.website
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="text-gray-500 hover:text-red-600 transition-colors duration-200"
+                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
                   onClick={() => handleDeleteWebsite(site.website)}
+                  aria-label="Delete website"
                 >
-                  Delete
+                  <FiTrash2 className="w-5 h-5" />
                 </button>
               </li>
             ))}
