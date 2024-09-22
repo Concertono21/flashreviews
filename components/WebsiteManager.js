@@ -105,7 +105,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
+                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none p-0 m-0 leading-none"
                   onClick={() => handleDeleteWebsite(site.website)}
                   aria-label="Delete website"
                 >
