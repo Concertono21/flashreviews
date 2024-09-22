@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { FiX } from 'react-icons/fi'; // Import the close (X) icon
+// If you prefer the trash icon, uncomment the line below and comment out the FiX import
+// import { FiTrash2 } from 'react-icons/fi';
 
 const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   const [website, setWebsite] = useState('');
@@ -105,11 +107,13 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="w-6 h-6 text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
+                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
                   onClick={() => handleDeleteWebsite(site.website)}
                   aria-label="Delete website"
                 >
-                  <FiX className="w-full h-full" />
+                  <FiX className="w-5 h-5" />
+                  {/* If using the trash icon, replace the line above with:
+                  <FiTrash2 className="w-5 h-5" /> */}
                 </button>
               </li>
             ))}
