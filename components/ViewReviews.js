@@ -14,12 +14,11 @@ const ViewReviews = () => {
         const response = await fetch('/api/dashboard/reviews?new=true', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${session.user.accessToken}`,
+            Authorization: `Bearer ${session.user.accessToken}`,
           },
         });
 
         if (!response.ok) {
-          const errorData = await response.json();
           throw new Error('Failed to fetch reviews');
         }
 
@@ -41,53 +40,50 @@ const ViewReviews = () => {
 
   return (
     <div
-      className="bg-[#1C1C1E] border border-[#3A3A3C] p-4 rounded-lg shadow-md mx-auto mt-4"
+      className="bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-lg mx-auto mt-8 max-w-md"
       style={{
-        width: '375px',  // Fixed width for iPhone
-        height: '667px',  // Fixed height for iPhone 6/7/8
-        overflowY: 'scroll', // Allow scrolling for overflow content
-        maxWidth: '100%', 
+        height: '667px', // Fixed height for iPhone 6/7/8
+        overflowY: 'scroll',
       }}
     >
-      <h2 className="text-xl font-semibold mb-4 text-[#F0F0F3]">View Reviews</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+      <h2 className="text-2xl font-semibold mb-6 text-white text-center">View Reviews</h2>
+      {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
       {reviews.length > 0 ? (
-        <ul>
+        <ul className="space-y-6">
           {reviews.slice(0, 5).map((review) => (
-            <li key={review._id} className="mb-4 text-[#F0F0F3]">
-              <p><strong>Popup:</strong> {review.popupTitle}</p>
-              <p><strong>Comments:</strong> {review.comments || 'No comments provided'}</p>
+            <li key={review._id} className="text-white">
+              <p className="font-medium mb-2 text-lg">{review.popupTitle}</p>
               {review.rating !== undefined && (
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
-                  <strong style={{ marginRight: '5px' }}>Rating:</strong>
-                  <div style={{ display: 'flex' }}>
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        className="w-4 h-4"
-                        fill={review.rating >= star ? 'gold' : 'gray'}
-                        viewBox="0 0 24 24"
-                        stroke="none"
-                        style={{ fontSize: '12px', color: 'grey', marginRight: '2px' }}
-                      >
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                      </svg>
-                    ))}
-                  </div>
+                <div className="flex items-center mb-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      key={star}
+                      className={`w-5 h-5 ${
+                        review.rating >= star ? 'text-yellow-400' : 'text-gray-600'
+                      }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927a1 1 0 011.902 0l1.25 3.847a1 1 0 00.95.69h4.05a1 1 0 01.592 1.806l-3.28 2.388a1 1 0 00-.364 1.118l1.25 3.847a1 1 0 01-1.54 1.118L10 13.347l-3.408 2.488a1 1 0 01-1.54-1.118l1.25-3.847a1 1 0 00-.364-1.118L2.659 9.27a1 1 0 01.592-1.806h4.05a1 1 0 00.95-.69l1.25-3.847z" />
+                    </svg>
+                  ))}
                 </div>
               )}
-              <p><strong>Submitted on:</strong> {new Date(review.createdAt).toLocaleString()}</p>
+              <p className="text-gray-300 mb-2">
+                {review.comments || 'No comments provided'}
+              </p>
+              <p className="text-gray-500 text-sm">
+                Submitted on: {new Date(review.createdAt).toLocaleString()}
+              </p>
+              <hr className="border-gray-700 mt-4" />
             </li>
           ))}
         </ul>
       ) : (
-        <p className="text-[#F0F0F3]">No reviews available.</p>
+        <p className="text-gray-400 text-center">No reviews available.</p>
       )}
       <button
-        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full mt-4"
-        style={{
-          fontSize: '14px',
-        }}
+        className="bg-blue-600 text-white px-6 py-3 rounded-full w-full mt-6 hover:bg-blue-500 transition-colors duration-200"
         onClick={() => router.push('/dashboard/all-reviews')}
       >
         View All Reviews
