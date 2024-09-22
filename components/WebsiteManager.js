@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { FiX } from 'react-icons/fi'; // Import the close (X) icon
+import { FiX } from 'react-icons/fi';
 
 const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   const [website, setWebsite] = useState('');
@@ -64,7 +64,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
+    <div className="bg-gray-100 border border-gray-300 p-8 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
         Add a New Website
       </h2>
@@ -90,7 +90,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
       </div>
       {websites.length > 0 && (
         <div className="mt-8">
-          <h3 className="text-xl font-medium text-gray-800 mb-4">
+          <h3 className="text-xl font-medium text-gray-800 mb-4 text-center">
             Your Websites
           </h3>
           <ul className="space-y-2">
