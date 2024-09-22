@@ -10,16 +10,13 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   }, [session]);
 
   const handleAddWebsite = async () => {
-    if (website && !websites.some(w => w.website === website)) {
+    if (website && !websites.some((w) => w.website === website)) {
       try {
-        console.log('Attempting to add website:', website);
-        console.log('Session accessToken:', session.user.accessToken);
-
         const response = await fetch('/api/dashboard/websites', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.user.accessToken}`, // Ensure the token is passed
+            Authorization: `Bearer ${session.user.accessToken}`,
           },
           body: JSON.stringify({ website }),
         });
@@ -43,12 +40,15 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   const handleDeleteWebsite = async (website) => {
     try {
       const params = new URLSearchParams({ website });
-      const response = await fetch(`/api/dashboard/websites?${params.toString()}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${session.user.accessToken}`, // Ensure the token is passed
-        },
-      });
+      const response = await fetch(
+        `/api/dashboard/websites?${params.toString()}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${session.user.accessToken}`,
+          },
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -63,38 +63,55 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-6 rounded-lg shadow-md w-full max-w-full mx-auto">
-      <h2 className="text-2xl sm:text-xl font-semibold mb-4 text-[#F0F0F3]">Fancy a new FlashReviews?</h2>
-      <p className="mb-4 text-[#F0F0F3]">Add your domain name to get started, no need to add &quot;https://&quot; or &quot;www.&quot;</p>
+    <div className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
+        Add a New Website
+      </h2>
+      <p className="mb-6 text-gray-600 text-center">
+        Enter your domain name to get started. No need to add{' '}
+        <span className="text-gray-500">https://</span> or{' '}
+        <span className="text-gray-500">www.</span>
+      </p>
       <input
         type="text"
-        placeholder="unicorn.com"
+        placeholder="example.com"
         value={website}
         onChange={(e) => setWebsite(e.target.value)}
-        className="w-full p-2 mb-4 border border-[#3A3A3C] rounded bg-[#2C2C2E] text-[#F0F0F3]"
+        className="w-full p-3 mb-4 border border-gray-300 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
       />
       <button
-        className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full sm:w-auto hover:bg-[#2C2C2E]"
+        className="bg-gray-800 text-white px-5 py-3 rounded-full w-full hover:bg-gray-700 transition-colors duration-200"
         onClick={handleAddWebsite}
       >
         Add Website
       </button>
-      <div className="mt-2 sm:mt-4">
-        <h3 className="text-lg sm:text-base font-bold text-[#F0F0F3]">Websites</h3>
-        <ul className="space-y-4 mt-2">
-          {websites.map((site, index) => (
-            <li key={index} className="text-[#F0F0F3] flex justify-between items-center">
-              <span className="flex-grow overflow-hidden text-ellipsis whitespace-nowrap">{typeof site.website === 'string' ? site.website : JSON.stringify(site.website)}</span>
-              <button
-                className="border border-black text-[#F0F0F3] px-4 py-2 w-24 rounded-sm ml-4 transition-all duration-200 bg-transparent hover:bg-gray-300 hover:border-gray-300"
-                onClick={() => handleDeleteWebsite(site.website)}
+      {websites.length > 0 && (
+        <div className="mt-8">
+          <h3 className="text-xl font-medium text-gray-800 mb-4">
+            Your Websites
+          </h3>
+          <ul className="space-y-4">
+            {websites.map((site, index) => (
+              <li
+                key={index}
+                className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-300"
               >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+                <span className="text-gray-800 overflow-hidden text-ellipsis whitespace-nowrap">
+                  {typeof site.website === 'string'
+                    ? site.website
+                    : JSON.stringify(site.website)}
+                </span>
+                <button
+                  className="text-gray-500 hover:text-red-600 transition-colors duration-200"
+                  onClick={() => handleDeleteWebsite(site.website)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
