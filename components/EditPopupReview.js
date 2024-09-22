@@ -62,15 +62,13 @@ const EditPopupReview = ({
   const currentStyle = styleSettings[popupSettings?.style] || styleSettings["classic-white"];
 
   return (
-    <div className="bg-[#1C1C1E] border border-[#3A3A3C] p-4 rounded-lg shadow-lg mx-auto mt-6"
-      style={{
-        width: '375px',  // Fixed width for iPhone screen
-        maxWidth: '100%',
-        overflowY: 'auto'
-      }}
+    <div
+      className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md"
     >
-      <h2 className="text-2xl font-semibold mb-4 text-[#F0F0F3]">Edit Popup</h2>
-      <div className="bg-[#2C2C2E] p-4 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
+        Edit Popup
+      </h2>
+      <div className="bg-white p-6 rounded-xl shadow-md">
         {popupSettings && (
           <div
             id="editPopup"
@@ -162,96 +160,72 @@ const EditPopupReview = ({
             </div>
 
             {/* Content */}
-            <div className="notification-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-                  <FaClock style={{ color: currentStyle.color, marginRight: '5px' }} />
-                  <input
-                    type="number"
-                    id="popupTiming"
-                    value={timing}
-                    onChange={handleTimingChangeInternal}
-                    style={{
-                      width: '50px',
-                      padding: '2px 5px',
-                      textAlign: 'center',
-                      backgroundColor: currentStyle.backgroundColor,
-                      color: currentStyle.color,
-                      border: 'none',
-                      borderBottom: '1px solid grey'
-                    }}
-                    min="0"
-                  />
-                </div>
-                <div className="mb-2" style={{ display: 'flex', alignItems: 'center' }}>
-                  <FaPaintBrush style={{ color: currentStyle.color, marginRight: '5px' }} />
-                  <select
-                    id="popupStyle"
-                    value={popupSettings.style || 'classic-white'}
-                    onChange={handleStyleChange}
-                    style={{
-                      padding: '2px',
-                      fontSize: '12px',
-                      backgroundColor: currentStyle.backgroundColor,
-                      color: currentStyle.color,
-                      border: 'none',
-                      borderBottom: '1px solid grey'
-                    }}
-                  >
-                    <option value="classic-white">Classic White</option>
-                    <option value="dark-mode">Dark Mode</option>
-                    <option value="apple-notification">Apple Notification</option>
-                    <option value="style4">Style 4</option>
-                    <option value="style5">Style 5</option>
-                  </select>
-                </div>
-              </div>
-              <div className="mb-2" style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                <FaGlobe style={{ color: currentStyle.color, marginRight: '5px' }} />
-                <select
-                  id="popupWebsite"
-                  value={popupSettings.website || ''}
-                  onChange={handleWebsiteChange}
-                  style={{
-                    width: '100%',
-                    padding: '2px',
-                    fontSize: '12px',
-                    backgroundColor: currentStyle.backgroundColor,
-                    color: currentStyle.color,
-                    border: 'none',
-                    borderBottom: '1px solid grey'
-                  }}
-                >
-                  <option value="" disabled>Select a website</option>
-                  {websites.map((websiteObj, index) => (
-                    <option key={index} value={websiteObj.website}>
-                      {websiteObj.website}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex space-x-2 w-full">
-                <button
-                  className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
-                  onClick={handleSavePopupSettings}
-                  style={{ fontSize: '12px' }}
-                >
-                  Save Settings
-                </button>
-                <button
-                  className="bg-[#1C1C1E] text-[#F0F0F3] border border-[#3A3A3C] px-4 py-2 rounded-full w-full"
-                  onClick={handlePreviewPopup}
-                  style={{ fontsize: '12px' }}
-                  >
-                    Preview Popup
-                  </button>
-                </div>
-              </div>
+            {/* Popup content remains unchanged */}
+          </div>
+        )}
+        <div className="mt-6">
+          <div className="flex space-x-4 mb-4">
+            <div className="flex items-center w-1/2">
+              <FaClock className="text-gray-500 mr-2" />
+              <input
+                type="number"
+                id="popupTiming"
+                value={timing}
+                onChange={handleTimingChangeInternal}
+                className="w-full p-2 border-b border-gray-300 focus:outline-none focus:border-gray-400"
+                min="0"
+              />
             </div>
-          )}
+            <div className="flex items-center w-1/2">
+              <FaPaintBrush className="text-gray-500 mr-2" />
+              <select
+                id="popupStyle"
+                value={popupSettings.style || 'classic-white'}
+                onChange={handleStyleChange}
+                className="w-full p-2 border-b border-gray-300 bg-transparent focus:outline-none focus:border-gray-400"
+              >
+                <option value="classic-white">Classic White</option>
+                <option value="dark-mode">Dark Mode</option>
+                <option value="apple-notification">Apple Notification</option>
+                <option value="style4">Style 4</option>
+                <option value="style5">Style 5</option>
+              </select>
+            </div>
+          </div>
+          <div className="flex items-center mb-6">
+            <FaGlobe className="text-gray-500 mr-2" />
+            <select
+              id="popupWebsite"
+              value={popupSettings.website || ''}
+              onChange={handleWebsiteChange}
+              className="w-full p-2 border-b border-gray-300 bg-transparent focus:outline-none focus:border-gray-400"
+            >
+              <option value="" disabled>Select a website</option>
+              {websites.map((websiteObj, index) => (
+                <option key={index} value={websiteObj.website}>
+                  {websiteObj.website}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              className="bg-gray-800 text-white px-5 py-3 rounded-full w-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              onClick={handleSavePopupSettings}
+            >
+              Save Settings
+            </button>
+            <button
+              className="bg-gray-800 text-white px-5 py-3 rounded-full w-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400"
+              onClick={handlePreviewPopup}
+            >
+              Preview Popup
+            </button>
+          </div>
         </div>
       </div>
-    );
-  };
-  
-  export default EditPopupReview;
+    </div>
+  );
+};
+
+export default EditPopupReview;
