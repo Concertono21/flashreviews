@@ -97,15 +97,15 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
             {websites.map((site, index) => (
               <li
                 key={index}
-                className="relative flex items-center text-gray-800"
+                className="flex items-center text-gray-800"
               >
-                <span className="overflow-hidden text-ellipsis whitespace-nowrap pr-8">
+                <span className="flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
                   {typeof site.website === 'string'
                     ? site.website
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="absolute right-0 text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none p-0 m-0 leading-none"
+                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none p-0 m-0 leading-none flex-shrink-0 ml-2"
                   onClick={() => handleDeleteWebsite(site.website)}
                   aria-label="Delete website"
                 >
