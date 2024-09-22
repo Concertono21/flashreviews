@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { FiX } from 'react-icons/fi';
+import { FiTrash2 } from 'react-icons/fi';
 
 const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   const [website, setWebsite] = useState('');
@@ -64,7 +64,7 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   };
 
   return (
-    <div className="bg-gray-100 border border-gray-300 p-8 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
+    <div className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
         Add a New Website
       </h2>
@@ -90,26 +90,26 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
       </div>
       {websites.length > 0 && (
         <div className="mt-8">
-          <h3 className="text-xl font-medium text-gray-800 mb-4 text-center">
+          <h3 className="text-xl font-medium text-gray-800 mb-4">
             Your Websites
           </h3>
           <ul className="space-y-2">
             {websites.map((site, index) => (
               <li
                 key={index}
-                className="flex items-center text-gray-800"
+                className="flex justify-between items-center text-gray-800"
               >
-                <span className="flex-grow overflow-hidden text-ellipsis whitespace-nowrap">
+                <span className="overflow-hidden text-ellipsis whitespace-nowrap">
                   {typeof site.website === 'string'
                     ? site.website
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none p-0 m-0 leading-none flex-shrink-0 ml-2"
+                  className="w-6 h-6 flex justify-center items-center text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
                   onClick={() => handleDeleteWebsite(site.website)}
                   aria-label="Delete website"
                 >
-                  <FiX className="w-5 h-5" />
+                  <FiTrash2 className="w-5 h-5" />
                 </button>
               </li>
             ))}
