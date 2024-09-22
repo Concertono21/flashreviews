@@ -40,11 +40,7 @@ const ViewReviews = () => {
 
   return (
     <div
-      className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 max-w-md"
-      style={{
-        height: '667px', // Fixed height for iPhone 6/7/8
-        overflowY: 'scroll',
-      }}
+      className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 w-full max-w-md"
     >
       <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
         View Reviews
