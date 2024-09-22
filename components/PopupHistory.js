@@ -139,15 +139,13 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
               }}
             >
               <button
-                className="absolute text-[#cecece] hover:text-black transition-colors"
+                className="absolute top-0 right-0 m-2 text-[#cecece] hover:text-black transition-colors"
                 onClick={() => handleDelete(popup._id)}
                 style={{
                   background: 'none',
                   border: 'none',
                   fontSize: '20px',
                   cursor: 'pointer',
-                  top: '-10px',
-                  left: '165px',
                 }}
               >
                 &times;
@@ -163,12 +161,16 @@ const PopupHistory = ({ handleDeletePopup, websites = [], refreshData }) => {
                   />
                 )}
                 <div style={{ flexGrow: 1 }}>
-                  <p className="font-semibold text-sm" style={{ color: styleSettings[popup.style]?.color || 'black', marginRight: '30px' }}>{popup.title}</p>
+                  <p className="font-semibold text-sm" style={{ color: styleSettings[popup.style]?.color || 'black', marginRight: '30px' }}>
+                    {popup.title}
+                  </p>
                   <p className="text-xs" style={{ color: styleSettings[popup.style]?.color || 'black' }}>
-                    <FaClock className="inline-block mr-1" />{popup.timing} seconds
+                    <FaClock className="inline-block mr-1" />
+                    {popup.timing} seconds
                   </p>
                   <p className="text-xs mb-2" style={{ color: styleSettings[popup.style]?.color || 'black' }}>
-                    <FaGlobe className="inline-block mr-1" />{popup.website}
+                    <FaGlobe className="inline-block mr-1" />
+                    {popup.website}
                   </p>
                   {popup.enableStars && (
                     <div className="flex justify-start">
