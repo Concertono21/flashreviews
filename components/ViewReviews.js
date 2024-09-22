@@ -40,26 +40,32 @@ const ViewReviews = () => {
 
   return (
     <div
-      className="bg-gray-900 border border-gray-800 p-6 rounded-2xl shadow-lg mx-auto mt-8 max-w-md"
+      className="bg-gray-100 border border-gray-300 p-6 rounded-2xl shadow-xl mx-auto mt-8 max-w-md"
       style={{
         height: '667px', // Fixed height for iPhone 6/7/8
         overflowY: 'scroll',
       }}
     >
-      <h2 className="text-2xl font-semibold mb-6 text-white text-center">View Reviews</h2>
-      {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
+        View Reviews
+      </h2>
+      {error && (
+        <p className="text-red-500 mb-4 text-center text-sm">{error}</p>
+      )}
       {reviews.length > 0 ? (
-        <ul className="space-y-6">
+        <ul className="space-y-8">
           {reviews.slice(0, 5).map((review) => (
-            <li key={review._id} className="text-white">
-              <p className="font-medium mb-2 text-lg">{review.popupTitle}</p>
+            <li key={review._id} className="text-gray-800">
+              <p className="font-medium mb-3 text-lg">{review.popupTitle}</p>
               {review.rating !== undefined && (
-                <div className="flex items-center mb-2">
+                <div className="flex items-center mb-3">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg
                       key={star}
                       className={`w-5 h-5 ${
-                        review.rating >= star ? 'text-yellow-400' : 'text-gray-600'
+                        review.rating >= star
+                          ? 'text-gray-700'
+                          : 'text-gray-300'
                       }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -69,21 +75,21 @@ const ViewReviews = () => {
                   ))}
                 </div>
               )}
-              <p className="text-gray-300 mb-2">
-                {review.comments || 'No comments provided'}
+              <p className="text-gray-600 mb-3 text-sm">
+                {review.comments || 'No comments provided.'}
               </p>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-xs">
                 Submitted on: {new Date(review.createdAt).toLocaleString()}
               </p>
-              <hr className="border-gray-700 mt-4" />
+              <hr className="border-gray-300 mt-6" />
             </li>
           ))}
         </ul>
       ) : (
-        <p className="text-gray-400 text-center">No reviews available.</p>
+        <p className="text-gray-500 text-center">No reviews available.</p>
       )}
       <button
-        className="bg-blue-600 text-white px-6 py-3 rounded-full w-full mt-6 hover:bg-blue-500 transition-colors duration-200"
+        className="bg-gray-800 text-white px-5 py-3 rounded-full w-full mt-8 hover:bg-gray-700 transition-colors duration-200"
         onClick={() => router.push('/dashboard/all-reviews')}
       >
         View All Reviews
