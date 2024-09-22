@@ -459,10 +459,10 @@ setError('Failed to save popup settings. Please try again.');
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col items-center w-full max-w-5xl p-5 bg-black rounded shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-white">
-          {loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}
-        </h1>
+      <div className="flex flex-col items-center w-full max-w-5xl p-6 bg-gray-100 rounded-2xl shadow-xl mx-auto mt-8">
+  <h1 className="text-3xl font-bold mb-6 text-gray-800">
+    {loading ? 'Loading...' : `${newReviewCount} New FlashReviews`}
+  </h1>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full min-h-[500px]">
