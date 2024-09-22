@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
-import { FiTrash2 } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi'; // Import the close (X) icon
 
 const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
   const [website, setWebsite] = useState('');
@@ -105,11 +105,11 @@ const WebsiteManager = ({ addWebsite, websites, deleteWebsite }) => {
                     : JSON.stringify(site.website)}
                 </span>
                 <button
-                  className="w-6 h-6 flex justify-center items-center text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
+                  className="w-6 h-6 text-gray-500 hover:text-red-600 transition-colors duration-200 focus:outline-none"
                   onClick={() => handleDeleteWebsite(site.website)}
                   aria-label="Delete website"
                 >
-                  <FiTrash2 className="w-5 h-5" />
+                  <FiX className="w-full h-full" />
                 </button>
               </li>
             ))}
