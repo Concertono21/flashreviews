@@ -38,6 +38,7 @@ export default NextAuth({
   pages: {
     signIn: '/login',
   },
+  
   callbacks: {
     async session({ session, token }) {
       session.user.id = token.id;
