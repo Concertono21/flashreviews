@@ -1,12 +1,9 @@
-// pages/api/auth/[...nextauth].js
-
 import NextAuth from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from '../../../lib/mongodb'; // Import your clientPromise
+import clientPromise from '../../../lib/mongodb';
 import Mailgun from 'mailgun.js';
 import formData from 'form-data';
-import jwt from 'jsonwebtoken'; // Import jwt if you're generating access tokens
 
 export default NextAuth({
   providers: [
@@ -34,7 +31,6 @@ export default NextAuth({
         }
       },
       from: `Your App Name <no-reply@${process.env.MAILGUN_DOMAIN}>`,
-      maxAge: 15 * 60, // Magic link valid for 15 minutes
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
@@ -55,8 +51,6 @@ export default NextAuth({
         token.id = user.id || user._id;
         token.email = user.email;
         token.stripePlan = user.stripePlan;
-
-        // Generate an access token if needed
         token.accessToken = jwt.sign(
           { id: token.id },
           process.env.NEXTAUTH_SECRET,
