@@ -1,27 +1,20 @@
 // test-mailgun.js
 
-import Mailgun from "mailgun.js";
-import formData from "form-data";
+const Mailgun = require("mailgun.js");
+const formData = require("form-data");
 
 const mailgun = new Mailgun(formData);
 const mg = mailgun.client({
   username: "api",
-  key: "your-mailgun-api-key", // Replace with your actual API key
+  key: "key-71f9ee09b76973941186c58e4516d5bc-1b5736a5-a1bfd797", // Replace with your actual Mailgun private API key
 });
 
-const sendTestEmail = async () => {
-  try {
-    const response = await mg.messages.create("admin.flashreviews.co", {
-      from: "FlashReviews <no-reply@admin.flashreviews.co>",
-      to: "your-email@example.com", // Replace with your email
-      subject: "Test Email",
-      text: "This is a test email from Mailgun.",
-      html: "<p>This is a test email from Mailgun.</p>",
-    });
-    console.log("Email sent:", response);
-  } catch (error) {
-    console.error("Error sending test email:", error);
-  }
-};
-
-sendTestEmail();
+mg.messages.create("admin.flashreviews.co", {
+  from: "FlashReviews <no-reply@admin.flashreviews.co>",
+  to: ["alexisddstg@gmail.com"], // Replace with your email
+  subject: "Hello",
+  text: "Testing some Mailgun awesomeness!",
+  html: "<h1>Testing some Mailgun awesomeness!</h1>",
+})
+.then(msg => console.log(msg)) // logs response data
+.catch(err => console.log(err)); // logs any error
