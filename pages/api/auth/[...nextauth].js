@@ -1,33 +1,46 @@
+// pages/api/auth/[...nextauth].js
+
 import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import clientPromise from '../../../lib/mongodb';
+import EmailProvider from 'next-auth/providers/email';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import clientPromise from '../../../lib/mongodb'; // Import your clientPromise
+import Mailgun from 'mailgun.js';
+import formData from 'form-data';
+import jwt from 'jsonwebtoken'; // Import jwt if you're generating access tokens
 
 export default NextAuth({
   providers: [
-    CredentialsProvider({
-      name: 'credentials',
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
-      },
-      authorize: async (credentials) => {
-        const client = await clientPromise;
-        const db = client.db('flashreviews');
-        const user = await db.collection('users').findOne({ email: credentials.email });
+    EmailProvider({
+      async sendVerificationRequest({ identifier: email, url }) {
+        const mailgun = new Mailgun(formData);
+        const mg = mailgun.client({
+          username: 'api',
+          key: process.env.MAILGUN_API_KEY,
+        });
 
-        if (user && await bcrypt.compare(credentials.password, user.password)) {
-          const accessToken = jwt.sign({ id: user._id }, process.env.NEXTAUTH_SECRET, { expiresIn: '1h' });
-          return { id: user._id, email: user.email, accessToken, stripePlan: user.stripePlan };
+        const mailData = {
+          from: `Your App Name <no-reply@${process.env.MAILGUN_DOMAIN}>`,
+          to: email,
+          subject: 'Sign in to Your App Name',
+          text: `Sign in to Your App Name:\n\n${url}\n\n`,
+          html: `<p>Sign in to Your App Name:</p><p><a href="${url}">Click here to sign in</a></p>`,
+        };
+
+        try {
+          await mg.messages.create(process.env.MAILGUN_DOMAIN, mailData);
+        } catch (error) {
+          console.error('Error sending email:', error);
+          throw new Error('Error sending email');
         }
-        return null;
-      }
-    })
+      },
+      from: `Your App Name <no-reply@${process.env.MAILGUN_DOMAIN}>`,
+      maxAge: 15 * 60, // Magic link valid for 15 minutes
+    }),
   ],
+  adapter: MongoDBAdapter(clientPromise),
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/login',
-    error: '/login'
   },
   callbacks: {
     async session({ session, token }) {
@@ -39,16 +52,18 @@ export default NextAuth({
     },
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
+        token.id = user.id || user._id;
         token.email = user.email;
-        token.accessToken = user.accessToken;
         token.stripePlan = user.stripePlan;
+
+        // Generate an access token if needed
+        token.accessToken = jwt.sign(
+          { id: token.id },
+          process.env.NEXTAUTH_SECRET,
+          { expiresIn: '1h' }
+        );
       }
       return token;
-    }
+    },
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    jwt: true
-  }
 });
