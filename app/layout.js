@@ -6,8 +6,8 @@ import "./globals.css"; // Make sure this path is correct
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "FlashReviews",
-  description: "FlashReviews",
+  title: "Flash Reviews",
+  description: "Flash Reviews",
 };
 
 export default function RootLayout({ children }) {
