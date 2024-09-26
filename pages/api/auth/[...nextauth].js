@@ -7,11 +7,11 @@ import clientPromise from "../../../lib/mongodb";
 import Mailgun from "mailgun.js";
 import formData from "form-data";
 
-// Initialize Mailgun
 const mailgun = new Mailgun(formData);
 const mg = mailgun.client({
   username: "api",
   key: process.env.MAILGUN_API_KEY, // Ensure this starts with 'key-'
+  url: process.env.MAILGUN_REGION === 'EU' ? 'https://api.eu.mailgun.net' : 'https://api.mailgun.net'
 });
 
 export default NextAuth({
