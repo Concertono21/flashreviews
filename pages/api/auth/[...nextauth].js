@@ -4,30 +4,34 @@ import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../lib/mongodb";
-import nodemailer from "nodemailer";
+import Mailgun from "mailgun.js";
+import formData from "form-data";
 
-// Create a Nodemailer transporter using SMTP
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST, // e.g., smtp.mailgun.org
-  port: process.env.SMTP_PORT, // e.g., 587
-  auth: {
-    user: process.env.SMTP_USER, // e.g., postmaster@admin.flashreviews.co
-    pass: process.env.SMTP_PASS, // Your SMTP password
-  },
+// Initialize Mailgun
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({
+  username: "api",
+  key: process.env.MAILGUN_API_KEY, // Ensure this starts with 'key-'
 });
 
 export default NextAuth({
   providers: [
     EmailProvider({
-      server: {
-        host: process.env.SMTP_HOST, // e.g., smtp.mailgun.org
-        port: process.env.SMTP_PORT, // e.g., 587
-        auth: {
-          user: process.env.SMTP_USER, // e.g., postmaster@admin.flashreviews.co
-          pass: process.env.SMTP_PASS, // Your SMTP password
-        },
-      },
       from: `FlashReviews <no-reply@${process.env.MAILGUN_DOMAIN}>`,
+      sendVerificationRequest: async ({ identifier: email, url, provider }) => {
+        try {
+          await mg.messages.create(process.env.MAILGUN_DOMAIN, {
+            from: provider.from,
+            to: email,
+            subject: "Sign in to FlashReviews",
+            text: `Sign in to FlashReviews:\n\n${url}\n\n`,
+            html: `<p>Sign in to FlashReviews:</p><p><a href="${url}">Click here to sign in</a></p>`,
+          });
+        } catch (error) {
+          console.error("Error sending email:", error);
+          throw new Error("Error sending verification email");
+        }
+      },
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
